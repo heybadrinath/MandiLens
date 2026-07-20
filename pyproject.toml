@@ -25,7 +25,7 @@ packages = ["pipelines/src/mandilens_pipeline"]
 
 [dependency-groups]
 dev = [
-    "mypy>=1.18,<2",
+    "mypy>=1.18,<3",
     "pytest>=9,<10",
     "pytest-cov>=7,<8",
     "ruff>=0.14,<1",
