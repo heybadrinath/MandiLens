@@ -294,9 +294,7 @@ def blend_predictions(
         raise ValueError("Tree blend weight must be between zero and one")
     if not 0.0 <= level_drift_weight <= 1.0:
         raise ValueError("Level-drift weight must be between zero and one")
-    lead_adjustment = (
-        level_drift_weight * (current_price - rolling_mean_7d) / 7.0 * lead_days
-    )
+    lead_adjustment = level_drift_weight * (current_price - rolling_mean_7d) / 7.0 * lead_days
     return np.maximum(
         baseline * (1.0 - tree_weight) + tree * tree_weight + lead_adjustment,
         1.0,
@@ -660,11 +658,7 @@ def evaluate_and_train(settings: PipelineSettings) -> dict[str, Any]:
     )
     selection_comparison = _method_comparison(selection_predictions)
     candidate_selection = min(
-        (
-            item
-            for item in selection_comparison
-            if item["method"] in {TREE_METHOD, BLENDED_METHOD}
-        ),
+        (item for item in selection_comparison if item["method"] in {TREE_METHOD, BLENDED_METHOD}),
         key=lambda item: float(item["mae"]),
     )
     candidate_method = str(candidate_selection["method"])

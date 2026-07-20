@@ -96,9 +96,7 @@ def test_model_selection_obeys_improvement_and_stability_gates() -> None:
     candidate = comparison[stability["candidate_method"]]
     baseline = comparison[stability["strongest_baseline"]]
     if selected == stability["candidate_method"]:
-        assert candidate["mae"] <= baseline["mae"] * (
-            1 - stability["required_improvement"]
-        )
+        assert candidate["mae"] <= baseline["mae"] * (1 - stability["required_improvement"])
         assert stability["candidate_fold_win_share"] >= stability["required_fold_win_share"]
     else:
         assert selected == stability["strongest_baseline"]

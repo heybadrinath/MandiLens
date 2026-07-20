@@ -122,9 +122,7 @@ def test_blend_weight_is_selected_from_evaluation_predictions() -> None:
         ]
     )
 
-    tree_weight, level_drift_weight = _select_blend_parameters(
-        predictions, "moving_average"
-    )
+    tree_weight, level_drift_weight = _select_blend_parameters(predictions, "moving_average")
     blended = blend_predictions(
         np.array([0.0]),
         np.array([100.0]),
