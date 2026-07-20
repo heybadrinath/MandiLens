@@ -25,3 +25,4 @@ reports/work/**
 # Frontend build artifacts are covered by apps/web/.gitignore.
 apps/web/.env.local
 apps/web/.vercel/
+.vercel/

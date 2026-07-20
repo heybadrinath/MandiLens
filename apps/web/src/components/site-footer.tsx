@@ -1,33 +1,29 @@
-import Link from "next/link";
+"use client";
 
-export function SiteFooter() {
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { localeFromPath, localizePath } from "@/i18n/config";
+import { SHELL_COPY } from "@/i18n/shell-copy";
+
+export function SiteFooter({ sourceUrl }: { sourceUrl: string }) {
+  const locale = localeFromPath(usePathname());
+  const copy = SHELL_COPY[locale];
   return (
     <footer className="site-footer">
-      <div className="site-footer__inner">
-        <div>
-          <div className="footer-wordmark">MandiLens</div>
-          <p>
-            Evidence-led mandi intelligence for Maharashtra. Decision support, not a guaranteed
-            price or financial advice.
-          </p>
-        </div>
-        <div className="footer-links" aria-label="Supporting information">
-          <Link href="/methodology">Methodology</Link>
-          <Link href="/sources">Sources &amp; licence</Link>
-          <Link href="/limitations">Limitations</Link>
-          <a
-            href="https://www.data.gov.in/catalog/current-daily-price-various-commodities-various-markets-mandi"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Official dataset ↗
-          </a>
-        </div>
+      <div>
+        <strong>MandiLens</strong>
+        <span>{copy.footer}</span>
       </div>
-      <div className="site-footer__base">
-        <span>Built from AGMARKNET 2.0 market reports.</span>
-        <span>No login · No tracking · No paid service</span>
-      </div>
+      <nav aria-label={copy.technical}>
+        <Link href={localizePath("/sources", locale)}>{copy.sources}</Link>
+        <Link href={localizePath("/methodology", locale)}>{copy.methodology}</Link>
+        <Link href={localizePath("/limitations", locale)}>{copy.limitations}</Link>
+        <a href={sourceUrl} target="_blank" rel="noreferrer">
+          {copy.official} ↗
+        </a>
+      </nav>
+      <p>{copy.advice}</p>
     </footer>
   );
 }

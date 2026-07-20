@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import math
 import re
 from collections import Counter
@@ -12,6 +13,7 @@ from typing import Any
 import polars as pl
 
 from mandilens_pipeline.config import PipelineSettings
+from mandilens_pipeline.ingestion import iter_months, slugify
 from mandilens_pipeline.io_utils import read_json, sha256_file, write_json
 from mandilens_pipeline.logging_utils import log_event
 
@@ -26,11 +28,7 @@ def display_market_name(value: str) -> str:
     cleaned = SPACE_PATTERN.sub(" ", value.strip())
     if cleaned.isupper():
         cleaned = cleaned.title()
-    replacements = {
-        "Apmc": "APMC",
-        "Ap Mc": "APMC",
-        "Mandi": "Mandi",
-    }
+    replacements = {"Apmc": "APMC", "Ap Mc": "APMC", "Mandi": "Mandi"}
     for source, target in replacements.items():
         cleaned = cleaned.replace(source, target)
     return cleaned
@@ -60,14 +58,14 @@ def parse_arrival_date(value: object) -> date | None:
     return None
 
 
-def _stable_market_id(market_name: str) -> str:
+def _stable_market_id(state_id: int, market_name: str) -> str:
     digest = hashlib.sha1(normalized_key(market_name).encode("utf-8")).hexdigest()[:10]
-    return f"derived-{digest}"
+    return f"derived-{state_id}-{digest}"
 
 
 def _load_reference_maps(
-    raw_root: Path, state_id: int
-) -> tuple[dict[str, dict[str, Any]], dict[int, str]]:
+    raw_root: Path, state_ids: set[int]
+) -> tuple[dict[tuple[int, str], dict[str, Any]], dict[int, str]]:
     payload = read_json(raw_root / "reference" / "filters.json")
     data = payload["data"]
     districts = {
@@ -75,46 +73,83 @@ def _load_reference_maps(
         for item in data.get("district_data", [])
         if item.get("id") is not None
     }
-    markets = {
-        normalized_key(str(item["mkt_name"])): item
-        for item in data.get("market_data", [])
-        if item.get("mkt_name") and item.get("state_id") == state_id
-    }
+    markets: dict[tuple[int, str], dict[str, Any]] = {}
+    for item in data.get("market_data", []):
+        if not item.get("mkt_name") or item.get("state_id") is None:
+            continue
+        state_id = int(item["state_id"])
+        if state_id in state_ids:
+            markets[(state_id, normalized_key(str(item["mkt_name"])))] = item
     return markets, districts
 
 
-def _raw_files(settings: PipelineSettings) -> list[tuple[str, Path]]:
+def _raw_files(settings: PipelineSettings) -> list[tuple[int, str, str, str, Path]]:
     raw_root = settings.absolute_path(settings.paths.raw)
-    files: list[tuple[str, Path]] = []
-    for commodity in settings.source.commodities:
-        commodity_root = raw_root / commodity.name.lower()
-        files.extend((commodity.name, item) for item in sorted(commodity_root.glob("*.json")))
+    permitted_months = {
+        f"{year}-{month:02d}"
+        for year, month in iter_months(settings.source.start_date, settings.source.end_date)
+    }
+    files: list[tuple[int, str, str, str, Path]] = []
+    for state in settings.source.states:
+        for commodity in settings.source.commodities:
+            by_month: dict[str, Path] = {}
+            if state.id == 20:
+                legacy_root = raw_root / commodity.name.casefold()
+                by_month.update(
+                    {
+                        item.stem: item
+                        for item in legacy_root.glob("*.json")
+                        if item.stem in permitted_months
+                    }
+                )
+            current_root = raw_root / f"{state.id}-{slugify(state.name)}" / slugify(commodity.name)
+            by_month.update(
+                {
+                    item.stem: item
+                    for item in current_root.glob("*.json")
+                    if item.stem in permitted_months
+                }
+            )
+            files.extend(
+                (state.id, state.name, commodity.name, month, path)
+                for month, path in sorted(by_month.items())
+            )
     return files
 
 
 def flatten_and_validate(
     settings: PipelineSettings,
-) -> tuple[pl.DataFrame, pl.DataFrame, dict[str, Any]]:
+) -> tuple[pl.DataFrame, pl.DataFrame, pl.DataFrame, dict[str, Any]]:
     raw_root = settings.absolute_path(settings.paths.raw)
-    market_map, district_map = _load_reference_maps(raw_root, settings.source.state_id)
+    state_ids = {state.id for state in settings.source.states}
+    market_map, district_map = _load_reference_maps(raw_root, state_ids)
     accepted: list[dict[str, Any]] = []
     rejected: list[dict[str, Any]] = []
+    ledger: list[dict[str, Any]] = []
     reasons: Counter[str] = Counter()
     seen: set[tuple[object, ...]] = set()
     corrected_records = 0
     unresolved_markets = 0
     files = _raw_files(settings)
 
-    for commodity_name, raw_file in files:
+    for state_id, state_name, commodity_name, source_month, raw_file in files:
         payload = read_json(raw_file)
+        file_reasons: Counter[str] = Counter()
+        file_accepted = 0
+        file_excluded = 0
         for market in payload.get("markets", []):
             raw_market = str(market.get("marketName", "")).strip()
-            reference = market_map.get(normalized_key(raw_market))
+            reference = market_map.get((state_id, normalized_key(raw_market)))
             if reference:
-                market_id = str(reference["id"])
-                district = district_map.get(int(reference["district_id"]), "Unknown")
+                market_id = f"{state_id}-{reference['id']}"
+                district_id = reference.get("district_id")
+                district = (
+                    district_map.get(int(district_id), "Unknown")
+                    if district_id is not None
+                    else "Unknown"
+                )
             else:
-                market_id = _stable_market_id(raw_market)
+                market_id = _stable_market_id(state_id, raw_market)
                 district = "Unknown"
                 unresolved_markets += 1
 
@@ -168,7 +203,8 @@ def flatten_and_validate(
                         reason = "exact_duplicate"
 
                     record = {
-                        "state": settings.source.state_name,
+                        "state_id": state_id,
+                        "state": state_name,
                         "district": district,
                         "market_id": market_id,
                         "market": market_name,
@@ -185,11 +221,29 @@ def flatten_and_validate(
                         record["exclusion_reason"] = reason
                         rejected.append(record)
                         reasons[reason] += 1
+                        file_reasons[reason] += 1
+                        file_excluded += 1
                     else:
                         seen.add(duplicate_key)
                         accepted.append(record)
+                        file_accepted += 1
+
+        ledger.append(
+            {
+                "state_id": state_id,
+                "state": state_name,
+                "commodity": commodity_name,
+                "source_month": source_month,
+                "input_records": file_accepted + file_excluded,
+                "accepted_records": file_accepted,
+                "excluded_records": file_excluded,
+                "exclusion_reasons_json": json.dumps(dict(sorted(file_reasons.items()))),
+                "source_sha256": sha256_file(raw_file),
+            }
+        )
 
     accepted_schema = {
+        "state_id": pl.Int64,
         "state": pl.String,
         "district": pl.String,
         "market_id": pl.String,
@@ -204,8 +258,20 @@ def flatten_and_validate(
         "source_file": pl.String,
     }
     rejected_schema = {**accepted_schema, "exclusion_reason": pl.String}
+    ledger_schema = {
+        "state_id": pl.Int64,
+        "state": pl.String,
+        "commodity": pl.String,
+        "source_month": pl.String,
+        "input_records": pl.Int64,
+        "accepted_records": pl.Int64,
+        "excluded_records": pl.Int64,
+        "exclusion_reasons_json": pl.String,
+        "source_sha256": pl.String,
+    }
     accepted_df = pl.DataFrame(accepted, schema=accepted_schema)
     rejected_df = pl.DataFrame(rejected, schema=rejected_schema)
+    ledger_df = pl.DataFrame(ledger, schema=ledger_schema)
     summary = {
         "source_file_count": len(files),
         "input_records": len(accepted) + len(rejected),
@@ -215,38 +281,67 @@ def flatten_and_validate(
         "unresolved_market_references": unresolved_markets,
         "exclusion_reasons": dict(sorted(reasons.items())),
     }
-    return accepted_df, rejected_df, summary
+    return accepted_df, rejected_df, ledger_df, summary
 
 
 def aggregate_market_days(accepted_df: pl.DataFrame) -> pl.DataFrame:
     if accepted_df.is_empty():
         raise RuntimeError("No valid AGMARKNET records were available after validation")
 
-    weights = pl.col("arrivals_tonnes").fill_null(0.0)
-    weighted_price = pl.col("modal_price") * weights
+    arrivals = pl.col("arrivals_tonnes")
+    complete_arrivals = arrivals.is_not_null().all()
+    positive_arrivals = arrivals.sum() > 0
     aggregated = (
         accepted_df.group_by(
-            ["state", "district", "market_id", "market", "commodity", "date"],
+            [
+                "state_id",
+                "state",
+                "district",
+                "market_id",
+                "market",
+                "commodity",
+                "date",
+            ],
             maintain_order=True,
         )
         .agg(
             pl.col("min_price").min().alias("min_price"),
             pl.col("max_price").max().alias("max_price"),
-            pl.when(weights.sum() > 0)
-            .then(weighted_price.sum() / weights.sum())
+            pl.when(complete_arrivals & positive_arrivals)
+            .then((pl.col("modal_price") * arrivals).sum() / arrivals.sum())
             .otherwise(pl.col("modal_price").median())
-            .alias("modal_price"),
-            pl.col("arrivals_tonnes").drop_nulls().sum().alias("arrivals_tonnes"),
+            .alias("representative_price"),
+            pl.when(arrivals.is_not_null().any())
+            .then(arrivals.drop_nulls().sum())
+            .otherwise(None)
+            .alias("arrivals_tonnes"),
             pl.col("variety").n_unique().alias("variety_count"),
-            pl.col("variety").sort().first().alias("primary_variety"),
+            pl.when(arrivals.is_not_null().any())
+            .then(pl.col("variety").sort_by(arrivals.fill_null(-1.0), descending=True).first())
+            .otherwise(pl.col("variety").sort().first())
+            .alias("example_variety"),
+            pl.when(arrivals.is_not_null().any())
+            .then(pl.lit("largest reported arrivals"))
+            .otherwise(pl.lit("alphabetical fallback"))
+            .alias("example_variety_basis"),
+            pl.when(complete_arrivals & positive_arrivals)
+            .then(pl.lit("arrival-weighted mean of variety modal prices"))
+            .otherwise(pl.lit("median of variety modal prices"))
+            .alias("aggregation_method"),
+            pl.when(complete_arrivals)
+            .then(pl.lit("complete"))
+            .when(arrivals.is_not_null().any())
+            .then(pl.lit("partial"))
+            .otherwise(pl.lit("missing"))
+            .alias("arrival_coverage"),
         )
         .with_columns(
             pl.col("min_price").round(2),
-            pl.col("modal_price").round(2),
+            pl.col("representative_price").round(2),
             pl.col("max_price").round(2),
             pl.col("arrivals_tonnes").round(3),
         )
-        .sort(["commodity", "market", "date"])
+        .sort(["state", "commodity", "market", "date"])
     )
     return _add_anomaly_scores(aggregated)
 
@@ -257,7 +352,7 @@ def _add_anomaly_scores(frame: pl.DataFrame) -> pl.DataFrame:
         rows = group.sort("date").to_dicts()
         prior_prices: list[float] = []
         for row in rows:
-            current = float(row["modal_price"])
+            current = float(row["representative_price"])
             window = prior_prices[-30:]
             score = 0.0
             if len(window) >= 8:
@@ -270,14 +365,14 @@ def _add_anomaly_scores(frame: pl.DataFrame) -> pl.DataFrame:
             row["is_anomaly"] = abs(score) >= 4.0
             records.append(row)
             prior_prices.append(current)
-    return pl.DataFrame(records).sort(["commodity", "market", "date"])
+    return pl.DataFrame(records).sort(["state", "commodity", "market", "date"])
 
 
 def compute_coverage(frame: pl.DataFrame, settings: PipelineSettings) -> pl.DataFrame:
     maximum_date = frame["date"].max()
     if not isinstance(maximum_date, date):
         raise RuntimeError("Processed dataset has no valid dates")
-    window_start = maximum_date - timedelta(days=settings.quality.coverage_window_days)
+    window_start = maximum_date - timedelta(days=settings.quality.coverage_window_days - 1)
     rows: list[dict[str, Any]] = []
 
     recent = frame.filter(pl.col("date") >= window_start)
@@ -285,7 +380,7 @@ def compute_coverage(frame: pl.DataFrame, settings: PipelineSettings) -> pl.Data
         ordered = group.sort("date")
         values = ordered.to_dicts()
         dates = [item["date"] for item in values]
-        prices = [float(item["modal_price"]) for item in values]
+        prices = [float(item["representative_price"]) for item in values]
         first_date = dates[0]
         last_date = dates[-1]
         weeks = {(item.isocalendar().year, item.isocalendar().week) for item in dates}
@@ -298,6 +393,8 @@ def compute_coverage(frame: pl.DataFrame, settings: PipelineSettings) -> pl.Data
         repeated_share = max(Counter(prices).values()) / len(prices)
         rows.append(
             {
+                "state_id": values[0]["state_id"],
+                "state": values[0]["state"],
                 "commodity": values[0]["commodity"],
                 "market_id": values[0]["market_id"],
                 "market": values[0]["market"],
@@ -307,10 +404,10 @@ def compute_coverage(frame: pl.DataFrame, settings: PipelineSettings) -> pl.Data
                 "record_count": len(values),
                 "weeks_reported": len(weeks),
                 "weekly_coverage": round(len(weeks) / possible_weeks, 4),
-                "latest_age_days": (settings.source.end_date - last_date).days,
+                "latest_age_days": (maximum_date - last_date).days,
                 "maximum_gap_days": max(gaps, default=0),
                 "price_cv": round(math.sqrt(variance) / mean_price, 4) if mean_price else None,
-                "repeated_modal_share": round(repeated_share, 4),
+                "repeated_price_share": round(repeated_share, 4),
             }
         )
 
@@ -324,22 +421,25 @@ def compute_coverage(frame: pl.DataFrame, settings: PipelineSettings) -> pl.Data
         eligible.alias("eligible"),
         pl.when(pl.col("weekly_coverage") >= 0.75)
         .then(pl.lit("high"))
-        .otherwise(pl.lit("lower"))
+        .otherwise(pl.lit("standard"))
         .alias("coverage_tier"),
     )
 
     selected_keys: set[tuple[str, str]] = set()
-    for commodity in settings.source.commodities:
-        candidates = coverage.filter(
-            (pl.col("commodity") == commodity.name) & pl.col("eligible")
-        ).sort(["weekly_coverage", "record_count"], descending=[True, True])
-        if candidates.height < settings.quality.markets_per_commodity:
-            candidates = coverage.filter(pl.col("commodity") == commodity.name).sort(
-                ["latest_age_days", "weekly_coverage", "record_count"],
-                descending=[False, True, True],
+    for state in settings.source.states:
+        for commodity in settings.source.commodities:
+            candidates = coverage.filter(
+                (pl.col("state_id") == state.id)
+                & (pl.col("commodity") == commodity.name)
+                & pl.col("eligible")
+            ).sort(
+                ["weekly_coverage", "record_count", "latest_age_days"],
+                descending=[True, True, False],
             )
-        for item in candidates.head(settings.quality.markets_per_commodity).iter_rows(named=True):
-            selected_keys.add((str(item["commodity"]), str(item["market_id"])))
+            for item in candidates.head(settings.quality.markets_per_state_commodity).iter_rows(
+                named=True
+            ):
+                selected_keys.add((str(item["commodity"]), str(item["market_id"])))
 
     return coverage.with_columns(
         pl.struct(["commodity", "market_id"])
@@ -348,48 +448,60 @@ def compute_coverage(frame: pl.DataFrame, settings: PipelineSettings) -> pl.Data
             return_dtype=pl.Boolean,
         )
         .alias("selected")
-    ).sort(["commodity", "selected", "weekly_coverage"], descending=[False, True, True])
+    ).sort(
+        ["state", "commodity", "selected", "weekly_coverage"],
+        descending=[False, False, True, True],
+    )
 
 
 def _quality_markdown(report: dict[str, Any]) -> str:
-    reasons = report["validation"]["exclusion_reasons"]
+    refresh = report["current_refresh_validation"]
+    cumulative = report["cumulative_validation"]
+    published = report["published"]
+    reasons = refresh["exclusion_reasons"]
     reason_lines = "\n".join(f"- `{name}`: {count:,}" for name, count in reasons.items())
     return f"""# Data-quality report
 
 Generated: {report["generated_at"]}
 
-## Plain-language result
+## Current refresh
 
-The pipeline read **{report["validation"]["input_records"]:,}** variety-level observations and
-accepted **{report["validation"]["accepted_variety_records"]:,}** after explicit validation.
-It excluded **{report["validation"]["excluded_records"]:,}** records rather than silently fixing
-questionable prices. The published application contains **{report["published"]["records"]:,}**
-market-day observations across **{report["published"]["series"]:,}** selected market/commodity
-series.
+This run processed **{refresh["input_records"]:,}** variety-level rows from
+**{refresh["source_file_count"]:,}** state, commodity, and month responses. It accepted
+**{refresh["accepted_variety_records"]:,}** rows and excluded
+**{refresh["excluded_records"]:,}** rows with recorded reasons.
 
-It normalized **{report["validation"]["corrected_records"]:,}** market display names for whitespace
-and capitalization. These corrections did not overwrite source prices.
+## Cumulative retained source window
 
-## Coverage
+The committed quality ledger covers **{cumulative["source_file_count"]:,}** monthly responses,
+**{cumulative["input_records"]:,}** input rows, and **{cumulative["accepted_records"]:,}** accepted
+rows. These cumulative totals are separate from the rows downloaded in the current refresh.
 
-- Date range: {report["published"]["date_min"]} to {report["published"]["date_max"]}
-- Commodities: {", ".join(report["published"]["commodities"])}
-- State: {report["published"]["state"]}
-- Selected markets: {report["published"]["markets"]:,}
-- Stale selected series: {report["published"]["stale_series"]:,}
-- Long reporting gaps: {report["published"]["long_gap_series"]:,}
-- Anomaly flags: {report["published"]["anomaly_records"]:,}
+The rolling all-market layer retains **{report["selection_window"]["records"]:,}** market-day
+observations across **{report["selection_window"]["series"]:,}** series so previously unselected
+markets can qualify during a later refresh.
 
-## Exclusions
+## Published product coverage
+
+- Date range: {published["date_min"]} to {published["date_max"]}
+- States: {", ".join(published["states"])}
+- Commodities with eligible series: {", ".join(published["commodities"])}
+- Selected market/commodity series: {published["series"]:,}
+- Distinct markets: {published["markets"]:,}
+- Stale selected series: {published["stale_series"]:,}
+- Long reporting gaps: {published["long_gap_series"]:,}
+- Anomaly flags retained: {published["anomaly_records"]:,}
+
+## Current-refresh exclusions
 
 {reason_lines or "- None"}
 
 ## Interpretation
 
-Reporting coverage measures whether a market reported in a week, not whether it traded every
-day. A missing report is not treated as a zero price. Anomaly flags identify unusual values for
-review; they do not prove that a source observation is wrong. Market names are normalized for
-display, and unresolved official market references remain visible as a quality limitation.
+Weekly coverage means at least one report appeared in a week; it does not imply daily trading.
+Missing reports stay unknown. Anomaly flags indicate unusual observations for review, not proven
+source errors. A market-day representative price is an arrival-weighted mean only when every
+variety row reports arrivals; otherwise it is the median of the reported variety modal prices.
 """
 
 
@@ -398,53 +510,86 @@ def transform_data(settings: PipelineSettings, *, incremental: bool = False) -> 
     published_root = settings.absolute_path(settings.paths.published)
     report_root = settings.absolute_path(settings.paths.reports)
 
-    accepted, rejected, validation_summary = flatten_and_validate(settings)
+    accepted, rejected, refresh_ledger, validation_summary = flatten_and_validate(settings)
     accepted.write_parquet(processed_root / "accepted_variety_records.parquet")
     rejected.write_parquet(processed_root / "rejected_records.parquet")
-    daily = aggregate_market_days(accepted)
+    refreshed_daily = aggregate_market_days(accepted)
 
-    published_history_path = published_root / "market_history.parquet"
-    if incremental and published_history_path.exists():
-        existing = pl.read_parquet(published_history_path)
-        common_columns = [name for name in existing.columns if name in daily.columns]
-        daily = (
-            pl.concat(
-                [existing.select(common_columns), daily.select(common_columns)], how="vertical"
-            )
-            .unique(subset=["market_id", "commodity", "date"], keep="last")
-            .sort(["commodity", "market", "date"])
+    all_history_path = published_root / "all_market_history.parquet"
+    if incremental and all_history_path.exists():
+        existing = pl.read_parquet(all_history_path)
+        all_daily = pl.concat([existing, refreshed_daily], how="diagonal_relaxed")
+    else:
+        all_daily = refreshed_daily
+    all_daily = all_daily.unique(subset=["market_id", "commodity", "date"], keep="last").sort(
+        ["state", "commodity", "market", "date"]
+    )
+    maximum_date = all_daily["date"].max()
+    if not isinstance(maximum_date, date):
+        raise RuntimeError("The all-market dataset has no valid dates")
+    history_cutoff = maximum_date - timedelta(days=settings.quality.all_market_history_days - 1)
+    all_daily = all_daily.filter(pl.col("date") >= history_cutoff)
+    all_daily.write_parquet(all_history_path, compression="zstd")
+    all_daily.write_parquet(processed_root / "all_market_daily.parquet", compression="zstd")
+
+    ledger_path = published_root / "source_quality_ledger.parquet"
+    if incremental and ledger_path.exists():
+        source_ledger = pl.concat(
+            [pl.read_parquet(ledger_path), refresh_ledger], how="diagonal_relaxed"
         )
+    else:
+        source_ledger = refresh_ledger
+    source_ledger = source_ledger.unique(
+        subset=["state_id", "commodity", "source_month"], keep="last"
+    ).sort(["state", "commodity", "source_month"])
+    source_ledger.write_parquet(ledger_path, compression="zstd")
 
-    daily.write_parquet(processed_root / "all_market_daily.parquet")
-    coverage = compute_coverage(daily, settings)
+    coverage = compute_coverage(all_daily, settings)
     coverage.write_parquet(processed_root / "market_coverage.parquet")
+    coverage.write_parquet(published_root / "all_market_coverage.parquet", compression="zstd")
     selected_pairs = {
         (str(item["commodity"]), str(item["market_id"]))
         for item in coverage.filter(pl.col("selected")).iter_rows(named=True)
     }
-    published = daily.filter(
+    if not selected_pairs:
+        raise RuntimeError("No market series met the configured coverage requirements")
+    published = all_daily.filter(
         pl.struct(["commodity", "market_id"]).map_elements(
             lambda item: (str(item["commodity"]), str(item["market_id"])) in selected_pairs,
             return_dtype=pl.Boolean,
         )
     )
+    published_history_path = published_root / "market_history.parquet"
     published.write_parquet(published_history_path, compression="zstd")
-    coverage.filter(pl.col("selected")).write_parquet(
-        published_root / "market_coverage.parquet", compression="zstd"
-    )
+    selected_coverage = coverage.filter(pl.col("selected"))
+    selected_coverage.write_parquet(published_root / "market_coverage.parquet", compression="zstd")
 
     date_min = published["date"].min()
     date_max = published["date"].max()
-    selected_coverage = coverage.filter(pl.col("selected"))
+    cumulative_validation = {
+        "source_file_count": source_ledger.height,
+        "input_records": int(source_ledger["input_records"].sum() or 0),
+        "accepted_records": int(source_ledger["accepted_records"].sum() or 0),
+        "excluded_records": int(source_ledger["excluded_records"].sum() or 0),
+    }
     report: dict[str, Any] = {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at": datetime.now(UTC).isoformat(),
-        "validation": validation_summary,
+        "current_refresh_validation": validation_summary,
+        "cumulative_validation": cumulative_validation,
+        "selection_window": {
+            "records": all_daily.height,
+            "series": all_daily.select(["commodity", "market_id"]).unique().height,
+            "states": sorted(all_daily["state"].unique().to_list()),
+            "commodities": sorted(all_daily["commodity"].unique().to_list()),
+            "date_min": history_cutoff.isoformat(),
+            "date_max": maximum_date.isoformat(),
+        },
         "published": {
             "records": published.height,
             "series": selected_coverage.height,
             "markets": published["market_id"].n_unique(),
-            "state": settings.source.state_name,
+            "states": sorted(published["state"].unique().to_list()),
             "commodities": sorted(published["commodity"].unique().to_list()),
             "date_min": date_min.isoformat() if isinstance(date_min, date) else None,
             "date_max": date_max.isoformat() if isinstance(date_max, date) else None,
@@ -462,39 +607,40 @@ def transform_data(settings: PipelineSettings, *, incremental: bool = False) -> 
     (report_root / "DATA_QUALITY.md").write_text(_quality_markdown(report), encoding="utf-8")
 
     source_manifest_path = settings.absolute_path(settings.paths.raw) / "manifest.json"
-    published_report = report["published"]
-    if not isinstance(published_report, dict):
-        raise RuntimeError("Data-quality report has an invalid published summary")
     dataset_manifest = {
-        "schema_version": 1,
-        "dataset_name": "MandiLens Maharashtra market-day price snapshot",
+        "schema_version": 2,
+        "dataset_name": "MandiLens multi-state market-day price snapshot",
         "provider": settings.source.provider,
         "source_url": str(settings.source.catalog_url),
         "api_base_url": str(settings.source.api_base_url),
         "retrieval_date": datetime.now(UTC).date().isoformat(),
         "license": settings.source.license_name,
         "license_url": str(settings.source.license_url),
-        "date_range": [published_report["date_min"], published_report["date_max"]],
+        "date_range": [report["published"]["date_min"], report["published"]["date_max"]],
         "filters": {
-            "state": settings.source.state_name,
+            "states": [state.name for state in settings.source.states],
             "commodities": [item.name for item in settings.source.commodities],
             "minimum_weekly_coverage": settings.quality.minimum_weekly_coverage,
-            "markets_per_commodity": settings.quality.markets_per_commodity,
+            "markets_per_state_commodity": settings.quality.markets_per_state_commodity,
         },
         "transformations": [
-            "Validated positive ordered min, modal, and max prices",
-            "Removed exact duplicates and retained exclusion reasons",
-            "Aggregated varieties to market-day using arrival-weighted modal price when available",
-            "Selected active series using weekly reporting coverage",
+            "Validated positive ordered minimum, modal, and maximum source prices",
+            "Removed exact duplicates and retained exclusion reasons by source month",
+            "Used arrival-weighted variety modal prices only when arrival reporting was complete",
+            "Used a median variety modal price when arrival reporting was partial or missing",
+            "Selected active series from a committed rolling all-market coverage window",
             "Flagged robust price anomalies without deleting them",
         ],
         "known_limitations": [
             "Reporting is irregular and does not establish that no trade occurred on missing days",
-            "Market-day values aggregate varieties and grades for a stable comparison unit",
-            "Arrival quantities are source-reported and may be revised",
+            "Representative market-day prices aggregate varieties and grades",
+            "Arrival quantities are source-reported and can be partial or revised",
+            "Only state and crop groups with eligible recent reporting are published",
         ],
         "record_count": published.height,
+        "all_market_record_count": all_daily.height,
         "sha256": sha256_file(published_history_path),
+        "all_market_sha256": sha256_file(all_history_path),
         "source_manifest_sha256": (
             sha256_file(source_manifest_path) if source_manifest_path.exists() else None
         ),
@@ -504,6 +650,7 @@ def transform_data(settings: PipelineSettings, *, incremental: bool = False) -> 
         "transformation_complete",
         accepted=accepted.height,
         excluded=rejected.height,
+        all_market_records=all_daily.height,
         published=published.height,
         selected_series=selected_coverage.height,
         incremental=incremental,

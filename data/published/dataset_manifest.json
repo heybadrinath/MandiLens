@@ -1,6 +1,6 @@
 {
-  "schema_version": 1,
-  "dataset_name": "MandiLens Maharashtra market-day price snapshot",
+  "schema_version": 2,
+  "dataset_name": "MandiLens multi-state market-day price snapshot",
   "provider": "Directorate of Marketing and Inspection, Ministry of Agriculture and Farmers Welfare, Government of India",
   "source_url": "https://www.data.gov.in/catalog/current-daily-price-various-commodities-various-markets-mandi",
   "api_base_url": "https://api.agmarknet.gov.in/v1",
@@ -8,32 +8,54 @@
   "license": "Government Open Data License - India",
   "license_url": "https://www.data.gov.in/godl",
   "date_range": [
-    "2021-01-01",
+    "2024-07-01",
     "2026-07-20"
   ],
   "filters": {
-    "state": "Maharashtra",
+    "states": [
+      "Andhra Pradesh",
+      "Karnataka",
+      "Kerala",
+      "Maharashtra",
+      "Tamil Nadu",
+      "Telangana"
+    ],
     "commodities": [
       "Onion",
       "Potato",
-      "Tomato"
+      "Tomato",
+      "Paddy (Common)",
+      "Maize",
+      "Groundnut",
+      "Banana",
+      "Coconut",
+      "Green Chilli",
+      "Turmeric",
+      "Brinjal",
+      "Ragi",
+      "Cotton",
+      "Arecanut"
     ],
-    "minimum_weekly_coverage": 0.45,
-    "markets_per_commodity": 7
+    "minimum_weekly_coverage": 0.35,
+    "markets_per_state_commodity": 3
   },
   "transformations": [
-    "Validated positive ordered min, modal, and max prices",
-    "Removed exact duplicates and retained exclusion reasons",
-    "Aggregated varieties to market-day using arrival-weighted modal price when available",
-    "Selected active series using weekly reporting coverage",
+    "Validated positive ordered minimum, modal, and maximum source prices",
+    "Removed exact duplicates and retained exclusion reasons by source month",
+    "Used arrival-weighted variety modal prices only when arrival reporting was complete",
+    "Used a median variety modal price when arrival reporting was partial or missing",
+    "Selected active series from a committed rolling all-market coverage window",
     "Flagged robust price anomalies without deleting them"
   ],
   "known_limitations": [
     "Reporting is irregular and does not establish that no trade occurred on missing days",
-    "Market-day values aggregate varieties and grades for a stable comparison unit",
-    "Arrival quantities are source-reported and may be revised"
+    "Representative market-day prices aggregate varieties and grades",
+    "Arrival quantities are source-reported and can be partial or revised",
+    "Only state and crop groups with eligible recent reporting are published"
   ],
-  "record_count": 32617,
-  "sha256": "6dacd16f8d20297c94dcb5229454e6efe18c2aea52084a21220f3b8baa0f9e56",
-  "source_manifest_sha256": "ce85ba2b152fcc08ab520213673bf83ed2d3d96f5ca1894bf3cfa92632b20fbc"
+  "record_count": 91737,
+  "all_market_record_count": 1421838,
+  "sha256": "b32889514ab7d4017e09df20339be94f1c45ff6f708b4b20baabbda93ca8f63f",
+  "all_market_sha256": "9f951c5225bcbf58722d7af57d76c713a7f7a9e6219cf2221638b6c0cbabc7d0",
+  "source_manifest_sha256": "dc59ce83636e7280b66582af225fb49ff5b6b39505a83f70e64fb499fe211e0e"
 }

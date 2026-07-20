@@ -2,43 +2,63 @@
 
 ## Intended use
 
-Seven-day decision-support price ranges for the selected Maharashtra market/commodity series.
-The forecasts are not guaranteed prices, trading instructions, or financial advice.
+Short-range decision-support price intervals for eligible market and crop series. Forecasts are
+not guaranteed prices, market quotes, trading instructions, or financial advice.
 
 ## Selected production method
 
-**Global histogram gradient boosting** (`hist_gradient_boosting`), model version
-`6dacd16f8d20`. It was selected using chronological rolling-origin validation.
-The machine-learning candidate was accepted only if it reduced MAE by at least 1% versus the
-strongest simple baseline.
+**Validated recent-level + lead-aware blend** (`recent_level_tree_blend`), version
+`b32889514ab7`. Selection used chronological expanding-window folds. The final
+time holdout is reported separately and is not an input to the automated selector.
 
-## Evaluation
+The best lead-aware candidate ships only when it improves pooled selection MAE by at least
+1.0% and wins the configured share of folds. The selected blend
+uses 65% Five-report moving average and
+35% global tree output, plus a 7.5% damped
+recent-level adjustment per lead day. The parameters are selected on chronological selection folds
+before holdout metrics are computed in each training run. After iterative model development, the
+holdout is descriptive confirmation rather than a permanently untouched benchmark.
+
+## Locked holdout
 
 | Method | MAE (₹/quintal) | WAPE | Samples |
 |---|---:|---:|---:|
-| Global histogram gradient boosting | 250.67 | 13.8% | 36,609 |
-| Five-report moving average | 253.51 | 14.0% | 36,609 |
-| Last observation | 253.52 | 14.0% | 36,609 |
-| Seven-day seasonal naive | 348.46 | 19.2% | 36,609 |
+| Validated recent-level + lead-aware blend | 521.20 | 10.5% | 195,253 |
+| Five-report moving average | 529.19 | 10.7% | 195,253 |
+| Global histogram gradient boosting | 544.33 | 11.0% | 195,253 |
+| Last observation | 552.17 | 11.2% | 195,253 |
+| Seven-day seasonal naive | 639.12 | 12.9% | 195,253 |
 
-The production method's directional accuracy was
-50.2%. The displayed interval targets
-80% empirical coverage. On later folds calibrated only from
-earlier-fold errors, it covered 92.4% of
-27,340 forecasts.
+The paired target-date bootstrap estimated a Validated recent-level + lead-aware blend MAE reduction of
+₹7.99/quintal with a 95% interval of
+₹5.77 to
+₹10.12. This is a stability diagnostic, not proof of
+future improvement.
+
+## Prediction intervals
+
+Intervals are asymmetric signed-residual quantiles. Calibration uses market, model lead, and
+recent-volatility context when enough prior errors exist, then backs off to state/crop, crop,
+lead, or global groups. Locked-holdout coverage is reported by state, crop, lead, and market.
 
 ## Training data
 
-- Rows: 183,396
-- Dates: 2021-01-16 to 2026-07-20
-- Horizon: 1 to 7 calendar days
-- Geography: Maharashtra
-- Commodities: onion, potato, tomato
+- Rows: 2,014,766
+- Dates: 2024-07-10 to 2026-07-20
+- User-visible target offsets: 1 to 7 days from one
+  common comparison date
+- Maximum model lead: 28 days from each market's latest report
 
-## Limitations and ethics
+## Explanation boundary
 
-- Missing reports are not zero prices and are not imputed as observed outcomes.
-- Market-day targets aggregate varieties for stability and therefore do not quote a specific lot.
-- Feature importance describes model behavior, not causal effects.
-- Weather is omitted because no measured validation gain justified the extra dependency.
-- Shocks, closures, revisions, and transport or commission costs can make realized proceeds differ.
+Permutation importance is measured on the locked holdout using a tree trained only before that
+period. It is a diagnostic of model behavior, not causal evidence or an independently actionable
+recommendation.
+
+## Limitations
+
+- Missing reports remain unknown and are not imputed as observed prices.
+- Market-day targets aggregate varieties and grades for a stable comparison unit.
+- Shocks, closures, revisions, lot quality, and unentered costs can change realized proceeds.
+- A common target date improves comparison fairness but older market origins require longer model
+  leads and are clearly marked as less fresh.

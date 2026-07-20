@@ -2,7 +2,14 @@ from datetime import date, timedelta
 from typing import Any
 
 import numpy as np
-from mandilens_pipeline.evaluation import _calibrate_intervals, _metric_values
+import polars as pl
+from mandilens_pipeline.evaluation import (
+    _build_interval_quantiles,
+    _metric_values,
+    _score_intervals,
+    _select_blend_parameters,
+    blend_predictions,
+)
 from mandilens_pipeline.features import _series_features
 
 
@@ -11,12 +18,14 @@ def _rows(prices: list[float]) -> list[dict[str, Any]]:
     return [
         {
             "date": start + timedelta(days=index),
-            "modal_price": price,
+            "representative_price": price,
             "min_price": price - 50,
             "max_price": price + 50,
             "arrivals_tonnes": 10.0,
+            "arrival_coverage": "complete",
+            "state": "Maharashtra",
             "commodity": "Onion",
-            "market_id": "1",
+            "market_id": "20-1",
             "market": "Pune APMC",
             "district": "Pune",
         }
@@ -53,10 +62,33 @@ def test_baselines_use_only_origin_and_prior_reports() -> None:
     assert features["target"] == 190.0
 
 
-def test_forecast_features_include_future_dates_but_no_target() -> None:
-    features = _series_features(_rows([100.0] * 10), "high", 3, training=False)
-    assert [item["horizon"] for item in features] == [1, 2, 3]
-    assert all("target" not in item for item in features)
+def test_forecast_features_use_one_common_target_date() -> None:
+    fresh = _series_features(
+        _rows([100.0] * 10),
+        "high",
+        7,
+        training=False,
+        comparison_date=date(2026, 1, 10),
+        display_horizon_days=3,
+    )
+    stale = _series_features(
+        _rows([100.0] * 8),
+        "high",
+        7,
+        training=False,
+        comparison_date=date(2026, 1, 10),
+        display_horizon_days=3,
+    )
+
+    assert [item["target_date"] for item in fresh] == [
+        date(2026, 1, 11),
+        date(2026, 1, 12),
+        date(2026, 1, 13),
+    ]
+    assert [item["target_date"] for item in stale] == [item["target_date"] for item in fresh]
+    assert [item["lead_days"] for item in fresh] == [1, 2, 3]
+    assert [item["lead_days"] for item in stale] == [3, 4, 5]
+    assert all("target" not in item for item in fresh + stale)
 
 
 def test_error_metrics_report_scale_and_direction() -> None:
@@ -70,27 +102,102 @@ def test_error_metrics_report_scale_and_direction() -> None:
     assert metrics["n"] == 2
 
 
-def test_interval_coverage_uses_only_earlier_fold_errors() -> None:
-    rows: list[dict[str, Any]] = []
-    for fold_index in (0, 1):
-        for index in range(40):
-            rows.append(
-                {
-                    "fold_index": fold_index,
-                    "method": "baseline",
-                    "commodity": "Onion",
-                    "horizon": 1,
-                    "actual": 100.0 + (10 if fold_index == 0 else 5),
-                    "prediction": 100.0,
-                    "current_price": 100.0,
-                    "market": f"Market {index}",
-                    "market_id": str(index),
-                    "coverage_tier": "high",
-                    "target_date": date(2026, 1, 1),
-                    "test_start": date(2026, 1, 1),
-                }
-            )
+def test_blend_weight_is_selected_from_evaluation_predictions() -> None:
+    common = {
+        "phase": "model_selection",
+        "fold_index": 0,
+        "state": "Maharashtra",
+        "commodity": "Onion",
+        "market_id": "20-1",
+        "lead_days": 1,
+        "target_date": date(2026, 1, 2),
+        "actual": 35.0,
+        "current_price": 25.0,
+        "rolling_mean_7d": 25.0,
+    }
+    predictions = pl.DataFrame(
+        [
+            {**common, "method": "moving_average", "prediction": 0.0},
+            {**common, "method": "hist_gradient_boosting", "prediction": 100.0},
+        ]
+    )
 
-    report = _calibrate_intervals(rows, "baseline", 0.8)
-    assert report["n"] == 40
-    assert report["empirical_coverage"] == 1.0
+    tree_weight, level_drift_weight = _select_blend_parameters(
+        predictions, "moving_average"
+    )
+    blended = blend_predictions(
+        np.array([0.0]),
+        np.array([100.0]),
+        tree_weight,
+        np.array([25.0]),
+        np.array([25.0]),
+        np.array([1.0]),
+        level_drift_weight,
+    )
+
+    assert tree_weight == 0.35
+    assert level_drift_weight == 0.0
+    assert blended.tolist() == [35.0]
+
+
+def test_asymmetric_intervals_use_signed_prior_residuals() -> None:
+    calibration: list[dict[str, Any]] = []
+    for index in range(120):
+        calibration.append(
+            {
+                "state": "Maharashtra",
+                "commodity": "Onion",
+                "market_id": "20-1",
+                "market": "Pune APMC",
+                "lead_days": 1,
+                "volatility_bucket": "stable",
+                "actual": 112.0 if index < 100 else 94.0,
+                "prediction": 100.0,
+                "current_price": 98.0,
+            }
+        )
+
+    quantiles = _build_interval_quantiles(calibration, 0.8)
+    scored = _score_intervals(
+        [
+            {
+                **calibration[0],
+                "actual": 111.0,
+                "prediction": 100.0,
+            }
+        ],
+        quantiles,
+    )[0]
+
+    assert scored["upper"] - 100.0 > 100.0 - scored["lower"]
+    assert scored["covered"] is True
+    assert scored["interval_level"] == "market"
+
+
+def test_interval_always_contains_its_point_estimate() -> None:
+    quantiles = {
+        "__global__": {
+            "lower_residual": -20.0,
+            "upper_residual": -10.0,
+            "n": 120,
+        }
+    }
+    scored = _score_intervals(
+        [
+            {
+                "state": "Maharashtra",
+                "commodity": "Onion",
+                "market_id": "20-1",
+                "market": "Pune APMC",
+                "lead_days": 1,
+                "volatility_bucket": "stable",
+                "actual": 95.0,
+                "prediction": 100.0,
+                "current_price": 98.0,
+            }
+        ],
+        quantiles,
+    )[0]
+
+    assert scored["lower"] == 80.0
+    assert scored["upper"] == 100.0

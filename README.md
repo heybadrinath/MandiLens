@@ -1,178 +1,156 @@
-# MandiLens
+<h1 align="center">MandiLens</h1>
 
-> Evidence-led Maharashtra mandi intelligence: observed prices, seven-day forecast intervals,
-> market comparison, and transparent estimated net realization.
+<p align="center">
+  Mandi information, in context — observed prices, market comparisons, reporting quality,
+  and carefully explained seven-day outlooks across South India.
+</p>
 
-- **Live application:** [mandilens.vercel.app](https://mandilens.vercel.app)
-- **Source repository:** [github.com/heybadrinath/MandiLens](https://github.com/heybadrinath/MandiLens)
-- **Published dataset:** [market_history.parquet](https://raw.githubusercontent.com/heybadrinath/MandiLens/main/data/published/market_history.parquet)
-- **Model artifact:** [selected_model.joblib](https://raw.githubusercontent.com/heybadrinath/MandiLens/main/models/published/selected_model.joblib)
-- **Data snapshot:** 1 January 2021–20 July 2026
-- **Scope:** onion, potato, and tomato · 21 market/commodity series · 14 Maharashtra markets
+<p align="center">
+  <a href="https://mandilens.vercel.app"><strong>Live application</strong></a>
+  ·
+  <a href="https://mandilens.vercel.app/markets">Explore markets</a>
+  ·
+  <a href="https://mandilens.vercel.app/compare">Compare markets</a>
+  ·
+  <a href="https://mandilens.vercel.app/methodology">Methodology</a>
+</p>
 
-MandiLens is a public decision-support product for farmers, Farmer Producer Organizations,
-traders, analysts, agritech teams, and market researchers. It turns official but irregular mandi
-reports into a focused comparison workflow without presenting a forecast as a promised price or a
-ranking as financial advice.
+<p align="center">
+  <a href="https://github.com/heybadrinath/MandiLens/actions/workflows/quality.yml"><img alt="Quality checks" src="https://github.com/heybadrinath/MandiLens/actions/workflows/quality.yml/badge.svg"></a>
+  <img alt="Next.js 16" src="https://img.shields.io/badge/Next.js-16-111b13?logo=nextdotjs">
+  <img alt="Python 3.12" src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white">
+  <a href="CONTRIBUTING.md"><img alt="Contributions welcome" src="https://img.shields.io/badge/contributions-welcome-79a943"></a>
+</p>
 
-## Why this product exists
+![MandiLens home page](docs/screenshots/home-desktop.png)
 
-Raw mandi data can answer “what was reported?” but not directly:
+MandiLens turns official but irregular AGMARKNET reports into a focused public decision-support
+product. It helps farmers, Farmer Producer Organizations, traders, analysts, agritech teams, and
+market researchers inspect what was reported, compare like-for-like market dates, and understand
+how fresh and reliable each result is.
 
-- Which selected market has the strongest current or forecast price range?
-- How fresh and complete is each market’s reporting?
-- Is a movement unusual relative to the market’s recent history?
-- How does the answer change after my actual transport-cost assumption?
-- How well did the forecasting method perform on genuinely future periods?
+The product deliberately keeps observed data, estimates, and user-entered assumptions separate.
+It is information only—not trading, procurement, or financial advice.
 
-The highest displayed price is not automatically the best selling option. Quantity, data
-freshness, uncertainty, and market-specific costs all change the comparison.
+## What you can do
 
-## What is implemented
+- Search **189 represented market-commodity series** across **120 markets**.
+- Inspect observed minimum, representative, and maximum prices with historical context.
+- Explore reported arrivals, seasonality, missing-report periods, and anomaly flags.
+- Compare two to four markets for one commodity on a common observed or forecast date.
+- Add quantity and market-specific cost assumptions without inventing hidden costs.
+- Review a lead-specific seven-day outlook with explicit uncertainty and reliability context.
+- Read detailed reports covering data quality, methodology, sources, limitations, and architecture.
+- Use the interface in English and nine Indian languages.
 
-- Official AGMARKNET 2.0 data retrieval with retrying, rate limiting, monthly caching, checksums,
-  and a source manifest
-- Explicit validation for identity, dates, numeric parsing, positive and ordered prices,
-  duplicates, negative arrivals, extreme values, unresolved references, freshness, and gaps
-- Variety-to-market-day aggregation with arrival-weighted modal prices when weights exist
-- Robust anomaly flags that remain in the dataset rather than being silently deleted
-- Coverage-led market selection: seven recent, active series per commodity
-- Leakage-safe lags, rolling statistics, momentum, spread, arrivals, freshness, reporting
-  frequency, seasonality, and categorical context
-- Four-way chronological comparison: last observation, moving average, seasonal naive, and global
-  histogram gradient boosting
-- Empirical one-to-seven-day prediction intervals calibrated from prior evaluation errors
-- Interactive commodity, district, market, horizon, and historical-window controls
-- Observed min/modal/max range, historical chart, forecast interval, seasonal chart, movement,
-  volatility, arrivals, anomalies, and missing-report context
-- User-controlled quantity conversion and per-market transport-cost assumptions
-- Point and low/high estimated net realization with live market ranking and CSV download
-- Dedicated data-quality, model-performance, methodology, source/licensing, and limitations pages
-- Static production architecture with no login, database, request-time model, or browser secret
-- Weekly, fail-safe GitHub Actions refresh and Vercel deployment through committed artifacts
+## Current prepared snapshot
 
-## Verified data-quality result
+The deployed snapshot represents source data through **20 July 2026**.
 
-| Measure | Result |
-|---|---:|
-| Official monthly responses | 201 |
-| Source variety-level rows | 183,174 |
-| Accepted rows | 183,148 |
-| Excluded rows | 26 |
-| Exact duplicates excluded | 25 |
-| Extreme-price exclusions | 1 |
-| Published market-day observations | 32,617 |
-| Selected market/commodity series | 21 |
-| Distinct markets | 14 |
-| Unresolved market references | 0 |
-| Stale selected series | 0 |
-| Robust anomaly flags retained | 2,578 |
+| Measure                          | Published scope |
+| -------------------------------- | --------------: |
+| States                           |               6 |
+| Districts                        |              78 |
+| Markets                          |             120 |
+| Commodities                      |              14 |
+| Market-commodity series          |             189 |
+| Prepared market-day observations |          91,737 |
+| Source variety rows inspected    |       1,569,829 |
+| Accepted variety rows            |       1,564,481 |
 
-The source does not report every market every day. Missing reports remain unknown; they are not
-filled with a price of zero. See [the data-quality report](reports/DATA_QUALITY.md) and
-[dataset card](docs/DATASET_CARD.md).
+Represented states are Andhra Pradesh, Karnataka, Kerala, Maharashtra, Tamil Nadu, and Telangana.
+The 14 commodities include vegetables, grains, oilseeds, fibre crops, spices, and plantation crops.
 
-## Verified model result
+## Product tour
 
-Four 90-day future windows were evaluated with expanding chronological training history. Every
-method was scored on the same 36,609 observed targets.
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Market Explorer</strong><br><br>
+      <img alt="MandiLens Market Explorer" src="docs/screenshots/markets-desktop.png">
+    </td>
+    <td width="50%">
+      <strong>Guided market comparison</strong><br><br>
+      <img alt="MandiLens guided comparison" src="docs/screenshots/compare-desktop.png">
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Market history and evidence</strong><br><br>
+      <img alt="MandiLens market detail" src="docs/screenshots/market-lens-desktop.png">
+    </td>
+    <td width="50%">
+      <strong>Responsive mobile experience</strong><br><br>
+      <img alt="MandiLens mobile home page" src="docs/screenshots/home-mobile.png">
+    </td>
+  </tr>
+</table>
 
-| Method | MAE (₹/quintal) | WAPE | sMAPE | Directional accuracy |
-|---|---:|---:|---:|---:|
-| **Global histogram gradient boosting — selected** | **250.67** | **13.79%** | **13.11%** | **50.21%** |
-| Five-report moving average | 253.51 | 13.95% | 13.27% | 51.88% |
-| Last observation | 253.52 | 13.95% | 13.34% | 23.46% |
-| Seven-day seasonal naive | 348.46 | 19.17% | 17.73% | 48.63% |
+## Forecasting and data integrity
 
-The tree reduced MAE by **1.12%** versus the strongest simple baseline, narrowly clearing the
-preset 1% complexity threshold. It reduced MAE by **28.06%** versus the seasonal-naive baseline.
-The displayed interval targets 80% coverage and achieved **92.44% empirical coverage** on 27,340
-later-fold forecasts calibrated only from earlier-fold errors.
+The selected forecasting method is a validated recent-level and lead-aware blend. Candidate
+methods are compared using chronological selection folds and a separate locked 60-day holdout, so
+future observations cannot leak into model selection.
 
-That historical coverage is conservative, not a guarantee. Tomato remained the hardest commodity
-(19.60% WAPE), versus onion (12.06%) and potato (8.02%). See the
-[full evaluation report](reports/MODEL_EVALUATION.md) and [model card](docs/MODEL_CARD.md).
+| Locked-holdout measure      |                       Result |
+| --------------------------- | ---------------------------: |
+| Forecast examples           |                      195,253 |
+| Mean absolute error         |          ₹521.20 per quintal |
+| WAPE                        |                       10.53% |
+| Directional accuracy        |                       49.15% |
+| Empirical interval coverage | 71.59% against an 80% target |
+
+That coverage shortfall is published rather than hidden. Missing market reports also remain
+missing—they are never converted into a zero price. Read the live
+[forecast reliability](https://mandilens.vercel.app/forecast-reliability) and
+[data-quality](https://mandilens.vercel.app/data-quality) reports for the full interpretation.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-    A["AGMARKNET 2.0 public API"] --> B["Monthly JSON cache + checksums"]
-    B --> C["Python validation and market-day aggregation"]
+    A["AGMARKNET 2.0 public API"] --> B["Monthly cache and checksums"]
+    B --> C["Python validation and aggregation"]
     C --> D["Parquet analytical layer"]
-    D --> E["Leakage-safe features"]
-    E --> F["Rolling-origin evaluation"]
-    F --> G["Selected model + empirical intervals"]
-    G --> H["Compact static JSON artifact"]
-    H --> I["Next.js static application on Vercel"]
-    U["User quantity and cost assumptions"] --> J["Browser-only net calculation and ranking"]
-    I --> J
+    D --> E["Chronological model evaluation"]
+    E --> F["Forecasts and empirical intervals"]
+    F --> G["Compact static JSON"]
+    G --> H["Next.js application on Vercel"]
+    U["User quantity and cost assumptions"] --> I["Browser-only comparison"]
+    H --> I
 ```
 
-The batch boundary is deliberate. Forecasts depend on commodity, market, and horizon—not on
-request-time private features—so a continuously running Python API would add cost, cold starts,
-and failure modes without product value. A transactional database and authentication are also
-omitted because the MVP has no saved user state.
+Forecasts are produced by a reproducible batch pipeline and published as versioned artifacts. The
+web application does not need a request-time model server, database, login, or browser secret.
 
-More detail: [architecture](docs/ARCHITECTURE.md) · [data flow](docs/DATA_FLOW.md) ·
-[decisions and methodology](docs/METHODOLOGY_NOTES.md).
+## Technology
 
-## Net-realization formula
+| Layer                  | Main tools                                                            |
+| ---------------------- | --------------------------------------------------------------------- |
+| Web product            | Next.js 16, React 19, TypeScript                                      |
+| Charts and interface   | Recharts, Lucide, responsive CSS design system                        |
+| Data pipeline          | Python 3.12, Polars, Parquet, Pydantic                                |
+| Forecasting            | scikit-learn, rolling-origin evaluation, empirical residual intervals |
+| Exploration            | DuckDB                                                                |
+| Quality                | Pytest, Ruff, strict mypy, Vitest, ESLint, Prettier                   |
+| Automation and hosting | GitHub Actions, Vercel                                                |
 
-```text
-quantity in quintals = kg ÷ 100 | quintals | tonnes × 10
-gross estimate        = forecast ₹/quintal × quantity in quintals
-estimated net         = gross estimate − user-entered market cost
-```
+## Getting started
 
-The same calculation is applied to the forecast low and high values. Costs can be entered as a
-total trip amount, per quintal, or per tonne for each compared market.
+### Prerequisites
 
-MandiLens does **not** invent distance, cost per kilometre, commission, loading, unloading, toll,
-labour, spoilage, tax, grade deduction, or payment-timing assumptions. Users can include those in
-their entered market cost when known.
+- Node.js 24
+- Python 3.12 or newer
+- [uv](https://docs.astral.sh/uv/)
 
-## Technology choices
-
-| Layer | Choice | Reason |
-|---|---|---|
-| Product | Next.js 16 App Router, React 19, TypeScript | Static, accessible, responsive product with strong build-time checks |
-| Visuals | Recharts, custom range-lens components | Responsive analytical charts and explicit uncertainty bands |
-| Styling | Tailwind CSS toolchain plus intentional global design tokens | Small dependency surface with maintainable visual rules |
-| Data | Python 3.12, Polars, Parquet | Fast typed transformations and compact committed artifacts |
-| Analytics | DuckDB available for exploration | SQL access to Parquet without a database service |
-| ML | scikit-learn histogram gradient boosting | Portable tree model without a platform-specific OpenMP runtime |
-| Validation | rolling-origin folds, empirical error quantiles | Time-safe model selection and uncertainty measurement |
-| Automation | GitHub Actions | Free standard runners for a public repository |
-| Hosting | Vercel Hobby | Free personal portfolio hosting; static output avoids compute services |
-
-## Repository layout
-
-```text
-apps/web/                       Next.js application and committed web artifact
-config/pipeline.toml            Source, quality, model, and path configuration
-data/raw/                       Ignored monthly source cache
-data/processed/                 Ignored reproducible working datasets
-data/published/                 Compact, versioned Parquet and manifests
-models/published/               Selected model bundle and metadata
-pipelines/src/                  Python ingestion-to-export package
-reports/                        Human- and machine-readable quality/evaluation reports
-tests/                          Pipeline, leakage, calculation, and artifact tests
-docs/                           Dataset/model cards and operational/portfolio documentation
-.github/workflows/              Quality gates and weekly fail-safe refresh
-```
-
-## Local setup
-
-Prerequisites: Node.js 24, npm, and [uv](https://docs.astral.sh/uv/). The official source endpoint
-is public and keyless; the default application requires no secrets.
+### Run the application
 
 ```bash
 make install
 make dev
 ```
 
-Open `http://localhost:3000`.
+Open [http://localhost:3000](http://localhost:3000).
 
 Equivalent direct commands:
 
@@ -182,127 +160,59 @@ npm ci --prefix apps/web
 npm run dev --prefix apps/web
 ```
 
-## Reproducible pipeline commands
+### Useful commands
 
-```bash
-make download    # cache all requested official monthly responses
-make validate    # rebuild validation, aggregate, coverage, and quality artifacts
-make sample      # create a small deterministic development Parquet sample
-make transform   # rebuild the processed and published market-day layer
-make train       # rolling-origin evaluation and selected model fit
-make evaluate    # explicit alias for the same deterministic evaluation gate
-make forecast    # create one-to-seven-day point and interval forecasts
-make pipeline    # complete download-to-static-export run
-make refresh     # update recent months through the current UTC date and rebuild
+| Command          | Purpose                                                                |
+| ---------------- | ---------------------------------------------------------------------- |
+| `make check`     | Run formatting, linting, type checks, tests, and the production build  |
+| `make download`  | Retrieve and cache configured official source partitions               |
+| `make validate`  | Validate source rows and rebuild quality evidence                      |
+| `make transform` | Rebuild processed and published market-day data                        |
+| `make train`     | Run chronological evaluation and fit the selected method               |
+| `make forecast`  | Publish lead-specific forecasts and intervals                          |
+| `make refresh`   | Refresh recent source months and rebuild the complete product artifact |
+
+The source backfill is rate-limited, cached, and restartable. A failed refresh does not replace the
+last known-good published snapshot.
+
+## Repository layout
+
+```text
+apps/web/             Next.js application and static web artifacts
+config/               Pipeline, quality, model, and path configuration
+data/published/       Versioned analytical datasets and manifests
+models/published/     Selected model bundle and metadata
+pipelines/src/        Ingestion-to-export Python package
+reports/              Data-quality and model-evaluation reports
+tests/                Pipeline, leakage, calculation, and artifact tests
+docs/                 Architecture, methodology, cards, and screenshots
+.github/workflows/     Quality gates and scheduled data refresh
 ```
 
-The one-time source backfill is rate-limited and restartable. Cached files are verified and reused.
-The scheduled refresh requests only the current and prior month, merges by market/commodity/date,
-and does not replace the last known-good committed snapshot unless all validation, tests, and the
-production build pass.
+## Contributing
 
-## Quality and build commands
+Thoughtful contributions are welcome. Good starting points include documentation improvements,
+accessibility fixes, clearer chart explanations, test coverage, and well-scoped data-quality bugs.
 
-```bash
-make format
-make lint
-make typecheck
-make test
-make build
-make check
-```
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. For larger product, data, or
+model changes, open an issue first so the scope and evidence requirements are clear.
 
-Current local verification:
+Security concerns should follow the private reporting guidance in [docs/SECURITY.md](docs/SECURITY.md).
 
-- Python: 18 tests passed; Ruff and strict mypy passed
-- Web: 9 tests passed; ESLint, TypeScript, Prettier, and Next.js production build passed
-- Dependency audit: 0 known npm vulnerabilities after a pinned PostCSS override
-- Static routes: dashboard, quality, model, methodology, sources, limitations, metadata images,
-  robots, and sitemap all prerender successfully
+## Data source and responsible use
 
-Production verification at 1,440 × 1,000 and 390 × 844 confirmed:
+Source data comes from the Directorate of Marketing and Inspection, Ministry of Agriculture and
+Farmers Welfare, Government of India:
 
-- all six public application routes, metadata images, `robots.txt`, `sitemap.xml`, the data
-  artifact, and the custom not-found route return the expected status;
-- the deployed data artifact is byte-for-byte identical to the locally verified export;
-- commodity, district, reference-market, history, and forecast-horizon controls update the view;
-- quantity conversion and market-specific costs recompute point and low/high net estimates and can
-  change the ranking;
-- CSV export returns the displayed comparison with the correct file type, header, precision, and
-  row count;
-- desktop and mobile have no viewport-level horizontal overflow, failed requests, broken images,
-  or unexpected console errors; and
-- source links open the exact official pages in a separate tab with safe external-link behavior.
+- [AGMARKNET current daily mandi prices](https://www.data.gov.in/catalog/current-daily-price-various-commodities-various-markets-mandi)
+- [Government Open Data License — India](https://www.data.gov.in/godl)
 
-## Screenshots
+Source attribution does not imply government endorsement. Market reporting can be delayed,
+incomplete, revised, or inconsistent across locations. Historical performance and forecast
+intervals are not guarantees for a particular market or date.
 
-### Market overview
+## Repository status
 
-![MandiLens market overview](docs/screenshots/home-desktop.png)
-
-### Cost-adjusted market lens
-
-![MandiLens cost-adjusted market comparison](docs/screenshots/market-lens-desktop.png)
-
-### Mobile layout
-
-![MandiLens mobile market overview](docs/screenshots/home-mobile.png)
-
-## Data source and licence
-
-Source: [Current Daily Price of Various Commodities from Various Markets
-(Mandi)](https://www.data.gov.in/catalog/current-daily-price-various-commodities-various-markets-mandi),
-provided by the Directorate of Marketing and Inspection, Ministry of Agriculture and Farmers
-Welfare, Government of India, via AGMARKNET 2.0.
-
-Licence: [Government Open Data Licence – India](https://www.data.gov.in/godl). The project retains
-attribution, documents modifications, links the authority, avoids implying endorsement, and
-publishes the derived subset without warranty.
-
-## Free deployment and operating boundary
-
-- Vercel Hobby is used only for this personal, non-commercial portfolio project. It has no billing
-  cycle; exceeding included limits pauses service rather than creating a usage bill.
-- GitHub Actions standard runners are free for public repositories. The refresh runs once weekly
-  and takes minutes, not continuously.
-- The official data API is public and keyless.
-- No paid database, object store, compute service, AI API, model provider, domain, credit, trial,
-  card, or billable resource is used.
-- The site is static, so there is no backend sleep or inference cold start. A CDN cache miss may make
-  the first roughly 390 KB compressed data request slightly slower.
-
-See [deployment notes](docs/DEPLOYMENT.md) and [refresh runbook](docs/OPERATIONS.md).
-
-## Responsible use and limitations
-
-- Forecasts are empirical estimates, not guaranteed prices, bids, or financial advice.
-- Data covers a selected, well-reported Maharashtra subset, not every mandi or state.
-- Market-day aggregation may not represent a specific variety, grade, lot, or negotiated sale.
-- Reporting gaps and revisions can change both historical analysis and later forecasts.
-- Feature importance describes model behavior; it is not causal evidence.
-- Market rankings omit every cost the user has not entered.
-- Users should confirm live quotes, crop quality, sale units, and full costs before acting.
-
-Read the complete [limitations](docs/RESPONSIBLE_USE.md) or the in-app limitations page.
-
-## Portfolio summary
-
-Built and deployed a batch-first agricultural market-intelligence platform that validated 183,174
-official mandi observations, published 32,617 Maharashtra market-day records, produced seven-day
-empirical price intervals, and ranked markets using user-controlled costs; chronological evaluation
-selected a portable tree model with 1.12% lower MAE than the strongest simple baseline and 28.06%
-lower MAE than seasonal naive across 36,609 future forecasts.
-
-Interview framing, a concise resume bullet, and a demo script are in
-[the portfolio guide](docs/PORTFOLIO.md), [interview guide](docs/INTERVIEW_GUIDE.md), and
-[demo script](docs/DEMO_SCRIPT.md).
-
-## Future improvements
-
-1. Collect reliable market coordinates and route-cost contracts before offering distance estimates.
-2. Add lot-grade and variety support only where naming and coverage pass explicit thresholds.
-3. Measure whether authoritative weather, arrivals revision history, or holiday features improve
-   future rolling-origin windows.
-4. Add saved watchlists or alerts only if a user study justifies authentication and persistence.
-5. Monitor interval coverage after each refresh and widen or suspend forecasts when calibration
-   degrades.
+This repository welcomes issues and pull requests, but a software license has not yet been
+selected. Public visibility does not itself grant software reuse rights. Add an explicit `LICENSE`
+before presenting the code as formally open source.

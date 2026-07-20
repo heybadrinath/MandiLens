@@ -88,8 +88,8 @@ Missing calendar days are not manufactured outcomes.
 
 ## 6. Evaluate and select
 
-Four 90-day test windows begin on 1 July 2024, 1 January 2025, 1 July 2025, and 1 January 2026.
-Training history expands but always ends before the target date.
+Three 60-day model-selection windows use expanding training history that always ends before the
+target date. A later 60-day holdout remains locked until the method and blend parameters are fixed.
 
 Evaluated methods:
 
@@ -97,15 +97,19 @@ Evaluated methods:
 2. five-report moving average;
 3. seven-day seasonal naive;
 4. global histogram gradient boosting with absolute-error loss.
+5. a recent-level + lead-aware blend with a tuned damped level-gap adjustment.
 
-The tree is accepted only if pooled rolling-origin MAE is at least 1% lower than the best baseline.
-The current tree result is 1.12% lower, so it is selected.
+The strongest lead-aware candidate is accepted only if pooled selection-fold MAE is at least 1%
+lower than the best baseline and it wins at least two thirds of usable folds. The current blend
+uses 65% five-report moving average, 35% tree output, and a 7.5% damped level-gap adjustment per
+lead day. It improved selection MAE by 2.95%, won all three folds, and then improved MAE again on
+the separately reported holdout. Holdout metrics are not inputs to the automated selector.
 
 ## 7. Calibrate uncertainty
 
-Absolute forecast errors are grouped by commodity and horizon. When a group has at least 30 prior
-errors, its 80th percentile becomes the interval radius; otherwise the global prior-error quantile
-is used. During evaluation, each fold’s coverage uses only residuals from earlier folds.
+Signed forecast residuals are grouped hierarchically by market, state/crop, crop, lead, and recent
+volatility. Sparse groups back off to broader levels. During holdout evaluation, calibration uses
+only residuals from the earlier chronological selection folds.
 
 The final production quantiles use all out-of-fold selected-method residuals and are stored in the
 model bundle.

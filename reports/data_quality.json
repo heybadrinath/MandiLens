@@ -1,33 +1,89 @@
 {
-  "schema_version": 1,
-  "generated_at": "2026-07-20T05:16:42.675593+00:00",
-  "validation": {
-    "source_file_count": 201,
-    "input_records": 183174,
-    "accepted_variety_records": 183148,
-    "excluded_records": 26,
-    "corrected_records": 442,
-    "unresolved_market_references": 0,
+  "schema_version": 2,
+  "generated_at": "2026-07-20T09:31:48.894789+00:00",
+  "current_refresh_validation": {
+    "source_file_count": 2100,
+    "input_records": 1569829,
+    "accepted_variety_records": 1564481,
+    "excluded_records": 5348,
+    "corrected_records": 2862,
+    "unresolved_market_references": 533,
     "exclusion_reasons": {
-      "exact_duplicate": 25,
-      "price_above_safety_ceiling": 1
+      "exact_duplicate": 1545,
+      "invalid_price_order": 78,
+      "non_positive_price": 3705,
+      "price_above_safety_ceiling": 20
     }
   },
-  "published": {
-    "records": 32617,
-    "series": 21,
-    "markets": 14,
-    "state": "Maharashtra",
-    "commodities": [
-      "Onion",
-      "Potato",
-      "Tomato"
+  "cumulative_validation": {
+    "source_file_count": 2100,
+    "input_records": 1569829,
+    "accepted_records": 1564481,
+    "excluded_records": 5348
+  },
+  "selection_window": {
+    "records": 1421838,
+    "series": 5360,
+    "states": [
+      "Andhra Pradesh",
+      "Karnataka",
+      "Kerala",
+      "Maharashtra",
+      "Tamil Nadu",
+      "Telangana"
     ],
-    "date_min": "2021-01-01",
+    "commodities": [
+      "Arecanut",
+      "Banana",
+      "Brinjal",
+      "Coconut",
+      "Cotton",
+      "Green Chilli",
+      "Groundnut",
+      "Maize",
+      "Onion",
+      "Paddy (Common)",
+      "Potato",
+      "Ragi",
+      "Tomato",
+      "Turmeric"
+    ],
+    "date_min": "2024-06-21",
+    "date_max": "2026-07-20"
+  },
+  "published": {
+    "records": 91737,
+    "series": 189,
+    "markets": 120,
+    "states": [
+      "Andhra Pradesh",
+      "Karnataka",
+      "Kerala",
+      "Maharashtra",
+      "Tamil Nadu",
+      "Telangana"
+    ],
+    "commodities": [
+      "Arecanut",
+      "Banana",
+      "Brinjal",
+      "Coconut",
+      "Cotton",
+      "Green Chilli",
+      "Groundnut",
+      "Maize",
+      "Onion",
+      "Paddy (Common)",
+      "Potato",
+      "Ragi",
+      "Tomato",
+      "Turmeric"
+    ],
+    "date_min": "2024-07-01",
     "date_max": "2026-07-20",
-    "stale_series": 0,
-    "long_gap_series": 0,
-    "anomaly_records": 2578,
+    "stale_series": 11,
+    "long_gap_series": 44,
+    "anomaly_records": 6607,
     "missing_district_records": 0
   }
 }

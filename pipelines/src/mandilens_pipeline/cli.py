@@ -97,13 +97,14 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers.add_parser("features", help="Build leakage-safe training and forecast features.")
     subparsers.add_parser("train", help="Evaluate baselines and train the selected model.")
     subparsers.add_parser("evaluate", help="Re-run chronological model evaluation.")
-    subparsers.add_parser("forecast", help="Generate one-to-seven-day forecasts.")
-    subparsers.add_parser("export", help="Build the static web data artifact.")
+    subparsers.add_parser("forecast", help="Generate common-date one-to-seven-day forecasts.")
+    subparsers.add_parser("export", help="Build partitioned static web data artifacts.")
 
     full = subparsers.add_parser("all", help="Run the complete pipeline.")
     full.add_argument("--refresh", action="store_true")
     subparsers.add_parser(
-        "refresh", help="Refresh two months, merge the published history, retrain, and export."
+        "refresh",
+        help="Refresh two months, merge the all-market history, retrain, and export.",
     )
     return parser
 

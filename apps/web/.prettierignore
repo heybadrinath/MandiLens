@@ -1,4 +1,4 @@
 .next
 node_modules
-public/data/*.json
+public/data/**/*.json
 package-lock.json
