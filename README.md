@@ -13,16 +13,19 @@
   <a href="https://mandilens.vercel.app/compare">Compare markets</a>
   ·
   <a href="https://mandilens.vercel.app/methodology">Methodology</a>
+  ·
+  <a href="https://github.com/heybadrinath/MandiLens/releases/latest">Latest release</a>
 </p>
 
 <p align="center">
   <a href="https://github.com/heybadrinath/MandiLens/actions/workflows/quality.yml"><img alt="Quality checks" src="https://github.com/heybadrinath/MandiLens/actions/workflows/quality.yml/badge.svg"></a>
+  <a href="https://github.com/heybadrinath/MandiLens/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/heybadrinath/MandiLens?display_name=tag&sort=semver"></a>
   <img alt="Next.js 16" src="https://img.shields.io/badge/Next.js-16-111b13?logo=nextdotjs">
   <img alt="Python 3.12" src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white">
   <a href="CONTRIBUTING.md"><img alt="Contributions welcome" src="https://img.shields.io/badge/contributions-welcome-79a943"></a>
 </p>
 
-![MandiLens home page](docs/screenshots/home-desktop.png)
+![Current MandiLens home page](docs/screenshots/home-desktop.png)
 
 MandiLens turns official but irregular AGMARKNET reports into a focused public decision-support
 product. It helps farmers, Farmer Producer Organizations, traders, analysts, agritech teams, and
@@ -62,6 +65,8 @@ Represented states are Andhra Pradesh, Karnataka, Kerala, Maharashtra, Tamil Nad
 The 14 commodities include vegetables, grains, oilseeds, fibre crops, spices, and plantation crops.
 
 ## Product tour
+
+These captures show the current production interface on desktop and mobile.
 
 <table>
   <tr>
@@ -196,6 +201,10 @@ accessibility fixes, clearer chart explanations, test coverage, and well-scoped 
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. For larger product, data, or
 model changes, open an issue first so the scope and evidence requirements are clear.
+
+[Open an issue](https://github.com/heybadrinath/MandiLens/issues) ·
+[View the changelog](CHANGELOG.md) ·
+[Browse releases](https://github.com/heybadrinath/MandiLens/releases)
 
 Security concerns should follow the private reporting guidance in [docs/SECURITY.md](docs/SECURITY.md).
 
