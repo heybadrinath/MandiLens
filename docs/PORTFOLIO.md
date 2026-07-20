@@ -43,26 +43,29 @@ service.
 Leakage-safe global grouped features include as-of price lags, rolling means/median/deviation,
 momentum, spread, arrivals, reporting frequency, freshness, calendar context, market, district,
 commodity, horizon, and coverage tier. A portable scikit-learn histogram gradient-boosting
-regressor uses absolute-error loss.
+regressor uses absolute-error loss. The production candidate blends its lead-aware output with a
+stable recent-level baseline and a small damped adjustment derived from the latest price's gap to
+its seven-report mean.
 
 ## 8. Baselines
 
 Last observation, five-report moving average, and seven-day seasonal naive are evaluated on exactly
-the same future targets as the tree model.
+the same future targets as the tree model and the tuned recent-level + lead-aware blend.
 
 ## 9. Validation
 
-Four expanding rolling-origin evaluations score 36,609 one-to-seven-day future observations. No
-random split is used. The tree must lower pooled MAE by at least 1% versus the strongest baseline.
-Intervals use prior-fold absolute-error quantiles, and performance is segmented by horizon,
-commodity, market, and coverage.
+Three expanding chronological selection folds score 536,508 future observations, followed by a
+separate 195,253-row locked holdout. No random split is used. The best lead-aware candidate must
+lower pooled MAE by at least 1% versus the strongest baseline and win at least two thirds of usable
+folds. Blend parameters are selected only on the selection folds. Intervals use signed residual
+quantiles, and performance is segmented by horizon, crop, state, market, and coverage.
 
 ## 10. Results
 
-The tree reached ₹250.67 MAE and 13.79% WAPE, versus ₹253.51 MAE for the strongest baseline and
-₹348.46 for seasonal naive. That is a narrow 1.12% improvement over the strongest baseline and a
-28.06% improvement over seasonal naive. The 80% interval target achieved 92.44% later-fold
-empirical coverage on 27,340 forecasts. Tomato remained the hardest segment at 19.60% WAPE.
+The selected blend reached ₹521.20 MAE and 10.53% WAPE on the locked holdout, versus ₹529.19 MAE
+for the strongest baseline and ₹639.12 for seasonal naive. It improved selection-fold MAE by 2.95%
+and won all three folds. The nominal 80% interval achieved 71.59% locked-holdout coverage; the
+shortfall is explicitly published rather than presented as calibrated certainty.
 
 ## 11. Deployment
 

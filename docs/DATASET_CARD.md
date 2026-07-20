@@ -2,41 +2,45 @@
 
 ## Dataset
 
-- **Name:** MandiLens Maharashtra market-day price snapshot
+- **Name:** MandiLens multi-state market-day price snapshot
 - **Provider:** Directorate of Marketing and Inspection, Ministry of Agriculture and Farmers Welfare, Government of India
 - **Source:** https://www.data.gov.in/catalog/current-daily-price-various-commodities-various-markets-mandi
 - **Retrieved:** 2026-07-20
 - **License:** [Government Open Data License - India](https://www.data.gov.in/godl)
-- **Date range:** 2021-01-01 to 2026-07-20
-- **Published records:** 32,617
+- **Date range:** 2024-07-01 to 2026-07-20
+- **Published selected-market records:** 91,737
+- **Retained all-market records:** 1,421,838
 
-## Scope
+## Configured coverage
 
-- State: Maharashtra
-- Commodities: Onion, Potato, Tomato
+- States: Andhra Pradesh, Karnataka, Kerala, Maharashtra, Tamil Nadu, Telangana
+- Crops: Onion, Potato, Tomato, Paddy (Common), Maize, Groundnut, Banana, Coconut, Green Chilli, Turmeric, Brinjal, Ragi, Cotton, Arecanut
 - Unit: Indian rupees per quintal; arrivals in metric tonnes
-- Granularity: one market/commodity/day after variety aggregation
+- Granularity: one market, crop, and day after variety-level aggregation
+- Publication rule: only series meeting the documented coverage and freshness thresholds
 
 ## Transformations
 
-- Validated positive ordered min, modal, and max prices
-- Removed exact duplicates and retained exclusion reasons
-- Aggregated varieties to market-day using arrival-weighted modal price when available
-- Selected active series using weekly reporting coverage
+- Validated positive ordered minimum, modal, and maximum source prices
+- Removed exact duplicates and retained exclusion reasons by source month
+- Used arrival-weighted variety modal prices only when arrival reporting was complete
+- Used a median variety modal price when arrival reporting was partial or missing
+- Selected active series from a committed rolling all-market coverage window
 - Flagged robust price anomalies without deleting them
 
 ## Known limitations
 
 - Reporting is irregular and does not establish that no trade occurred on missing days
-- Market-day values aggregate varieties and grades for a stable comparison unit
-- Arrival quantities are source-reported and may be revised
+- Representative market-day prices aggregate varieties and grades
+- Arrival quantities are source-reported and can be partial or revised
+- Only state and crop groups with eligible recent reporting are published
 
 ## Attribution
 
-Directorate of Marketing and Inspection, Ministry of Agriculture and Farmers Welfare, Government of India, 2026, AGMARKNET market price and arrival reports, Open Government
-Data Platform India / AGMARKNET 2.0, retrieved 2026-07-20,
-https://www.data.gov.in/catalog/current-daily-price-various-commodities-various-markets-mandi. Published under Government Open Data License - India:
+Directorate of Marketing and Inspection, Ministry of Agriculture and Farmers Welfare, Government of India, AGMARKNET market price and arrival reports, Open Government Data
+Platform India / AGMARKNET 2.0, retrieved 2026-07-20,
+https://www.data.gov.in/catalog/current-daily-price-various-commodities-various-markets-mandi. Source data is published under Government Open Data License - India:
 https://www.data.gov.in/godl.
 
 The provider does not endorse MandiLens. Source data is supplied without warranty. MandiLens
-normalizes, validates, aggregates, filters, and flags records as described above.
+validates, aggregates, filters, and flags the derived records as described above.

@@ -27,6 +27,7 @@ def test_market_normalization_is_stable_without_changing_identity() -> None:
 def test_varieties_aggregate_with_arrival_weighted_modal_price() -> None:
     frame = pl.DataFrame(
         {
+            "state_id": [20, 20],
             "state": ["Maharashtra", "Maharashtra"],
             "district": ["Pune", "Pune"],
             "market_id": ["1", "1"],
@@ -45,14 +46,19 @@ def test_varieties_aggregate_with_arrival_weighted_modal_price() -> None:
     result = aggregate_market_days(frame).row(0, named=True)
     assert result["min_price"] == 80.0
     assert result["max_price"] == 240.0
-    assert result["modal_price"] == 175.0
+    assert result["representative_price"] == 175.0
     assert result["arrivals_tonnes"] == 8.0
     assert result["variety_count"] == 2
+    assert result["aggregation_method"] == "arrival-weighted mean of variety modal prices"
+    assert result["arrival_coverage"] == "complete"
+    assert result["example_variety"] == "Red"
+    assert result["example_variety_basis"] == "largest reported arrivals"
 
 
 def test_varieties_fall_back_to_median_when_arrivals_are_missing() -> None:
     frame = pl.DataFrame(
         {
+            "state_id": [20, 20],
             "state": ["Maharashtra", "Maharashtra"],
             "district": ["Pune", "Pune"],
             "market_id": ["1", "1"],
@@ -70,4 +76,35 @@ def test_varieties_fall_back_to_median_when_arrivals_are_missing() -> None:
     )
 
     result = aggregate_market_days(frame).row(0, named=True)
-    assert result["modal_price"] == 150.0
+    assert result["representative_price"] == 150.0
+    assert result["arrivals_tonnes"] is None
+    assert result["aggregation_method"] == "median of variety modal prices"
+    assert result["arrival_coverage"] == "missing"
+    assert result["example_variety"] == "Local"
+    assert result["example_variety_basis"] == "alphabetical fallback"
+
+
+def test_partial_arrivals_do_not_zero_weight_missing_varieties() -> None:
+    frame = pl.DataFrame(
+        {
+            "state_id": [20, 20],
+            "state": ["Maharashtra", "Maharashtra"],
+            "district": ["Pune", "Pune"],
+            "market_id": ["1", "1"],
+            "market": ["Pune APMC", "Pune APMC"],
+            "commodity": ["Tomato", "Tomato"],
+            "variety": ["Local", "Other"],
+            "date": [date(2026, 7, 20), date(2026, 7, 20)],
+            "min_price": [80.0, 150.0],
+            "max_price": [140.0, 240.0],
+            "modal_price": [100.0, 200.0],
+            "arrivals_tonnes": [None, 6.0],
+            "source_file": ["one.json", "one.json"],
+        },
+        schema_overrides={"arrivals_tonnes": pl.Float64},
+    )
+
+    result = aggregate_market_days(frame).row(0, named=True)
+    assert result["representative_price"] == 150.0
+    assert result["arrival_coverage"] == "partial"
+    assert result["example_variety"] == "Other"

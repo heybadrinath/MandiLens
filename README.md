@@ -39,8 +39,8 @@ freshness, uncertainty, and market-specific costs all change the comparison.
 - Coverage-led market selection: seven recent, active series per commodity
 - Leakage-safe lags, rolling statistics, momentum, spread, arrivals, freshness, reporting
   frequency, seasonality, and categorical context
-- Four-way chronological comparison: last observation, moving average, seasonal naive, and global
-  histogram gradient boosting
+- Five-way chronological comparison: three simple baselines, global histogram gradient boosting,
+  and a tuned recent-level + lead-aware blend
 - Empirical one-to-seven-day prediction intervals calibrated from prior evaluation errors
 - Interactive commodity, district, market, horizon, and historical-window controls
 - Observed min/modal/max range, historical chart, forecast interval, seasonal chart, movement,
@@ -74,24 +74,29 @@ filled with a price of zero. See [the data-quality report](reports/DATA_QUALITY.
 
 ## Verified model result
 
-Four 90-day future windows were evaluated with expanding chronological training history. Every
-method was scored on the same 36,609 observed targets.
+Three 60-day model-selection windows were evaluated with expanding chronological training history,
+followed by a separate locked 60-day holdout. Every method was scored on the same 195,253 holdout
+targets.
 
 | Method | MAE (₹/quintal) | WAPE | sMAPE | Directional accuracy |
 |---|---:|---:|---:|---:|
-| **Global histogram gradient boosting — selected** | **250.67** | **13.79%** | **13.11%** | **50.21%** |
-| Five-report moving average | 253.51 | 13.95% | 13.27% | 51.88% |
-| Last observation | 253.52 | 13.95% | 13.34% | 23.46% |
-| Seven-day seasonal naive | 348.46 | 19.17% | 17.73% | 48.63% |
+| **Validated recent-level + lead-aware blend — selected** | **521.20** | **10.53%** | **12.78%** | **49.15%** |
+| Five-report moving average | 529.19 | 10.69% | 13.19% | 51.78% |
+| Global histogram gradient boosting | 544.33 | 11.00% | 13.05% | 48.88% |
+| Last observation | 552.17 | 11.16% | 13.30% | 22.12% |
+| Seven-day seasonal naive | 639.12 | 12.91% | 15.77% | 48.46% |
 
-The tree reduced MAE by **1.12%** versus the strongest simple baseline, narrowly clearing the
-preset 1% complexity threshold. It reduced MAE by **28.06%** versus the seasonal-naive baseline.
-The displayed interval targets 80% coverage and achieved **92.44% empirical coverage** on 27,340
-later-fold forecasts calibrated only from earlier-fold errors.
+The blend combines 65% of the five-report moving average with 35% of the lead-aware tree and a
+7.5% damped recent-level adjustment per lead day. Those parameters were selected only on the
+chronological selection folds, where the blend lowered MAE by **2.95%** and won all three folds.
+On the separately reported holdout it lowered MAE by **₹7.99 per quintal** versus the strongest
+baseline. Holdout metrics are not inputs to the automated selector.
+The displayed interval targets 80% coverage and achieved **71.59% empirical holdout coverage**;
+that shortfall is published rather than hidden.
 
-That historical coverage is conservative, not a guarantee. Tomato remained the hardest commodity
-(19.60% WAPE), versus onion (12.06%) and potato (8.02%). See the
-[full evaluation report](reports/MODEL_EVALUATION.md) and [model card](docs/MODEL_CARD.md).
+Historical performance is not a guarantee for one market or date. See the
+[full evaluation report](reports/MODEL_EVALUATION.md) and [model card](docs/MODEL_CARD.md) for
+horizon, crop, state, market, and coverage segments.
 
 ## Architecture
 

@@ -1,102 +1,115 @@
 import { describe, expect, it } from "vitest";
 
 import {
-  calculateRealization,
+  calculateComparison,
   calculateTransportCost,
+  compareOnCommonDate,
+  comparisonToCsv,
   quantityToQuintals,
-  rankMarkets,
-  rankingsToCsv,
+  type ComparisonPrice,
 } from "@/lib/calculations";
-import type { Forecast } from "@/lib/types";
 
-const forecast = (marketId: string, price: number): Forecast => ({
-  commodity: "Onion",
-  market_id: marketId,
-  market: `Market ${marketId}`,
-  district: "Pune",
-  observed_date: "2026-07-20",
-  forecast_date: "2026-07-21",
-  horizon: 1,
-  current_min_price: price - 100,
-  current_modal_price: price,
-  current_max_price: price + 100,
-  current_arrivals_tonnes: 10,
-  forecast_price: price,
-  forecast_low: price - 200,
-  forecast_high: price + 200,
-  interval_width_pct: 0.2,
-  wide_interval: false,
-  recent_change_pct: 0,
-  seasonal_position_pct: 0,
-  freshness_days: 1,
-  coverage_tier: "high",
-  method: "moving_average",
+const price = (key: string, value: number, targetDate = "2026-07-21"): ComparisonPrice => ({
+  key,
+  market: `Market ${key}`,
+  sourceDate: "2026-07-20",
+  targetDate,
+  price: value,
+  lowPrice: value - 200,
+  highPrice: value + 200,
 });
 
-describe("quantity conversion", () => {
+describe("quantity and cost conversion", () => {
   it("converts supported units to quintals", () => {
     expect(quantityToQuintals(250, "kg")).toBe(2.5);
     expect(quantityToQuintals(2.5, "quintal")).toBe(2.5);
     expect(quantityToQuintals(1.2, "tonne")).toBe(12);
   });
 
-  it("rejects invalid quantities", () => {
+  it("rejects invalid quantities and costs", () => {
     expect(() => quantityToQuintals(-1, "kg")).toThrow(RangeError);
-    expect(() => quantityToQuintals(Number.NaN, "kg")).toThrow(RangeError);
+    expect(() => calculateTransportCost(-1, "total", 10)).toThrow(RangeError);
   });
-});
 
-describe("transport and realization", () => {
-  it("applies each transparent transport method", () => {
+  it("applies total, per-quintal, and per-tonne transport methods", () => {
     expect(calculateTransportCost(500, "total", 20)).toBe(500);
     expect(calculateTransportCost(50, "per_quintal", 20)).toBe(1_000);
     expect(calculateTransportCost(500, "per_tonne", 20)).toBe(1_000);
   });
+});
 
-  it("calculates point and interval net realization", () => {
+describe("market comparison", () => {
+  it("subtracts only entered costs from the point and range", () => {
     expect(
-      calculateRealization({
+      calculateComparison(price("a", 2_500), {
         quantity: 1,
         quantityUnit: "tonne",
         transportValue: 2_000,
         transportMethod: "total",
-        price: 2_500,
-        lowPrice: 2_000,
-        highPrice: 3_000,
+        otherCosts: 500,
       }),
-    ).toEqual({
+    ).toMatchObject({
       quantityQuintals: 10,
-      transportCost: 2_000,
       gross: 25_000,
-      grossLow: 20_000,
-      grossHigh: 30_000,
-      net: 23_000,
-      netLow: 18_000,
-      netHigh: 28_000,
+      amount: 22_500,
+      amountLow: 20_500,
+      amountHigh: 24_500,
     });
   });
-});
 
-describe("market ranking", () => {
-  it("changes rank when user costs outweigh price", () => {
-    const rows = rankMarkets(
-      [forecast("high", 3_000), forecast("lower", 2_800)],
-      1,
-      "tonne",
-      "total",
-      { high: 5_000, lower: 500 },
-    );
-    expect(rows[0].forecast.market_id).toBe("lower");
-    expect(rows[0].rank).toBe(1);
+  it("orders by estimated amount when entered costs outweigh price", () => {
+    const rows = compareOnCommonDate([price("high", 3_000), price("lower", 2_800)], {
+      high: {
+        quantity: 1,
+        quantityUnit: "tonne",
+        transportValue: 5_000,
+        transportMethod: "total",
+        otherCosts: 0,
+      },
+      lower: {
+        quantity: 1,
+        quantityUnit: "tonne",
+        transportValue: 500,
+        transportMethod: "total",
+        otherCosts: 0,
+      },
+    });
+    expect(rows[0].key).toBe("lower");
   });
 
-  it("creates an auditable CSV export", () => {
-    const rows = rankMarkets([forecast("1", 2_269.53)], 10, "quintal", "total", {});
-    const csv = rankingsToCsv(rows);
-    expect(csv).toContain("estimated_net_low_rs");
+  it("refuses to compare incompatible target dates", () => {
+    expect(() =>
+      compareOnCommonDate([price("a", 2_000, "2026-07-21"), price("b", 2_100, "2026-07-22")], {
+        a: {
+          quantity: 1,
+          quantityUnit: "tonne",
+          transportValue: 0,
+          transportMethod: "total",
+          otherCosts: 0,
+        },
+        b: {
+          quantity: 1,
+          quantityUnit: "tonne",
+          transportValue: 0,
+          transportMethod: "total",
+          otherCosts: 0,
+        },
+      }),
+    ).toThrow("common target date");
+  });
+
+  it("creates a precise auditable CSV", () => {
+    const row = calculateComparison(price("1", 2_269.53), {
+      quantity: 10,
+      quantityUnit: "quintal",
+      transportValue: 0,
+      transportMethod: "total",
+      otherCosts: 0,
+    });
+    const csv = comparisonToCsv([row]);
+    expect(csv).toContain("comparison_target_date");
     expect(csv).toContain("Market 1");
     expect(csv).toContain("22695.30");
-    expect(csv).not.toContain("0000000003");
     expect(csv.split("\n")).toHaveLength(2);
   });
 });

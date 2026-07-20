@@ -5,11 +5,33 @@ api_base_url = "https://api.agmarknet.gov.in/v1"
 catalog_url = "https://www.data.gov.in/catalog/current-daily-price-various-commodities-various-markets-mandi"
 license_name = "Government Open Data License - India"
 license_url = "https://www.data.gov.in/godl"
-state_id = 20
-state_name = "Maharashtra"
-start_date = "2021-01-01"
+start_date = "2024-07-01"
 end_date = "2026-07-20"
-request_delay_seconds = 0.20
+request_delay_seconds = 0.35
+
+[[source.states]]
+id = 2
+name = "Andhra Pradesh"
+
+[[source.states]]
+id = 16
+name = "Karnataka"
+
+[[source.states]]
+id = 17
+name = "Kerala"
+
+[[source.states]]
+id = 20
+name = "Maharashtra"
+
+[[source.states]]
+id = 31
+name = "Tamil Nadu"
+
+[[source.states]]
+id = 32
+name = "Telangana"
 
 [[source.commodities]]
 id = 23
@@ -23,22 +45,72 @@ name = "Potato"
 id = 65
 name = "Tomato"
 
+[[source.commodities]]
+id = 2
+name = "Paddy (Common)"
+
+[[source.commodities]]
+id = 4
+name = "Maize"
+
+[[source.commodities]]
+id = 10
+name = "Groundnut"
+
+[[source.commodities]]
+id = 19
+name = "Banana"
+
+[[source.commodities]]
+id = 116
+name = "Coconut"
+
+[[source.commodities]]
+id = 73
+name = "Green Chilli"
+
+[[source.commodities]]
+id = 35
+name = "Turmeric"
+
+[[source.commodities]]
+id = 32
+name = "Brinjal"
+
+[[source.commodities]]
+id = 30
+name = "Ragi"
+
+[[source.commodities]]
+id = 15
+name = "Cotton"
+
+[[source.commodities]]
+id = 118
+name = "Arecanut"
+
 [quality]
 maximum_price_per_quintal = 250000.0
 stale_after_days = 7
 long_gap_days = 30
-minimum_records_per_series = 150
-minimum_weekly_coverage = 0.45
+minimum_records_per_series = 90
+minimum_weekly_coverage = 0.35
 active_market_max_age_days = 21
 coverage_window_days = 730
-markets_per_commodity = 7
+all_market_history_days = 760
+markets_per_state_commodity = 3
 
 [model]
 forecast_horizon_days = 7
+maximum_lead_days = 28
 random_seed = 42
 interval_coverage = 0.80
-evaluation_window_days = 90
-evaluation_starts = ["2024-07-01", "2025-01-01", "2025-07-01", "2026-01-01"]
+evaluation_window_days = 60
+evaluation_folds = 3
+locked_holdout_days = 60
+minimum_tree_improvement = 0.01
+minimum_tree_fold_win_share = 0.666
+bootstrap_repetitions = 2000
 
 [paths]
 raw = "data/raw/agmarknet"
@@ -47,4 +119,4 @@ published = "data/published"
 models_work = "models/work"
 models_published = "models/published"
 reports = "reports"
-web_data = "apps/web/public/data/mandilens.json"
+web_data = "apps/web/public/data/manifest.json"

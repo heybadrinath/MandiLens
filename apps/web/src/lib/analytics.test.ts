@@ -1,79 +1,75 @@
 import { describe, expect, it } from "vitest";
 
-import { buildPriceChartPoints, missingCalendarDays, selectHistory } from "@/lib/analytics";
-import type { Forecast, Observation } from "@/lib/types";
+import {
+  buildPriceChartPoints,
+  median,
+  missingCalendarDays,
+  sampleHistory,
+  selectHistory,
+} from "@/lib/analytics";
+import type { Observation } from "@/lib/types";
 
-const observations: Observation[] = [
-  {
-    commodity: "Onion",
-    market_id: "1",
-    date: "2026-01-01",
-    min_price: 900,
-    modal_price: 1_000,
-    max_price: 1_100,
-    arrivals_tonnes: 2,
-    variety_count: 1,
-    primary_variety: "Local",
-    is_anomaly: false,
-    anomaly_score: 0,
-  },
-  {
-    commodity: "Onion",
-    market_id: "1",
-    date: "2026-01-03",
-    min_price: 1_000,
-    modal_price: 1_100,
-    max_price: 1_200,
+function observation(date: string, representativePrice: number): Observation {
+  return {
+    market_id: "16-707",
+    date,
+    min_price: representativePrice - 100,
+    representative_price: representativePrice,
+    max_price: representativePrice + 100,
     arrivals_tonnes: 3,
+    arrival_coverage: "complete",
     variety_count: 1,
-    primary_variety: "Local",
+    example_variety: "Tomato",
+    example_variety_basis: "largest reported arrivals",
+    aggregation_method: "arrival-weighted mean of variety modal prices",
     is_anomaly: false,
     anomaly_score: 0,
-  },
+  };
+}
+
+const observations = [
+  observation("2025-01-01", 1_000),
+  observation("2025-12-31", 1_100),
+  observation("2026-01-02", 1_200),
 ];
 
-const forecast: Forecast = {
-  commodity: "Onion",
-  market_id: "1",
-  market: "Market 1",
-  district: "Pune",
-  observed_date: "2026-01-03",
-  forecast_date: "2026-01-04",
-  horizon: 1,
-  current_min_price: 1_000,
-  current_modal_price: 1_100,
-  current_max_price: 1_200,
-  current_arrivals_tonnes: 3,
-  forecast_price: 1_150,
-  forecast_low: 900,
-  forecast_high: 1_400,
-  interval_width_pct: 0.43,
-  wide_interval: true,
-  recent_change_pct: 0.1,
-  seasonal_position_pct: 0.05,
-  freshness_days: 0,
-  coverage_tier: "high",
-  method: "moving_average",
-};
-
 describe("history analytics", () => {
-  it("filters only the requested series", () => {
-    expect(selectHistory(observations, "Onion", "1", "all")).toHaveLength(2);
-    expect(selectHistory(observations, "Tomato", "1", "all")).toHaveLength(0);
+  it("limits history relative to the series' own latest report", () => {
+    expect(selectHistory(observations, 90)).toEqual(observations.slice(1));
+    expect(selectHistory(observations, "all")).toEqual(observations);
   });
 
-  it("counts absent calendar reports without treating them as zero", () => {
-    expect(missingCalendarDays(observations)).toBe(1);
+  it("counts missing calendar reports without manufacturing zero values", () => {
+    expect(
+      missingCalendarDays([observation("2026-01-01", 1_000), observation("2026-01-03", 1_100)]),
+    ).toBe(1);
   });
 
-  it("joins observed history to future ranges without replacing observations", () => {
-    const points = buildPriceChartPoints(observations, [forecast]);
-    expect(points.at(-1)).toEqual({
-      date: "2026-01-04",
-      forecast: 1_150,
-      forecastRange: [900, 1_400],
-    });
-    expect(points[1].observed).toBe(1_100);
-    expect(points[1].forecast).toBe(1_100);
+  it("builds a minimum, representative, maximum, arrivals chart contract", () => {
+    expect(buildPriceChartPoints([observations[0]])).toEqual([
+      {
+        date: "2025-01-01",
+        minimum: 900,
+        representative: 1_000,
+        maximum: 1_100,
+        arrivals: 3,
+        anomaly: false,
+      },
+    ]);
+  });
+
+  it("samples long history while retaining the latest point", () => {
+    const history = Array.from({ length: 500 }, (_, index) =>
+      observation(`2026-01-${String((index % 28) + 1).padStart(2, "0")}`, index),
+    );
+    const sampled = sampleHistory(history, 40);
+    expect(sampled.length).toBeLessThan(50);
+    expect(sampled.at(-1)).toBe(history.at(-1));
+  });
+
+  it("calculates medians for even and odd samples", () => {
+    expect(median([5, 1, 3])).toBe(3);
+    expect(median([4, 2, 1, 3])).toBe(2.5);
+    expect(median([])).toBe(0);
   });
 });

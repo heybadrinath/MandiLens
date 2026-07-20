@@ -1,7 +1,7 @@
 [project]
 name = "mandilens"
-version = "0.1.0"
-description = "Batch data and forecasting pipeline for Maharashtra mandi prices"
+version = "0.2.0"
+description = "Batch data and forecasting pipeline for Indian mandi prices"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

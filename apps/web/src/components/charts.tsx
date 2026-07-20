@@ -3,109 +3,232 @@
 import {
   Area,
   Bar,
-  BarChart,
   CartesianGrid,
   ComposedChart,
   Line,
-  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
 
-import { formatCurrency, formatDate } from "@/lib/format";
-import type { PriceChartPoint } from "@/lib/analytics";
+import { formatCurrency, formatDate, formatNumber } from "@/lib/format";
+import type { Locale } from "@/lib/types";
 
-function priceTooltip(value: unknown, name: unknown) {
-  if (Array.isArray(value)) {
-    return [
-      `${formatCurrency(Number(value[0]))} – ${formatCurrency(Number(value[1]))}`,
-      "80% interval",
-    ];
-  }
-  const names: Record<string, string> = {
-    observed: "Observed modal",
-    forecast: "Forecast",
-  };
-  return [formatCurrency(Number(value ?? 0)), names[String(name)] ?? String(name)];
+const chartMargin = { top: 10, right: 36, left: 0, bottom: 2 };
+const chartInitialDimension = { width: 720, height: 320 };
+const smallChartInitialDimension = { width: 560, height: 260 };
+const chartColors = {
+  grid: "#e4e9e2",
+  primary: "#536f59",
+  primaryStrong: "#385141",
+  secondary: "#91a294",
+  range: "#d9c88f",
+  surface: "#f3f6f1",
+} as const;
+
+const defaultTooltipStyle = {
+  border: "1px solid #dce3da",
+  borderRadius: "10px",
+  background: "rgba(255, 255, 255, 0.98)",
+  boxShadow: "0 10px 30px rgba(31, 46, 34, 0.1)",
+  color: chartColors.primaryStrong,
+  fontSize: "10px",
+  padding: "9px 11px",
+};
+
+const defaultTooltipLabelStyle = {
+  marginBottom: "5px",
+  color: "#6d776e",
+  fontFamily: "var(--font-mono), monospace",
+  fontSize: "9px",
+};
+
+export function HistoryChart({
+  data,
+  locale,
+  label,
+  representativeLabel,
+  rangeLabel,
+}: {
+  data: Array<{ date: string; minimum: number; representative: number; maximum: number }>;
+  locale: Locale;
+  label: string;
+  representativeLabel: string;
+  rangeLabel: string;
+}) {
+  const chartData = data.map((item) => ({ ...item, range: [item.minimum, item.maximum] }));
+  return (
+    <div className="chart chart--history" role="img" aria-label={label}>
+      <div className="chart-legend" aria-hidden="true">
+        <span>
+          <i className="chart-legend__range" />
+          {rangeLabel}
+        </span>
+        <span>
+          <i className="chart-legend__line" />
+          {representativeLabel}
+        </span>
+      </div>
+      <div className="chart__canvas">
+        <ResponsiveContainer width="100%" height="100%" initialDimension={chartInitialDimension}>
+          <ComposedChart data={chartData} margin={chartMargin}>
+            <defs>
+              <linearGradient id="range-fill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={chartColors.range} stopOpacity={0.42} />
+                <stop offset="100%" stopColor={chartColors.range} stopOpacity={0.1} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid
+              stroke={chartColors.grid}
+              strokeDasharray="3 5"
+              strokeOpacity={0.9}
+              vertical={false}
+            />
+            <XAxis
+              dataKey="date"
+              tickFormatter={(value: string) =>
+                formatDate(value, locale, { month: "short", year: "2-digit" })
+              }
+              minTickGap={44}
+              tickMargin={10}
+              tickLine={false}
+              axisLine={false}
+            />
+            <YAxis
+              tickFormatter={(value: number) => formatNumber(value, locale, 0)}
+              width={58}
+              tickMargin={8}
+              tickLine={false}
+              axisLine={false}
+            />
+            <Tooltip
+              content={<HistoryTooltip locale={locale} />}
+              cursor={{
+                stroke: chartColors.primary,
+                strokeDasharray: "3 5",
+                strokeOpacity: 0.28,
+                strokeWidth: 1,
+              }}
+            />
+            <Area
+              name={rangeLabel}
+              type="monotone"
+              dataKey="range"
+              stroke="none"
+              fill="url(#range-fill)"
+              isAnimationActive={false}
+            />
+            <Line
+              name={representativeLabel}
+              type="monotone"
+              dataKey="representative"
+              stroke={chartColors.primary}
+              strokeWidth={2.25}
+              dot={false}
+              activeDot={{
+                r: 4,
+                fill: chartColors.primaryStrong,
+                stroke: "#ffffff",
+                strokeWidth: 2,
+              }}
+              isAnimationActive={false}
+            />
+          </ComposedChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
 }
 
-export function PriceForecastChart({
-  points,
-  forecastStart,
+function HistoryTooltip({
+  active,
+  payload,
+  label,
+  locale,
 }: {
-  points: PriceChartPoint[];
-  forecastStart?: string;
+  active?: boolean;
+  payload?: Array<{ payload: { minimum: number; representative: number; maximum: number } }>;
+  label?: string;
+  locale: Locale;
+}) {
+  if (!active || !payload?.length || !label) return null;
+  const point = payload[0].payload;
+  return (
+    <div className="chart-tooltip">
+      <strong>{formatDate(label, locale)}</strong>
+      <span>
+        {formatCurrency(point.minimum, locale)} — {formatCurrency(point.maximum, locale)}
+      </span>
+      <b>{formatCurrency(point.representative, locale)}</b>
+    </div>
+  );
+}
+
+export function ArrivalsChart({
+  data,
+  locale,
+  label,
+}: {
+  data: Array<{ date: string; arrivals: number }>;
+  locale: Locale;
+  label: string;
 }) {
   return (
-    <div className="chart-frame" role="img" aria-label="Observed and forecast modal price chart">
-      <ResponsiveContainer
-        width="100%"
-        height="100%"
-        minWidth={0}
-        initialDimension={{ width: 320, height: 300 }}
-      >
-        <ComposedChart data={points} margin={{ top: 12, right: 10, bottom: 0, left: 0 }}>
-          <CartesianGrid stroke="#d9e0ea" strokeDasharray="2 6" vertical={false} />
+    <div className="chart chart--small chart--arrivals" role="img" aria-label={label}>
+      <ResponsiveContainer width="100%" height="100%" initialDimension={smallChartInitialDimension}>
+        <ComposedChart data={data} margin={chartMargin}>
+          <defs>
+            <linearGradient id="arrivals-fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={chartColors.secondary} stopOpacity={0.48} />
+              <stop offset="100%" stopColor={chartColors.secondary} stopOpacity={0.08} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid
+            stroke={chartColors.grid}
+            strokeDasharray="3 5"
+            strokeOpacity={0.9}
+            vertical={false}
+          />
           <XAxis
             dataKey="date"
-            minTickGap={45}
-            tickFormatter={(value) => formatDate(String(value), { day: "numeric", month: "short" })}
-            tick={{ fill: "#607087", fontSize: 11 }}
-            axisLine={false}
+            tickFormatter={(value: string) =>
+              formatDate(value, locale, { month: "short", year: "2-digit" })
+            }
+            minTickGap={48}
+            tickMargin={10}
             tickLine={false}
+            axisLine={false}
           />
           <YAxis
-            width={62}
-            tickFormatter={(value) => `₹${Math.round(Number(value) / 100) / 10}k`}
-            tick={{ fill: "#607087", fontSize: 11 }}
-            axisLine={false}
+            tickFormatter={(value: number) => formatNumber(value, locale, 0)}
+            width={52}
+            tickMargin={8}
             tickLine={false}
+            axisLine={false}
           />
           <Tooltip
-            formatter={priceTooltip}
-            labelFormatter={(value) => formatDate(String(value))}
-            contentStyle={{
-              border: "1px solid #ccd6e3",
-              borderRadius: "10px",
-              boxShadow: "0 12px 30px rgba(17, 42, 78, 0.12)",
-              fontSize: "12px",
-            }}
+            labelFormatter={(value) => formatDate(String(value), locale)}
+            formatter={(value) => formatNumber(Number(value), locale)}
+            contentStyle={defaultTooltipStyle}
+            labelStyle={defaultTooltipLabelStyle}
+            cursor={{ stroke: chartColors.primary, strokeOpacity: 0.2, strokeWidth: 1 }}
           />
           <Area
-            dataKey="forecastRange"
-            name="interval"
+            dataKey="arrivals"
             type="monotone"
-            stroke="#f0a42b"
-            strokeOpacity={0.38}
-            fill="#f7bd4a"
-            fillOpacity={0.22}
-            connectNulls
-          />
-          <Line
-            dataKey="observed"
-            name="observed"
-            type="monotone"
-            stroke="#163b72"
-            strokeWidth={2.5}
+            stroke={chartColors.secondary}
+            strokeWidth={1.6}
+            fill="url(#arrivals-fill)"
             dot={false}
-            activeDot={{ r: 4, fill: "#163b72" }}
-            connectNulls
+            activeDot={{
+              r: 3.5,
+              fill: chartColors.primaryStrong,
+              stroke: "#ffffff",
+              strokeWidth: 2,
+            }}
+            isAnimationActive={false}
           />
-          <Line
-            dataKey="forecast"
-            name="forecast"
-            type="monotone"
-            stroke="#e85d3f"
-            strokeWidth={2.5}
-            strokeDasharray="6 4"
-            dot={{ r: 2.5, fill: "#e85d3f" }}
-            connectNulls
-          />
-          {forecastStart ? (
-            <ReferenceLine x={forecastStart} stroke="#e85d3f" strokeDasharray="3 5" />
-          ) : null}
         </ComposedChart>
       </ResponsiveContainer>
     </div>
@@ -113,39 +236,118 @@ export function PriceForecastChart({
 }
 
 export function SeasonalChart({
-  points,
+  data,
+  locale,
+  label,
 }: {
-  points: Array<{ month: string; price: number; observations: number }>;
+  data: Array<{ month: string; price: number; observations: number }>;
+  locale: Locale;
+  label: string;
 }) {
   return (
-    <div className="seasonal-chart" role="img" aria-label="Monthly median price chart">
-      <ResponsiveContainer
-        width="100%"
-        height="100%"
-        minWidth={0}
-        initialDimension={{ width: 320, height: 250 }}
-      >
-        <BarChart data={points} margin={{ top: 12, right: 4, bottom: 0, left: 0 }}>
-          <CartesianGrid stroke="#d9e0ea" strokeDasharray="2 6" vertical={false} />
-          <XAxis
-            dataKey="month"
-            tick={{ fill: "#607087", fontSize: 10 }}
-            axisLine={false}
-            tickLine={false}
+    <div className="chart chart--small chart--seasonal" role="img" aria-label={label}>
+      <ResponsiveContainer width="100%" height="100%" initialDimension={smallChartInitialDimension}>
+        <ComposedChart data={data} margin={chartMargin}>
+          <defs>
+            <linearGradient id="seasonal-fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={chartColors.primary} stopOpacity={0.88} />
+              <stop offset="100%" stopColor={chartColors.secondary} stopOpacity={0.72} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid
+            stroke={chartColors.grid}
+            strokeDasharray="3 5"
+            strokeOpacity={0.9}
+            vertical={false}
           />
+          <XAxis dataKey="month" tickLine={false} axisLine={false} tickMargin={10} />
           <YAxis
-            width={48}
-            tickFormatter={(value) => `₹${Math.round(Number(value) / 100) / 10}k`}
-            tick={{ fill: "#607087", fontSize: 10 }}
-            axisLine={false}
+            tickFormatter={(value: number) => formatNumber(value, locale, 0)}
+            width={58}
+            tickMargin={8}
             tickLine={false}
+            axisLine={false}
           />
           <Tooltip
-            formatter={(value) => [formatCurrency(Number(value ?? 0)), "Monthly median"]}
-            contentStyle={{ border: "1px solid #ccd6e3", borderRadius: "10px", fontSize: "12px" }}
+            formatter={(value, name) =>
+              name === "price"
+                ? formatCurrency(Number(value), locale)
+                : formatNumber(Number(value), locale, 0)
+            }
+            contentStyle={defaultTooltipStyle}
+            labelStyle={defaultTooltipLabelStyle}
+            cursor={{ fill: chartColors.surface }}
           />
-          <Bar dataKey="price" fill="#2f70b7" radius={[4, 4, 0, 0]} />
-        </BarChart>
+          <Bar
+            dataKey="price"
+            fill="url(#seasonal-fill)"
+            radius={[5, 5, 2, 2]}
+            isAnimationActive={false}
+          />
+        </ComposedChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+export function ComparisonChart({
+  data,
+  locale,
+  label,
+}: {
+  data: Array<{ name: string; amount: number; low: number; high: number }>;
+  locale: Locale;
+  label: string;
+}) {
+  return (
+    <div className="chart chart--comparison" role="img" aria-label={label}>
+      <ResponsiveContainer width="100%" height="100%" initialDimension={chartInitialDimension}>
+        <ComposedChart
+          data={data}
+          layout="vertical"
+          margin={{ top: 8, right: 20, bottom: 8, left: 12 }}
+        >
+          <defs>
+            <linearGradient id="comparison-fill" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor={chartColors.secondary} stopOpacity={0.88} />
+              <stop offset="100%" stopColor={chartColors.primary} stopOpacity={0.98} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid
+            stroke={chartColors.grid}
+            strokeDasharray="3 5"
+            strokeOpacity={0.9}
+            horizontal={false}
+          />
+          <XAxis
+            type="number"
+            tickFormatter={(value: number) => formatNumber(value, locale, 0)}
+            tickMargin={8}
+            tickLine={false}
+            axisLine={false}
+          />
+          <YAxis
+            type="category"
+            dataKey="name"
+            width={120}
+            tickMargin={8}
+            tickLine={false}
+            axisLine={false}
+          />
+          <Tooltip
+            formatter={(value) => formatCurrency(Number(value), locale)}
+            contentStyle={defaultTooltipStyle}
+            labelStyle={defaultTooltipLabelStyle}
+            cursor={{ fill: chartColors.surface }}
+          />
+          <Bar
+            dataKey="amount"
+            fill="url(#comparison-fill)"
+            background={{ fill: chartColors.surface, radius: 6 }}
+            radius={[0, 6, 6, 0]}
+            isAnimationActive={false}
+          />
+        </ComposedChart>
       </ResponsiveContainer>
     </div>
   );

@@ -12,11 +12,11 @@ export default function Icon() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "#0d2d52",
-        color: "#ffffff",
+        background: "#182019",
+        color: "#a9d94d",
         fontSize: 32,
         fontWeight: 700,
-        borderRadius: 14,
+        borderRadius: 16,
       }}
     >
       M

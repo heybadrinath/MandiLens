@@ -17,6 +17,13 @@ class Commodity(BaseModel):
     name: str
 
 
+class State(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
+    id: int
+    name: str
+
+
 class SourceSettings(BaseModel):
     model_config = ConfigDict(frozen=True)
 
@@ -26,11 +33,10 @@ class SourceSettings(BaseModel):
     catalog_url: HttpUrl
     license_name: str
     license_url: HttpUrl
-    state_id: int
-    state_name: str
     start_date: date
     end_date: date
     request_delay_seconds: float = Field(ge=0.0, le=5.0)
+    states: tuple[State, ...]
     commodities: tuple[Commodity, ...]
 
 
@@ -44,17 +50,23 @@ class QualitySettings(BaseModel):
     minimum_weekly_coverage: float = Field(gt=0, le=1)
     active_market_max_age_days: int = Field(ge=1)
     coverage_window_days: int = Field(ge=30)
-    markets_per_commodity: int = Field(ge=1, le=25)
+    all_market_history_days: int = Field(ge=30)
+    markets_per_state_commodity: int = Field(ge=1, le=10)
 
 
 class ModelSettings(BaseModel):
     model_config = ConfigDict(frozen=True)
 
-    forecast_horizon_days: int = Field(ge=1, le=30)
+    forecast_horizon_days: int = Field(ge=1, le=14)
+    maximum_lead_days: int = Field(ge=1, le=45)
     random_seed: int
     interval_coverage: float = Field(gt=0.5, lt=1)
     evaluation_window_days: int = Field(ge=14)
-    evaluation_starts: tuple[date, ...]
+    evaluation_folds: int = Field(ge=2, le=8)
+    locked_holdout_days: int = Field(ge=14)
+    minimum_tree_improvement: float = Field(ge=0.0, le=0.25)
+    minimum_tree_fold_win_share: float = Field(gt=0.0, le=1.0)
+    bootstrap_repetitions: int = Field(ge=100, le=10_000)
 
 
 class PathSettings(BaseModel):
