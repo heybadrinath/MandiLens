@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "model_version": "6dacd16f8d20",
+  "trained_at": "2026-07-20T05:22:06.262447+00:00",
+  "selected_method": "hist_gradient_boosting",
+  "selected_label": "Global histogram gradient boosting",
+  "training_rows": 183396,
+  "training_date_range": [
+    "2021-01-16",
+    "2026-07-20"
+  ],
+  "forecast_horizon_days": 7,
+  "interval_coverage_target": 0.8,
+  "validation": "Chronological rolling-origin evaluation",
+  "metrics": {
+    "method": "hist_gradient_boosting",
+    "label": "Global histogram gradient boosting",
+    "n": 36609,
+    "mae": 250.67,
+    "wape": 0.1379,
+    "smape": 0.1311,
+    "directional_accuracy": 0.5021
+  },
+  "feature_importance": [
+    {
+      "feature": "current_price",
+      "importance": 204.84
+    },
+    {
+      "feature": "rolling_mean_7d",
+      "importance": 112.89
+    },
+    {
+      "feature": "lag_1d",
+      "importance": 60.85
+    },
+    {
+      "feature": "rolling_mean_14d",
+      "importance": 11.52
+    },
+    {
+      "feature": "lag_28d",
+      "importance": 9.76
+    },
+    {
+      "feature": "rolling_mean_90d",
+      "importance": 7.44
+    },
+    {
+      "feature": "market_id",
+      "importance": 6.28
+    },
+    {
+      "feature": "rolling_std_30d",
+      "importance": 4.23
+    },
+    {
+      "feature": "current_spread",
+      "importance": 2.52
+    },
+    {
+      "feature": "reports_30d",
+      "importance": 1.98
+    },
+    {
+      "feature": "target_week",
+      "importance": 1.52
+    },
+    {
+      "feature": "momentum_7d",
+      "importance": 1.41
+    },
+    {
+      "feature": "current_arrivals",
+      "importance": 1.35
+    },
+    {
+      "feature": "rolling_median_30d",
+      "importance": 1.3
+    },
+    {
+      "feature": "rolling_mean_30d",
+      "importance": 0.99
+    }
+  ],
+  "artifact_sha256": "52982ec94b9893ca3b61ba637aee42c741d0e065e53e120c4b3e8005e1879811"
+}

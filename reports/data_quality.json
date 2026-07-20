@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-20T05:16:42.675593+00:00",
+  "validation": {
+    "source_file_count": 201,
+    "input_records": 183174,
+    "accepted_variety_records": 183148,
+    "excluded_records": 26,
+    "corrected_records": 442,
+    "unresolved_market_references": 0,
+    "exclusion_reasons": {
+      "exact_duplicate": 25,
+      "price_above_safety_ceiling": 1
+    }
+  },
+  "published": {
+    "records": 32617,
+    "series": 21,
+    "markets": 14,
+    "state": "Maharashtra",
+    "commodities": [
+      "Onion",
+      "Potato",
+      "Tomato"
+    ],
+    "date_min": "2021-01-01",
+    "date_max": "2026-07-20",
+    "stale_series": 0,
+    "long_gap_series": 0,
+    "anomaly_records": 2578,
+    "missing_district_records": 0
+  }
+}

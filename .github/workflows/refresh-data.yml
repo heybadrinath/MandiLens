@@ -1,0 +1,54 @@
+name: Refresh market snapshot
+
+on:
+  schedule:
+    - cron: "30 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: market-data-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Validate, evaluate, and publish
+    if: github.repository_visibility == 'public'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - uses: astral-sh/setup-uv@v8.3.2
+        with:
+          version: "0.11.17"
+          enable-cache: true
+          python-version: "3.12"
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: uv sync --all-groups --frozen
+      - run: npm ci --prefix apps/web
+      - name: Refresh recent source months and rebuild artifacts
+        run: uv run mandilens-pipeline --end-date "$(date -u +%F)" refresh
+      - run: uv run ruff check pipelines tests
+      - run: uv run mypy
+      - run: uv run pytest
+      - run: npm run lint --prefix apps/web
+      - run: npm run typecheck --prefix apps/web
+      - run: npm test --prefix apps/web
+      - run: npm run build --prefix apps/web
+      - name: Publish only a passing snapshot
+        run: |
+          git config user.name "mandilens-data-bot"
+          git config user.email "mandilens-data-bot@users.noreply.github.com"
+          git add apps/web/public/data/mandilens.json data/published docs/DATASET_CARD.md docs/MODEL_CARD.md models/published reports/DATA_QUALITY.md reports/MODEL_EVALUATION.md reports/data_quality.json reports/model_evaluation.json reports/pipeline_run.json
+          if git diff --cached --quiet; then
+            echo "No published changes"
+            exit 0
+          fi
+          git commit -m "chore(data): refresh mandi snapshot"
+          git push

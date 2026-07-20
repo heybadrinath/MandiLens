@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-20T05:22:11.646318+00:00",
+  "rows": 720,
+  "series": 6,
+  "series_per_commodity": 2,
+  "maximum_rows_per_series": 120,
+  "selected_series": [
+    {
+      "commodity": "Onion",
+      "market_id": "2704",
+      "market": "Amrawati(Frui & Veg. Market) APMC"
+    },
+    {
+      "commodity": "Onion",
+      "market_id": "1290",
+      "market": "Bhusaval APMC"
+    },
+    {
+      "commodity": "Potato",
+      "market_id": "2704",
+      "market": "Amrawati(Frui & Veg. Market) APMC"
+    },
+    {
+      "commodity": "Potato",
+      "market_id": "557",
+      "market": "Chattrapati Sambhajinagar APMC"
+    },
+    {
+      "commodity": "Tomato",
+      "market_id": "3142",
+      "market": "Kamthi APMC"
+    },
+    {
+      "commodity": "Tomato",
+      "market_id": "1318",
+      "market": "Mangal Wedha APMC"
+    }
+  ],
+  "output": "processed/development_sample.parquet"
+}

@@ -1,0 +1,53 @@
+name: Quality gates
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    name: Python pipeline
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - uses: astral-sh/setup-uv@v8.3.2
+        with:
+          version: "0.11.17"
+          enable-cache: true
+          python-version: "3.12"
+      - run: uv sync --all-groups --frozen
+      - run: uv run ruff format --check pipelines tests
+      - run: uv run ruff check pipelines tests
+      - run: uv run mypy
+      - run: uv run pytest
+
+  web:
+    name: Next.js application
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v7.0.0
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: npm ci
+      - run: npm run format:check
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm audit --audit-level=moderate
+      - run: npm run build

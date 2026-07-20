@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-20T05:22:06.443188+00:00",
+  "web_artifact": "apps/web/public/data/mandilens.json",
+  "web_artifact_sha256": "673c2154ee3a0e425c58297385a233644913a9af8d1c15ba0aa96712eace638b",
+  "web_artifact_bytes": 7505832,
+  "dataset_manifest_sha256": "4cf6fedab07399f1938b96648613727da868e6b0ceef6dd49f438797b7cd2cb4",
+  "model_artifact_sha256": "52982ec94b9893ca3b61ba637aee42c741d0e065e53e120c4b3e8005e1879811"
+}

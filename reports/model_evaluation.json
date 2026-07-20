@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-20T05:22:06.262447+00:00",
+  "selected_method": "hist_gradient_boosting",
+  "selected_label": "Global histogram gradient boosting",
+  "selection_threshold": "Histogram gradient boosting must reduce MAE by at least 1% versus the best baseline",
+  "method_comparison": [
+    {
+      "method": "hist_gradient_boosting",
+      "label": "Global histogram gradient boosting",
+      "n": 36609,
+      "mae": 250.67,
+      "wape": 0.1379,
+      "smape": 0.1311,
+      "directional_accuracy": 0.5021
+    },
+    {
+      "method": "moving_average",
+      "label": "Five-report moving average",
+      "n": 36609,
+      "mae": 253.51,
+      "wape": 0.1395,
+      "smape": 0.1327,
+      "directional_accuracy": 0.5188
+    },
+    {
+      "method": "last_observation",
+      "label": "Last observation",
+      "n": 36609,
+      "mae": 253.52,
+      "wape": 0.1395,
+      "smape": 0.1334,
+      "directional_accuracy": 0.2346
+    },
+    {
+      "method": "seasonal_naive",
+      "label": "Seven-day seasonal naive",
+      "n": 36609,
+      "mae": 348.46,
+      "wape": 0.1917,
+      "smape": 0.1773,
+      "directional_accuracy": 0.4863
+    }
+  ],
+  "rolling_folds": [
+    {
+      "fold_index": 0,
+      "test_start": "2024-07-01",
+      "test_end_exclusive": "2024-09-29",
+      "training_rows": 105893,
+      "test_rows": 9269
+    },
+    {
+      "fold_index": 1,
+      "test_start": "2025-01-01",
+      "test_end_exclusive": "2025-04-01",
+      "training_rows": 124570,
+      "test_rows": 9252
+    },
+    {
+      "fold_index": 2,
+      "test_start": "2025-07-01",
+      "test_end_exclusive": "2025-09-29",
+      "training_rows": 143890,
+      "test_rows": 8865
+    },
+    {
+      "fold_index": 3,
+      "test_start": "2026-01-01",
+      "test_end_exclusive": "2026-04-01",
+      "training_rows": 161847,
+      "test_rows": 9223
+    }
+  ],
+  "prediction_interval": {
+    "nominal_coverage": 0.8,
+    "empirical_coverage": 0.9244,
+    "n": 27340,
+    "method": "Expanding-window absolute-error quantiles from earlier evaluation folds"
+  },
+  "performance_by_horizon": [
+    {
+      "segment": "1",
+      "n": 5195,
+      "mae": 205.43,
+      "wape": 0.1131,
+      "smape": 0.108,
+      "directional_accuracy": 0.4622
+    },
+    {
+      "segment": "2",
+      "n": 5150,
+      "mae": 220.45,
+      "wape": 0.1218,
+      "smape": 0.1176,
+      "directional_accuracy": 0.4804
+    },
+    {
+      "segment": "3",
+      "n": 5147,
+      "mae": 239.58,
+      "wape": 0.1311,
+      "smape": 0.1251,
+      "directional_accuracy": 0.4937
+    },
+    {
+      "segment": "4",
+      "n": 5126,
+      "mae": 258.15,
+      "wape": 0.1412,
+      "smape": 0.134,
+      "directional_accuracy": 0.5115
+    },
+    {
+      "segment": "5",
+      "n": 5129,
+      "mae": 267.93,
+      "wape": 0.1472,
+      "smape": 0.1394,
+      "directional_accuracy": 0.5149
+    },
+    {
+      "segment": "6",
+      "n": 5149,
+      "mae": 276.73,
+      "wape": 0.1523,
+      "smape": 0.1444,
+      "directional_accuracy": 0.5281
+    },
+    {
+      "segment": "7",
+      "n": 5713,
+      "mae": 283.34,
+      "wape": 0.1569,
+      "smape": 0.1476,
+      "directional_accuracy": 0.5223
+    }
+  ],
+  "performance_by_commodity": [
+    {
+      "segment": "Onion",
+      "n": 12262,
+      "mae": 212.96,
+      "wape": 0.1206,
+      "smape": 0.117,
+      "directional_accuracy": 0.5165
+    },
+    {
+      "segment": "Potato",
+      "n": 11402,
+      "mae": 135.68,
+      "wape": 0.0802,
+      "smape": 0.0767,
+      "directional_accuracy": 0.477
+    },
+    {
+      "segment": "Tomato",
+      "n": 12945,
+      "mae": 387.67,
+      "wape": 0.196,
+      "smape": 0.1923,
+      "directional_accuracy": 0.5106
+    }
+  ],
+  "performance_by_market": [
+    {
+      "segment": "Amrawati(Frui & Veg. Market) APMC",
+      "n": 3087,
+      "mae": 169.03,
+      "wape": 0.0968,
+      "smape": 0.0875,
+      "directional_accuracy": 0.4992
+    },
+    {
+      "segment": "Bhusaval APMC",
+      "n": 1621,
+      "mae": 213.69,
+      "wape": 0.1296,
+      "smape": 0.1274,
+      "directional_accuracy": 0.3905
+    },
+    {
+      "segment": "Chattrapati Sambhajinagar APMC",
+      "n": 3001,
+      "mae": 173.82,
+      "wape": 0.1188,
+      "smape": 0.1182,
+      "directional_accuracy": 0.5948
+    },
+    {
+      "segment": "Kamthi APMC",
+      "n": 1783,
+      "mae": 371.6,
+      "wape": 0.161,
+      "smape": 0.1808,
+      "directional_accuracy": 0.452
+    },
+    {
+      "segment": "Kolhapur APMC",
+      "n": 1548,
+      "mae": 112.47,
+      "wape": 0.068,
+      "smape": 0.0723,
+      "directional_accuracy": 0.3979
+    },
+    {
+      "segment": "Mangal Wedha APMC",
+      "n": 1616,
+      "mae": 308.4,
+      "wape": 0.2202,
+      "smape": 0.2093,
+      "directional_accuracy": 0.5483
+    },
+    {
+      "segment": "Panvel APMC",
+      "n": 1813,
+      "mae": 595.92,
+      "wape": 0.1931,
+      "smape": 0.1903,
+      "directional_accuracy": 0.5141
+    },
+    {
+      "segment": "Pune APMC",
+      "n": 1501,
+      "mae": 165.57,
+      "wape": 0.0949,
+      "smape": 0.0723,
+      "directional_accuracy": 0.439
+    },
+    {
+      "segment": "Pune(Manjri) APMC",
+      "n": 6434,
+      "mae": 314.45,
+      "wape": 0.1564,
+      "smape": 0.157,
+      "directional_accuracy": 0.484
+    },
+    {
+      "segment": "Pune(Moshi) APMC",
+      "n": 4992,
+      "mae": 218.62,
+      "wape": 0.1374,
+      "smape": 0.1284,
+      "directional_accuracy": 0.5503
+    },
+    {
+      "segment": "Pune(Pimpri) APMC",
+      "n": 4434,
+      "mae": 270.22,
+      "wape": 0.1412,
+      "smape": 0.1293,
+      "directional_accuracy": 0.5692
+    },
+    {
+      "segment": "Sangamner APMC",
+      "n": 1671,
+      "mae": 260.8,
+      "wape": 0.1873,
+      "smape": 0.1839,
+      "directional_accuracy": 0.4949
+    },
+    {
+      "segment": "Sangli(Phale, Bhajipala Market) APMC",
+      "n": 1482,
+      "mae": 92.6,
+      "wape": 0.0541,
+      "smape": 0.0498,
+      "directional_accuracy": 0.4798
+    },
+    {
+      "segment": "Shrirampur APMC",
+      "n": 1626,
+      "mae": 145.95,
+      "wape": 0.0875,
+      "smape": 0.0837,
+      "directional_accuracy": 0.3696
+    }
+  ],
+  "performance_by_coverage": [
+    {
+      "segment": "high",
+      "n": 36609,
+      "mae": 250.67,
+      "wape": 0.1379,
+      "smape": 0.1311,
+      "directional_accuracy": 0.5021
+    }
+  ],
+  "feature_importance": [
+    {
+      "feature": "current_price",
+      "importance": 204.84
+    },
+    {
+      "feature": "rolling_mean_7d",
+      "importance": 112.89
+    },
+    {
+      "feature": "lag_1d",
+      "importance": 60.85
+    },
+    {
+      "feature": "rolling_mean_14d",
+      "importance": 11.52
+    },
+    {
+      "feature": "lag_28d",
+      "importance": 9.76
+    },
+    {
+      "feature": "rolling_mean_90d",
+      "importance": 7.44
+    },
+    {
+      "feature": "market_id",
+      "importance": 6.28
+    },
+    {
+      "feature": "rolling_std_30d",
+      "importance": 4.23
+    },
+    {
+      "feature": "current_spread",
+      "importance": 2.52
+    },
+    {
+      "feature": "reports_30d",
+      "importance": 1.98
+    },
+    {
+      "feature": "target_week",
+      "importance": 1.52
+    },
+    {
+      "feature": "momentum_7d",
+      "importance": 1.41
+    },
+    {
+      "feature": "current_arrivals",
+      "importance": 1.35
+    },
+    {
+      "feature": "rolling_median_30d",
+      "importance": 1.3
+    },
+    {
+      "feature": "rolling_mean_30d",
+      "importance": 0.99
+    }
+  ],
+  "training": {
+    "rows": 183396,
+    "date_min": "2021-01-16",
+    "date_max": "2026-07-20",
+    "features": [
+      "commodity",
+      "market_id",
+      "district",
+      "coverage_tier",
+      "horizon",
+      "current_price",
+      "lag_1d",
+      "lag_7d",
+      "lag_14d",
+      "lag_28d",
+      "rolling_mean_7d",
+      "rolling_mean_14d",
+      "rolling_mean_30d",
+      "rolling_mean_90d",
+      "rolling_median_30d",
+      "rolling_std_30d",
+      "momentum_7d",
+      "current_spread",
+      "current_arrivals",
+      "freshness_days",
+      "reports_30d",
+      "target_weekday",
+      "target_week",
+      "target_month"
+    ]
+  },
+  "selected_metrics": {
+    "method": "hist_gradient_boosting",
+    "label": "Global histogram gradient boosting",
+    "n": 36609,
+    "mae": 250.67,
+    "wape": 0.1379,
+    "smape": 0.1311,
+    "directional_accuracy": 0.5021
+  }
+}

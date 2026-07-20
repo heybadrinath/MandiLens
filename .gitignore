@@ -1,0 +1,27 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.venv/
+.mypy_cache/
+.pytest_cache/
+.coverage
+coverage.json
+htmlcov/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+
+# Large and reproducible pipeline artifacts
+data/raw/**
+!data/raw/README.md
+data/processed/**
+!data/processed/README.md
+models/work/**
+!models/work/README.md
+reports/work/**
+!reports/work/README.md
+
+# Frontend build artifacts are covered by apps/web/.gitignore.
+apps/web/.env.local
+apps/web/.vercel/

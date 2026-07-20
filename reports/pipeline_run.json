@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "completed_at": "2026-07-20T05:22:06.682700+00:00",
+  "total_seconds": 398.198,
+  "steps": [
+    {
+      "step": "download",
+      "seconds": 4.474
+    },
+    {
+      "step": "transform",
+      "seconds": 69.876
+    },
+    {
+      "step": "features",
+      "seconds": 41.882
+    },
+    {
+      "step": "train_and_evaluate",
+      "seconds": 281.662
+    },
+    {
+      "step": "forecast",
+      "seconds": 0.05
+    },
+    {
+      "step": "export",
+      "seconds": 0.253
+    }
+  ],
+  "incremental": false
+}
