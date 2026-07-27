@@ -8,13 +8,13 @@ not guaranteed prices, market quotes, trading instructions, or financial advice.
 ## Selected production method
 
 **Validated recent-level + lead-aware blend** (`recent_level_tree_blend`), version
-`b32889514ab7`. Selection used chronological expanding-window folds. The final
+`91e3986490c2`. Selection used chronological expanding-window folds. The final
 time holdout is reported separately and is not an input to the automated selector.
 
 The best lead-aware candidate ships only when it improves pooled selection MAE by at least
 1.0% and wins the configured share of folds. The selected blend
-uses 65% Five-report moving average and
-35% global tree output, plus a 7.5% damped
+uses 70% Five-report moving average and
+30% global tree output, plus a 7.5% damped
 recent-level adjustment per lead day. The parameters are selected on chronological selection folds
 before holdout metrics are computed in each training run. After iterative model development, the
 holdout is descriptive confirmation rather than a permanently untouched benchmark.
@@ -23,16 +23,16 @@ holdout is descriptive confirmation rather than a permanently untouched benchmar
 
 | Method | MAE (₹/quintal) | WAPE | Samples |
 |---|---:|---:|---:|
-| Validated recent-level + lead-aware blend | 521.20 | 10.5% | 195,253 |
-| Five-report moving average | 529.19 | 10.7% | 195,253 |
-| Global histogram gradient boosting | 544.33 | 11.0% | 195,253 |
-| Last observation | 552.17 | 11.2% | 195,253 |
-| Seven-day seasonal naive | 639.12 | 12.9% | 195,253 |
+| Validated recent-level + lead-aware blend | 522.02 | 10.5% | 195,335 |
+| Five-report moving average | 530.91 | 10.7% | 195,335 |
+| Global histogram gradient boosting | 548.68 | 11.0% | 195,335 |
+| Last observation | 555.80 | 11.2% | 195,335 |
+| Seven-day seasonal naive | 642.49 | 12.9% | 195,335 |
 
 The paired target-date bootstrap estimated a Validated recent-level + lead-aware blend MAE reduction of
-₹7.99/quintal with a 95% interval of
-₹5.77 to
-₹10.12. This is a stability diagnostic, not proof of
+₹8.89/quintal with a 95% interval of
+₹6.15 to
+₹11.62. This is a stability diagnostic, not proof of
 future improvement.
 
 ## Prediction intervals
@@ -43,8 +43,8 @@ lead, or global groups. Locked-holdout coverage is reported by state, crop, lead
 
 ## Training data
 
-- Rows: 2,014,766
-- Dates: 2024-07-10 to 2026-07-20
+- Rows: 1,985,561
+- Dates: 2024-07-10 to 2026-07-27
 - User-visible target offsets: 1 to 7 days from one
   common comparison date
 - Maximum model lead: 28 days from each market's latest report

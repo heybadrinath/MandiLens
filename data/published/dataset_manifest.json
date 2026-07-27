@@ -4,12 +4,12 @@
   "provider": "Directorate of Marketing and Inspection, Ministry of Agriculture and Farmers Welfare, Government of India",
   "source_url": "https://www.data.gov.in/catalog/current-daily-price-various-commodities-various-markets-mandi",
   "api_base_url": "https://api.agmarknet.gov.in/v1",
-  "retrieval_date": "2026-07-20",
+  "retrieval_date": "2026-07-27",
   "license": "Government Open Data License - India",
   "license_url": "https://www.data.gov.in/godl",
   "date_range": [
     "2024-07-01",
-    "2026-07-20"
+    "2026-07-27"
   ],
   "filters": {
     "states": [
@@ -53,9 +53,9 @@
     "Arrival quantities are source-reported and can be partial or revised",
     "Only state and crop groups with eligible recent reporting are published"
   ],
-  "record_count": 91737,
-  "all_market_record_count": 1421838,
-  "sha256": "b32889514ab7d4017e09df20339be94f1c45ff6f708b4b20baabbda93ca8f63f",
-  "all_market_sha256": "9f951c5225bcbf58722d7af57d76c713a7f7a9e6219cf2221638b6c0cbabc7d0",
-  "source_manifest_sha256": "dc59ce83636e7280b66582af225fb49ff5b6b39505a83f70e64fb499fe211e0e"
+  "record_count": 90307,
+  "all_market_record_count": 1438471,
+  "sha256": "91e3986490c283b3f79bbcf3b24f8d91c84c6967b9d28359715c7e198565e5e9",
+  "all_market_sha256": "9606d17f3ddeb75dc2758688663012623778f5e4fde22625a5d87610e09c9dfa",
+  "source_manifest_sha256": "7930918394bc260de354c665cc6f743b444e56eb83494d459d923560d59831a6"
 }

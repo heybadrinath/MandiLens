@@ -1,29 +1,28 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-07-20T09:31:48.894789+00:00",
+  "generated_at": "2026-07-27T06:57:01.810314+00:00",
   "current_refresh_validation": {
-    "source_file_count": 2100,
-    "input_records": 1569829,
-    "accepted_variety_records": 1564481,
-    "excluded_records": 5348,
-    "corrected_records": 2862,
-    "unresolved_market_references": 533,
+    "source_file_count": 168,
+    "input_records": 138344,
+    "accepted_variety_records": 138273,
+    "excluded_records": 71,
+    "corrected_records": 253,
+    "unresolved_market_references": 2,
     "exclusion_reasons": {
-      "exact_duplicate": 1545,
-      "invalid_price_order": 78,
-      "non_positive_price": 3705,
-      "price_above_safety_ceiling": 20
+      "exact_duplicate": 53,
+      "invalid_price_order": 14,
+      "price_above_safety_ceiling": 4
     }
   },
   "cumulative_validation": {
     "source_file_count": 2100,
-    "input_records": 1569829,
-    "accepted_records": 1564481,
-    "excluded_records": 5348
+    "input_records": 1587475,
+    "accepted_records": 1582120,
+    "excluded_records": 5355
   },
   "selection_window": {
-    "records": 1421838,
-    "series": 5360,
+    "records": 1438471,
+    "series": 5542,
     "states": [
       "Andhra Pradesh",
       "Karnataka",
@@ -48,13 +47,13 @@
       "Tomato",
       "Turmeric"
     ],
-    "date_min": "2024-06-21",
-    "date_max": "2026-07-20"
+    "date_min": "2024-06-28",
+    "date_max": "2026-07-27"
   },
   "published": {
-    "records": 91737,
-    "series": 189,
-    "markets": 120,
+    "records": 90307,
+    "series": 185,
+    "markets": 115,
     "states": [
       "Andhra Pradesh",
       "Karnataka",
@@ -80,10 +79,10 @@
       "Turmeric"
     ],
     "date_min": "2024-07-01",
-    "date_max": "2026-07-20",
-    "stale_series": 11,
-    "long_gap_series": 44,
-    "anomaly_records": 6607,
+    "date_max": "2026-07-27",
+    "stale_series": 6,
+    "long_gap_series": 40,
+    "anomaly_records": 6695,
     "missing_district_records": 0
   }
 }
