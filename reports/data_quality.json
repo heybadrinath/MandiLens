@@ -1,28 +1,28 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-07-27T06:57:01.810314+00:00",
+  "generated_at": "2026-08-03T06:50:35.710818+00:00",
   "current_refresh_validation": {
     "source_file_count": 168,
-    "input_records": 138344,
-    "accepted_variety_records": 138273,
-    "excluded_records": 71,
-    "corrected_records": 253,
-    "unresolved_market_references": 2,
+    "input_records": 83060,
+    "accepted_variety_records": 83021,
+    "excluded_records": 39,
+    "corrected_records": 206,
+    "unresolved_market_references": 0,
     "exclusion_reasons": {
-      "exact_duplicate": 53,
-      "invalid_price_order": 14,
-      "price_above_safety_ceiling": 4
+      "exact_duplicate": 24,
+      "invalid_price_order": 12,
+      "price_above_safety_ceiling": 3
     }
   },
   "cumulative_validation": {
-    "source_file_count": 2100,
-    "input_records": 1587475,
-    "accepted_records": 1582120,
-    "excluded_records": 5355
+    "source_file_count": 2184,
+    "input_records": 1605734,
+    "accepted_records": 1600373,
+    "excluded_records": 5361
   },
   "selection_window": {
-    "records": 1438471,
-    "series": 5542,
+    "records": 1449561,
+    "series": 5540,
     "states": [
       "Andhra Pradesh",
       "Karnataka",
@@ -47,13 +47,13 @@
       "Tomato",
       "Turmeric"
     ],
-    "date_min": "2024-06-28",
-    "date_max": "2026-07-27"
+    "date_min": "2024-07-05",
+    "date_max": "2026-08-03"
   },
   "published": {
-    "records": 90307,
+    "records": 91433,
     "series": 185,
-    "markets": 115,
+    "markets": 113,
     "states": [
       "Andhra Pradesh",
       "Karnataka",
@@ -78,11 +78,11 @@
       "Tomato",
       "Turmeric"
     ],
-    "date_min": "2024-07-01",
-    "date_max": "2026-07-27",
-    "stale_series": 6,
-    "long_gap_series": 40,
-    "anomaly_records": 6695,
+    "date_min": "2024-07-05",
+    "date_max": "2026-08-03",
+    "stale_series": 4,
+    "long_gap_series": 39,
+    "anomaly_records": 6734,
     "missing_district_records": 0
   }
 }
