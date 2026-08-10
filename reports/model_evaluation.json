@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-08-03T06:56:11.112010+00:00",
+  "generated_at": "2026-08-10T05:17:11.094657+00:00",
   "selected_method": "recent_level_tree_blend",
   "selected_label": "Validated recent-level + lead-aware blend",
   "selection_rule": "The best lead-aware candidate must clear the configured pooled MAE improvement and fold-win stability gates",
@@ -9,7 +9,7 @@
     "required_fold_win_share": 0.666,
     "candidate_method": "recent_level_tree_blend",
     "candidate_label": "Validated recent-level + lead-aware blend",
-    "candidate_improvement": 0.0249,
+    "candidate_improvement": 0.0195,
     "candidate_fold_wins": 3,
     "usable_folds": 3,
     "candidate_fold_win_share": 1.0,
@@ -18,8 +18,8 @@
       "method": "recent_level_tree_blend",
       "baseline_method": "moving_average",
       "baseline_label": "Five-report moving average",
-      "baseline_weight": 0.7,
-      "tree_weight": 0.3,
+      "baseline_weight": 0.75,
+      "tree_weight": 0.25,
       "tested_tree_weights": [
         0.05,
         0.1,
@@ -50,122 +50,122 @@
     {
       "method": "recent_level_tree_blend",
       "label": "Validated recent-level + lead-aware blend",
-      "n": 529370,
-      "mae": 470.98,
-      "wape": 0.0974,
-      "smape": 0.1257,
-      "directional_accuracy": 0.4864
+      "n": 521663,
+      "mae": 470.15,
+      "wape": 0.0954,
+      "smape": 0.1239,
+      "directional_accuracy": 0.4789
     },
     {
       "method": "moving_average",
       "label": "Five-report moving average",
-      "n": 529370,
-      "mae": 482.99,
-      "wape": 0.0999,
-      "smape": 0.129,
-      "directional_accuracy": 0.5296
+      "n": 521663,
+      "mae": 479.49,
+      "wape": 0.0973,
+      "smape": 0.1268,
+      "directional_accuracy": 0.5286
     },
     {
       "method": "last_observation",
       "label": "Last observation",
-      "n": 529370,
-      "mae": 493.85,
-      "wape": 0.1021,
-      "smape": 0.1306,
-      "directional_accuracy": 0.2354
+      "n": 521663,
+      "mae": 491.33,
+      "wape": 0.0997,
+      "smape": 0.1283,
+      "directional_accuracy": 0.2416
     },
     {
       "method": "hist_gradient_boosting",
       "label": "Global histogram gradient boosting",
-      "n": 529370,
-      "mae": 507.6,
-      "wape": 0.105,
-      "smape": 0.1317,
-      "directional_accuracy": 0.4776
+      "n": 521663,
+      "mae": 509.65,
+      "wape": 0.1034,
+      "smape": 0.1307,
+      "directional_accuracy": 0.4726
     },
     {
       "method": "seasonal_naive",
       "label": "Seven-day seasonal naive",
-      "n": 529370,
-      "mae": 583.41,
-      "wape": 0.1207,
-      "smape": 0.155,
-      "directional_accuracy": 0.5029
+      "n": 521663,
+      "mae": 580.57,
+      "wape": 0.1178,
+      "smape": 0.1528,
+      "directional_accuracy": 0.5001
     }
   ],
   "rolling_folds": [
     {
       "fold_index": 0,
-      "test_start": "2025-12-07",
-      "test_end_exclusive": "2026-02-05",
-      "training_rows": 1286977,
-      "test_rows": 165691
+      "test_start": "2025-12-14",
+      "test_end_exclusive": "2026-02-12",
+      "training_rows": 1263784,
+      "test_rows": 161443
     },
     {
       "fold_index": 1,
-      "test_start": "2026-02-05",
-      "test_end_exclusive": "2026-04-06",
-      "training_rows": 1452668,
-      "test_rows": 172291
+      "test_start": "2026-02-12",
+      "test_end_exclusive": "2026-04-13",
+      "training_rows": 1425227,
+      "test_rows": 168142
     },
     {
       "fold_index": 2,
-      "test_start": "2026-04-06",
-      "test_end_exclusive": "2026-06-05",
-      "training_rows": 1624959,
-      "test_rows": 191388
+      "test_start": "2026-04-13",
+      "test_end_exclusive": "2026-06-12",
+      "training_rows": 1593369,
+      "test_rows": 192078
     }
   ],
   "locked_holdout": {
-    "start": "2026-06-05",
-    "end": "2026-08-03",
-    "training_rows": 1816347,
-    "test_rows": 194913,
+    "start": "2026-06-12",
+    "end": "2026-08-10",
+    "training_rows": 1785447,
+    "test_rows": 194355,
     "method_comparison": [
       {
         "method": "recent_level_tree_blend",
         "label": "Validated recent-level + lead-aware blend",
-        "n": 194913,
-        "mae": 532.81,
-        "wape": 0.1065,
-        "smape": 0.1313,
-        "directional_accuracy": 0.4879
+        "n": 194355,
+        "mae": 523.54,
+        "wape": 0.1037,
+        "smape": 0.1282,
+        "directional_accuracy": 0.4746
       },
       {
         "method": "moving_average",
         "label": "Five-report moving average",
-        "n": 194913,
-        "mae": 541.97,
-        "wape": 0.1083,
-        "smape": 0.1348,
-        "directional_accuracy": 0.5181
-      },
-      {
-        "method": "hist_gradient_boosting",
-        "label": "Global histogram gradient boosting",
-        "n": 194913,
-        "mae": 558.09,
-        "wape": 0.1115,
-        "smape": 0.1346,
-        "directional_accuracy": 0.4868
+        "n": 194355,
+        "mae": 530.26,
+        "wape": 0.105,
+        "smape": 0.1305,
+        "directional_accuracy": 0.5245
       },
       {
         "method": "last_observation",
         "label": "Last observation",
-        "n": 194913,
-        "mae": 566.17,
-        "wape": 0.1131,
-        "smape": 0.1358,
-        "directional_accuracy": 0.2227
+        "n": 194355,
+        "mae": 553.51,
+        "wape": 0.1096,
+        "smape": 0.1319,
+        "directional_accuracy": 0.2401
+      },
+      {
+        "method": "hist_gradient_boosting",
+        "label": "Global histogram gradient boosting",
+        "n": 194355,
+        "mae": 554.63,
+        "wape": 0.1098,
+        "smape": 0.1341,
+        "directional_accuracy": 0.4736
       },
       {
         "method": "seasonal_naive",
         "label": "Seven-day seasonal naive",
-        "n": 194913,
-        "mae": 657.11,
-        "wape": 0.1313,
-        "smape": 0.161,
-        "directional_accuracy": 0.4839
+        "n": 194355,
+        "mae": 643.63,
+        "wape": 0.1274,
+        "smape": 0.156,
+        "directional_accuracy": 0.4912
       }
     ],
     "paired_bootstrap": {
@@ -173,2390 +173,2418 @@
       "resampling_unit": "target date",
       "target_dates": 60,
       "repetitions": 2000,
-      "observed_mae_reduction": 9.16,
+      "observed_mae_reduction": 6.72,
       "confidence_interval_95": [
-        6.78,
-        11.62
+        4.45,
+        8.85
       ],
       "probability_candidate_improves_mae": 1.0
     }
   },
   "prediction_interval": {
     "nominal_coverage": 0.8,
-    "n": 194913,
-    "empirical_coverage": 0.6967,
-    "mean_width": 1478.21,
+    "n": 194355,
+    "empirical_coverage": 0.7048,
+    "mean_width": 1459.09,
     "method": "Asymmetric signed-residual quantiles calibrated before the locked holdout, with hierarchical market/state/crop/lead/volatility fallback",
     "coverage_by_state": [
       {
         "segment": "Andhra Pradesh",
-        "n": 19820,
-        "empirical_coverage": 0.7195,
-        "mean_width": 1462.99
+        "n": 20156,
+        "empirical_coverage": 0.7278,
+        "mean_width": 1454.66
       },
       {
         "segment": "Karnataka",
-        "n": 35031,
-        "empirical_coverage": 0.6645,
-        "mean_width": 2737.2
+        "n": 33632,
+        "empirical_coverage": 0.6626,
+        "mean_width": 2804.93
       },
       {
         "segment": "Kerala",
-        "n": 32108,
-        "empirical_coverage": 0.7402,
-        "mean_width": 1571.32
+        "n": 31664,
+        "empirical_coverage": 0.7459,
+        "mean_width": 1551.47
       },
       {
         "segment": "Maharashtra",
-        "n": 36779,
-        "empirical_coverage": 0.7075,
-        "mean_width": 1085.85
+        "n": 36513,
+        "empirical_coverage": 0.7003,
+        "mean_width": 1093.3
       },
       {
         "segment": "Tamil Nadu",
-        "n": 44147,
-        "empirical_coverage": 0.7257,
-        "mean_width": 1175.91
+        "n": 44741,
+        "empirical_coverage": 0.7276,
+        "mean_width": 1101.35
       },
       {
         "segment": "Telangana",
-        "n": 27028,
-        "empirical_coverage": 0.6081,
-        "mean_width": 774.68
+        "n": 27649,
+        "empirical_coverage": 0.6612,
+        "mean_width": 781.38
       }
     ],
     "coverage_by_commodity": [
       {
         "segment": "Arecanut",
-        "n": 6764,
-        "empirical_coverage": 0.6539,
-        "mean_width": 9716.2
+        "n": 6713,
+        "empirical_coverage": 0.6808,
+        "mean_width": 9631.66
       },
       {
         "segment": "Banana",
-        "n": 18646,
-        "empirical_coverage": 0.6764,
-        "mean_width": 768.66
+        "n": 18365,
+        "empirical_coverage": 0.69,
+        "mean_width": 814.58
       },
       {
         "segment": "Brinjal",
-        "n": 22723,
-        "empirical_coverage": 0.7058,
-        "mean_width": 1688.41
+        "n": 22609,
+        "empirical_coverage": 0.7496,
+        "mean_width": 1621.91
       },
       {
         "segment": "Coconut",
-        "n": 10529,
-        "empirical_coverage": 0.5645,
-        "mean_width": 1329.25
+        "n": 10633,
+        "empirical_coverage": 0.4836,
+        "mean_width": 1199.19
       },
       {
         "segment": "Cotton",
-        "n": 3069,
-        "empirical_coverage": 0.6781,
-        "mean_width": 973.77
+        "n": 3348,
+        "empirical_coverage": 0.6532,
+        "mean_width": 953.99
       },
       {
         "segment": "Green Chilli",
-        "n": 22924,
-        "empirical_coverage": 0.7498,
-        "mean_width": 1450.87
+        "n": 22652,
+        "empirical_coverage": 0.7542,
+        "mean_width": 1589.98
       },
       {
         "segment": "Groundnut",
-        "n": 11984,
-        "empirical_coverage": 0.754,
-        "mean_width": 1484.6
+        "n": 10979,
+        "empirical_coverage": 0.7769,
+        "mean_width": 1386.96
       },
       {
         "segment": "Maize",
-        "n": 7319,
-        "empirical_coverage": 0.5885,
-        "mean_width": 340.92
+        "n": 7784,
+        "empirical_coverage": 0.6043,
+        "mean_width": 321.79
       },
       {
         "segment": "Onion",
-        "n": 19596,
-        "empirical_coverage": 0.7274,
-        "mean_width": 1024.38
+        "n": 20088,
+        "empirical_coverage": 0.7003,
+        "mean_width": 940.52
       },
       {
         "segment": "Paddy (Common)",
-        "n": 15081,
-        "empirical_coverage": 0.5325,
-        "mean_width": 300.19
+        "n": 14941,
+        "empirical_coverage": 0.6297,
+        "mean_width": 290.68
       },
       {
         "segment": "Potato",
-        "n": 20358,
-        "empirical_coverage": 0.8531,
-        "mean_width": 847.6
+        "n": 20412,
+        "empirical_coverage": 0.8396,
+        "mean_width": 821.32
       },
       {
         "segment": "Ragi",
-        "n": 4761,
-        "empirical_coverage": 0.8208,
-        "mean_width": 511.18
+        "n": 4671,
+        "empirical_coverage": 0.8193,
+        "mean_width": 538.38
       },
       {
         "segment": "Tomato",
-        "n": 26700,
-        "empirical_coverage": 0.6787,
-        "mean_width": 1728.81
+        "n": 26705,
+        "empirical_coverage": 0.6871,
+        "mean_width": 1728.32
       },
       {
         "segment": "Turmeric",
-        "n": 4459,
-        "empirical_coverage": 0.5586,
-        "mean_width": 1956.63
+        "n": 4455,
+        "empirical_coverage": 0.5273,
+        "mean_width": 2004.55
       }
     ],
     "coverage_by_lead": [
       {
         "segment": "1",
-        "n": 7072,
-        "empirical_coverage": 0.7185,
-        "mean_width": 902.66
+        "n": 7045,
+        "empirical_coverage": 0.7314,
+        "mean_width": 888.42
       },
       {
         "segment": "10",
-        "n": 6847,
-        "empirical_coverage": 0.6945,
-        "mean_width": 1332.0
+        "n": 6825,
+        "empirical_coverage": 0.7111,
+        "mean_width": 1325.66
       },
       {
         "segment": "11",
-        "n": 6816,
-        "empirical_coverage": 0.6934,
-        "mean_width": 1382.75
+        "n": 6822,
+        "empirical_coverage": 0.7079,
+        "mean_width": 1361.4
       },
       {
         "segment": "12",
-        "n": 6800,
-        "empirical_coverage": 0.699,
-        "mean_width": 1417.86
+        "n": 6821,
+        "empirical_coverage": 0.7078,
+        "mean_width": 1401.76
       },
       {
         "segment": "13",
-        "n": 6901,
-        "empirical_coverage": 0.7019,
-        "mean_width": 1431.15
+        "n": 6935,
+        "empirical_coverage": 0.7086,
+        "mean_width": 1409.07
       },
       {
         "segment": "14",
-        "n": 7460,
-        "empirical_coverage": 0.6936,
-        "mean_width": 1493.82
+        "n": 7492,
+        "empirical_coverage": 0.7022,
+        "mean_width": 1473.98
       },
       {
         "segment": "15",
-        "n": 6913,
-        "empirical_coverage": 0.6925,
-        "mean_width": 1526.91
+        "n": 6927,
+        "empirical_coverage": 0.6984,
+        "mean_width": 1489.02
       },
       {
         "segment": "16",
-        "n": 6888,
-        "empirical_coverage": 0.694,
-        "mean_width": 1594.5
+        "n": 6862,
+        "empirical_coverage": 0.6975,
+        "mean_width": 1538.96
       },
       {
         "segment": "17",
-        "n": 6850,
-        "empirical_coverage": 0.6923,
-        "mean_width": 1605.23
+        "n": 6815,
+        "empirical_coverage": 0.6869,
+        "mean_width": 1568.53
       },
       {
         "segment": "18",
-        "n": 6827,
-        "empirical_coverage": 0.6909,
-        "mean_width": 1620.53
+        "n": 6779,
+        "empirical_coverage": 0.6913,
+        "mean_width": 1595.83
       },
       {
         "segment": "19",
-        "n": 6825,
-        "empirical_coverage": 0.6973,
-        "mean_width": 1674.26
+        "n": 6780,
+        "empirical_coverage": 0.6978,
+        "mean_width": 1639.71
       },
       {
         "segment": "2",
-        "n": 7004,
-        "empirical_coverage": 0.7166,
-        "mean_width": 968.19
+        "n": 6951,
+        "empirical_coverage": 0.72,
+        "mean_width": 949.29
       },
       {
         "segment": "20",
-        "n": 6883,
-        "empirical_coverage": 0.6966,
-        "mean_width": 1672.72
+        "n": 6847,
+        "empirical_coverage": 0.7015,
+        "mean_width": 1659.66
       },
       {
         "segment": "21",
-        "n": 7412,
-        "empirical_coverage": 0.6932,
-        "mean_width": 1740.96
+        "n": 7369,
+        "empirical_coverage": 0.6986,
+        "mean_width": 1762.64
       },
       {
         "segment": "22",
-        "n": 6895,
-        "empirical_coverage": 0.6853,
-        "mean_width": 1752.69
+        "n": 6867,
+        "empirical_coverage": 0.6972,
+        "mean_width": 1728.09
       },
       {
         "segment": "23",
-        "n": 6857,
-        "empirical_coverage": 0.6793,
-        "mean_width": 1799.68
+        "n": 6809,
+        "empirical_coverage": 0.6884,
+        "mean_width": 1777.5
       },
       {
         "segment": "24",
-        "n": 6799,
-        "empirical_coverage": 0.6866,
-        "mean_width": 1827.53
+        "n": 6745,
+        "empirical_coverage": 0.6925,
+        "mean_width": 1784.5
       },
       {
         "segment": "25",
-        "n": 6781,
-        "empirical_coverage": 0.6773,
-        "mean_width": 1848.03
+        "n": 6743,
+        "empirical_coverage": 0.6844,
+        "mean_width": 1806.08
       },
       {
         "segment": "26",
-        "n": 6770,
-        "empirical_coverage": 0.6855,
-        "mean_width": 1879.48
+        "n": 6740,
+        "empirical_coverage": 0.6909,
+        "mean_width": 1840.68
       },
       {
         "segment": "27",
-        "n": 6841,
-        "empirical_coverage": 0.6883,
-        "mean_width": 1860.07
+        "n": 6839,
+        "empirical_coverage": 0.6884,
+        "mean_width": 1819.52
       },
       {
         "segment": "28",
-        "n": 7407,
-        "empirical_coverage": 0.6723,
-        "mean_width": 1907.02
+        "n": 7392,
+        "empirical_coverage": 0.6868,
+        "mean_width": 1901.02
       },
       {
         "segment": "3",
-        "n": 6896,
-        "empirical_coverage": 0.7164,
-        "mean_width": 1031.35
+        "n": 6864,
+        "empirical_coverage": 0.7255,
+        "mean_width": 1010.38
       },
       {
         "segment": "4",
-        "n": 6894,
-        "empirical_coverage": 0.7171,
-        "mean_width": 1077.99
+        "n": 6854,
+        "empirical_coverage": 0.7279,
+        "mean_width": 1070.13
       },
       {
         "segment": "5",
-        "n": 6901,
-        "empirical_coverage": 0.7121,
-        "mean_width": 1134.6
+        "n": 6877,
+        "empirical_coverage": 0.7239,
+        "mean_width": 1127.66
       },
       {
         "segment": "6",
-        "n": 6949,
-        "empirical_coverage": 0.7152,
-        "mean_width": 1160.72
+        "n": 6945,
+        "empirical_coverage": 0.7221,
+        "mean_width": 1157.32
       },
       {
         "segment": "7",
-        "n": 7552,
-        "empirical_coverage": 0.7054,
-        "mean_width": 1243.56
+        "n": 7521,
+        "empirical_coverage": 0.7199,
+        "mean_width": 1257.0
       },
       {
         "segment": "8",
-        "n": 6959,
-        "empirical_coverage": 0.6951,
-        "mean_width": 1241.52
+        "n": 6988,
+        "empirical_coverage": 0.7132,
+        "mean_width": 1245.33
       },
       {
         "segment": "9",
-        "n": 6914,
-        "empirical_coverage": 0.6979,
-        "mean_width": 1284.77
+        "n": 6901,
+        "empirical_coverage": 0.7096,
+        "mean_width": 1283.05
       }
     ],
     "coverage_by_market": [
       {
+        "segment": "AJattihalli(Uzhavar Sandhai )",
+        "n": 1680,
+        "empirical_coverage": 0.5595,
+        "mean_width": 650.53
+      },
+      {
         "segment": "APMC Thirthahalli",
-        "n": 1086,
-        "empirical_coverage": 0.884,
-        "mean_width": 38813.32
+        "n": 1075,
+        "empirical_coverage": 0.8391,
+        "mean_width": 38273.04
       },
       {
         "segment": "Adoni APMC",
-        "n": 1769,
-        "empirical_coverage": 0.7467,
-        "mean_width": 1401.89
+        "n": 1835,
+        "empirical_coverage": 0.8136,
+        "mean_width": 1370.73
       },
       {
         "segment": "Amarawati APMC",
-        "n": 1071,
-        "empirical_coverage": 0.7899,
-        "mean_width": 803.27
+        "n": 1009,
+        "empirical_coverage": 0.8107,
+        "mean_width": 861.75
       },
       {
         "segment": "Ambajipeta APMC",
-        "n": 1617,
-        "empirical_coverage": 0.6858,
-        "mean_width": 524.45
+        "n": 1538,
+        "empirical_coverage": 0.7204,
+        "mean_width": 665.45
       },
       {
         "segment": "Ammoor APMC",
-        "n": 718,
-        "empirical_coverage": 0.624,
-        "mean_width": 589.41
+        "n": 645,
+        "empirical_coverage": 0.676,
+        "mean_width": 613.12
       },
       {
         "segment": "Armori APMC",
-        "n": 864,
-        "empirical_coverage": 0.338,
-        "mean_width": 89.08
-      },
-      {
-        "segment": "Aruppukottai(Uzhavar Sandhai )",
-        "n": 1624,
-        "empirical_coverage": 0.6829,
-        "mean_width": 345.56
+        "n": 899,
+        "empirical_coverage": 0.3415,
+        "mean_width": 97.28
       },
       {
         "segment": "Atmakur (SPSR Nellore District) APMC",
-        "n": 172,
+        "n": 246,
         "empirical_coverage": 1.0,
-        "mean_width": 210.02
+        "mean_width": 204.84
       },
       {
         "segment": "Avalurpet APMC",
-        "n": 706,
-        "empirical_coverage": 0.6785,
-        "mean_width": 486.1
+        "n": 719,
+        "empirical_coverage": 0.7065,
+        "mean_width": 491.8
       },
       {
         "segment": "Binny Mill (F&V), Bengaluru APMC",
-        "n": 162,
-        "empirical_coverage": 1.0,
-        "mean_width": 957.31
+        "n": 71,
+        "empirical_coverage": 0.9859,
+        "mean_width": 979.96
       },
       {
         "segment": "Binny Mill (FF&V) Bengaluru APMC",
-        "n": 798,
-        "empirical_coverage": 0.6078,
-        "mean_width": 810.5
+        "n": 869,
+        "empirical_coverage": 0.6064,
+        "mean_width": 818.07
       },
       {
         "segment": "Chamarajanagar APMC",
-        "n": 4916,
-        "empirical_coverage": 0.6985,
-        "mean_width": 2521.19
+        "n": 4844,
+        "empirical_coverage": 0.7481,
+        "mean_width": 2617.63
       },
       {
         "segment": "Channapatna APMC",
-        "n": 1187,
-        "empirical_coverage": 0.3951,
-        "mean_width": 1434.42
+        "n": 1130,
+        "empirical_coverage": 0.3876,
+        "mean_width": 1446.1
       },
       {
         "segment": "Chetpet APMC",
-        "n": 706,
-        "empirical_coverage": 0.8697,
-        "mean_width": 626.62
-      },
-      {
-        "segment": "Chevella APMC",
-        "n": 1164,
-        "empirical_coverage": 0.4493,
-        "mean_width": 749.18
+        "n": 684,
+        "empirical_coverage": 0.8509,
+        "mean_width": 616.35
       },
       {
         "segment": "Chikkamagaluru APMC",
-        "n": 1588,
-        "empirical_coverage": 0.6196,
-        "mean_width": 509.26
+        "n": 1524,
+        "empirical_coverage": 0.6358,
+        "mean_width": 491.6
       },
       {
         "segment": "Chintamani APMC",
-        "n": 1053,
-        "empirical_coverage": 0.661,
-        "mean_width": 758.06
+        "n": 1006,
+        "empirical_coverage": 0.6451,
+        "mean_width": 775.48
       },
       {
         "segment": "Chitradurga APMC",
-        "n": 567,
-        "empirical_coverage": 0.7901,
-        "mean_width": 1433.58
+        "n": 587,
+        "empirical_coverage": 0.7087,
+        "mean_width": 1255.05
       },
       {
         "segment": "Cuddalore(Uzhavar Sandhai )",
-        "n": 6720,
-        "empirical_coverage": 0.6634,
-        "mean_width": 1502.76
+        "n": 3304,
+        "empirical_coverage": 0.6268,
+        "mean_width": 771.19
       },
       {
         "segment": "Davangere APMC",
-        "n": 1323,
-        "empirical_coverage": 0.6992,
-        "mean_width": 1029.16
+        "n": 1310,
+        "empirical_coverage": 0.6817,
+        "mean_width": 1062.56
+      },
+      {
+        "segment": "Denkanikottai(Uzhavar Sandhai )",
+        "n": 1680,
+        "empirical_coverage": 0.7339,
+        "mean_width": 1392.88
       },
       {
         "segment": "Dharmapuri(Uzhavar Sandhai )",
         "n": 1680,
-        "empirical_coverage": 0.5202,
-        "mean_width": 652.58
+        "empirical_coverage": 0.6345,
+        "mean_width": 660.11
       },
       {
         "segment": "Dhule APMC",
-        "n": 223,
-        "empirical_coverage": 0.7309,
-        "mean_width": 1307.81
+        "n": 179,
+        "empirical_coverage": 0.581,
+        "mean_width": 980.23
       },
       {
         "segment": "Duggirala APMC",
-        "n": 542,
-        "empirical_coverage": 0.4059,
-        "mean_width": 2161.01
+        "n": 537,
+        "empirical_coverage": 0.4041,
+        "mean_width": 2197.45
       },
       {
         "segment": "Gadwal APMC",
-        "n": 673,
-        "empirical_coverage": 0.838,
-        "mean_width": 2500.17
+        "n": 721,
+        "empirical_coverage": 0.8044,
+        "mean_width": 2421.39
       },
       {
         "segment": "Gondpimpri APMC",
         "n": 1108,
-        "empirical_coverage": 0.5894,
-        "mean_width": 222.79
+        "empirical_coverage": 0.4937,
+        "mean_width": 204.37
       },
       {
         "segment": "Gudimalkapur APMC",
-        "n": 7001,
-        "empirical_coverage": 0.6663,
-        "mean_width": 725.41
+        "n": 6751,
+        "empirical_coverage": 0.6661,
+        "mean_width": 728.43
       },
       {
         "segment": "Gundlupet APMC",
-        "n": 622,
-        "empirical_coverage": 0.4068,
-        "mean_width": 1423.2
+        "n": 582,
+        "empirical_coverage": 0.4021,
+        "mean_width": 1543.41
       },
       {
         "segment": "Haliyala APMC",
-        "n": 905,
-        "empirical_coverage": 0.5171,
-        "mean_width": 137.44
+        "n": 859,
+        "empirical_coverage": 0.482,
+        "mean_width": 137.23
       },
       {
         "segment": "HarappanaHalli APMC",
         "n": 665,
-        "empirical_coverage": 0.8346,
-        "mean_width": 450.67
+        "empirical_coverage": 0.8466,
+        "mean_width": 455.86
+      },
+      {
+        "segment": "Harur(Uzhavar Sandhai )",
+        "n": 1680,
+        "empirical_coverage": 0.8077,
+        "mean_width": 1487.86
+      },
+      {
+        "segment": "Haveri APMC",
+        "n": 518,
+        "empirical_coverage": 0.3263,
+        "mean_width": 194.55
       },
       {
         "segment": "Hingoli APMC",
-        "n": 748,
-        "empirical_coverage": 0.643,
-        "mean_width": 2267.1
+        "n": 799,
+        "empirical_coverage": 0.5945,
+        "mean_width": 2207.94
       },
       {
         "segment": "Hoovinahadagali APMC",
-        "n": 1226,
-        "empirical_coverage": 0.4299,
-        "mean_width": 388.06
+        "n": 638,
+        "empirical_coverage": 0.2367,
+        "mean_width": 502.41
       },
       {
         "segment": "Hospet APMC",
-        "n": 796,
-        "empirical_coverage": 0.804,
-        "mean_width": 715.76
+        "n": 841,
+        "empirical_coverage": 0.8014,
+        "mean_width": 709.96
       },
       {
         "segment": "Huzurnagar APMC",
-        "n": 1195,
-        "empirical_coverage": 0.7573,
-        "mean_width": 186.61
+        "n": 1161,
+        "empirical_coverage": 0.7847,
+        "mean_width": 178.54
       },
       {
         "segment": "Huzzurabad APMC",
-        "n": 1017,
-        "empirical_coverage": 0.0895,
-        "mean_width": 80.9
+        "n": 984,
+        "empirical_coverage": 1.0,
+        "mean_width": 12.26
       },
       {
         "segment": "Jagtial APMC",
-        "n": 288,
-        "empirical_coverage": 0.5972,
-        "mean_width": 159.99
+        "n": 216,
+        "empirical_coverage": 0.5324,
+        "mean_width": 176.08
       },
       {
         "segment": "Jalana APMC",
         "n": 1012,
-        "empirical_coverage": 0.5109,
-        "mean_width": 184.87
+        "empirical_coverage": 0.7292,
+        "mean_width": 218.36
       },
       {
         "segment": "Jammikunta APMC",
-        "n": 272,
-        "empirical_coverage": 0.5037,
-        "mean_width": 715.48
+        "n": 251,
+        "empirical_coverage": 0.5299,
+        "mean_width": 745.51
       },
       {
         "segment": "K.R. Pet APMC",
-        "n": 231,
-        "empirical_coverage": 0.2727,
-        "mean_width": 3914.38
+        "n": 255,
+        "empirical_coverage": 0.2784,
+        "mean_width": 3956.51
       },
       {
         "segment": "Kadapa",
-        "n": 1373,
-        "empirical_coverage": 0.6759,
-        "mean_width": 2001.79
+        "n": 1457,
+        "empirical_coverage": 0.6747,
+        "mean_width": 2096.47
       },
       {
         "segment": "Kalaburagi APMC",
-        "n": 436,
-        "empirical_coverage": 0.7592,
-        "mean_width": 424.32
+        "n": 461,
+        "empirical_coverage": 0.7722,
+        "mean_width": 420.78
       },
       {
         "segment": "Kalikiri APMC",
-        "n": 1623,
-        "empirical_coverage": 0.8226,
-        "mean_width": 2372.33
+        "n": 1657,
+        "empirical_coverage": 0.8111,
+        "mean_width": 2199.65
+      },
+      {
+        "segment": "Kallakurichi APMC",
+        "n": 770,
+        "empirical_coverage": 0.5247,
+        "mean_width": 218.78
       },
       {
         "segment": "Kallur APMC",
-        "n": 803,
-        "empirical_coverage": 0.0,
-        "mean_width": 15.89
+        "n": 734,
+        "empirical_coverage": 1.0,
+        "mean_width": 15.8
       },
       {
         "segment": "Kalmeshwar APMC",
         "n": 1223,
-        "empirical_coverage": 0.6672,
-        "mean_width": 1578.0
+        "empirical_coverage": 0.6893,
+        "mean_width": 1618.86
       },
       {
         "segment": "Kamthi APMC",
-        "n": 2368,
-        "empirical_coverage": 0.7297,
-        "mean_width": 1971.5
+        "n": 2351,
+        "empirical_coverage": 0.7239,
+        "mean_width": 1986.93
       },
       {
         "segment": "Kanjangadu Market",
-        "n": 855,
-        "empirical_coverage": 0.9485,
-        "mean_width": 6708.68
+        "n": 843,
+        "empirical_coverage": 0.9751,
+        "mean_width": 5670.97
       },
       {
         "segment": "Kasargod Market",
-        "n": 1012,
-        "empirical_coverage": 0.0,
-        "mean_width": 32.35
+        "n": 1030,
+        "empirical_coverage": 0.0786,
+        "mean_width": 26.0
       },
       {
         "segment": "Kayamkulam Market",
-        "n": 6740,
-        "empirical_coverage": 0.7589,
-        "mean_width": 1582.6
+        "n": 6899,
+        "empirical_coverage": 0.7923,
+        "mean_width": 1543.22
       },
       {
         "segment": "Khammam APMC",
-        "n": 306,
-        "empirical_coverage": 0.683,
-        "mean_width": 844.9
+        "n": 383,
+        "empirical_coverage": 0.4674,
+        "mean_width": 852.18
       },
       {
         "segment": "Koduvayoor Market",
-        "n": 8137,
-        "empirical_coverage": 0.7794,
-        "mean_width": 1613.69
+        "n": 7921,
+        "empirical_coverage": 0.7942,
+        "mean_width": 1660.82
       },
       {
         "segment": "Kottur APMC",
-        "n": 269,
-        "empirical_coverage": 0.6877,
-        "mean_width": 441.62
+        "n": 303,
+        "empirical_coverage": 0.6997,
+        "mean_width": 641.29
       },
       {
         "segment": "Krishnagiri(Uzhavar Sandhai )",
-        "n": 4930,
-        "empirical_coverage": 0.6286,
-        "mean_width": 1118.43
+        "n": 6609,
+        "empirical_coverage": 0.6694,
+        "mean_width": 1143.94
       },
       {
         "segment": "Kukatpally,RBZ",
-        "n": 7375,
-        "empirical_coverage": 0.7012,
-        "mean_width": 822.02
+        "n": 7280,
+        "empirical_coverage": 0.6519,
+        "mean_width": 830.51
       },
       {
         "segment": "Kumbakonam (Uzhavar Sandhai )",
-        "n": 1680,
-        "empirical_coverage": 0.7863,
-        "mean_width": 2301.09
+        "n": 3360,
+        "empirical_coverage": 0.8589,
+        "mean_width": 2360.59
       },
       {
         "segment": "Kumta APMC",
-        "n": 1069,
-        "empirical_coverage": 0.2928,
-        "mean_width": 6275.72
+        "n": 1051,
+        "empirical_coverage": 0.373,
+        "mean_width": 6938.45
       },
       {
         "segment": "Kurnool APMC",
-        "n": 891,
-        "empirical_coverage": 0.4927,
-        "mean_width": 360.61
+        "n": 813,
+        "empirical_coverage": 0.4133,
+        "mean_width": 337.29
       },
       {
         "segment": "Kuthuparambu Market",
-        "n": 1014,
-        "empirical_coverage": 0.6992,
-        "mean_width": 2959.2
+        "n": 1009,
+        "empirical_coverage": 0.6581,
+        "mean_width": 2760.13
       },
       {
         "segment": "Madanapalli APMC",
         "n": 1596,
-        "empirical_coverage": 0.8634,
-        "mean_width": 2543.28
-      },
-      {
-        "segment": "Mahboob Manison APMC",
-        "n": 2180,
-        "empirical_coverage": 0.5601,
-        "mean_width": 722.0
+        "empirical_coverage": 0.8929,
+        "mean_width": 2492.74
       },
       {
         "segment": "Malegaon APMC",
-        "n": 688,
-        "empirical_coverage": 0.8634,
-        "mean_width": 1256.61
+        "n": 693,
+        "empirical_coverage": 0.7749,
+        "mean_width": 952.59
       },
       {
         "segment": "Mookkannur VFPCK Market",
-        "n": 1427,
-        "empirical_coverage": 0.5004,
-        "mean_width": 969.94
+        "n": 1441,
+        "empirical_coverage": 0.4851,
+        "mean_width": 1034.75
       },
       {
         "segment": "Mumbai APMC",
-        "n": 2191,
-        "empirical_coverage": 0.613,
-        "mean_width": 1038.18
+        "n": 2254,
+        "empirical_coverage": 0.5958,
+        "mean_width": 1089.74
       },
       {
         "segment": "Nanded APMC",
-        "n": 259,
-        "empirical_coverage": 0.5483,
-        "mean_width": 1837.16
+        "n": 304,
+        "empirical_coverage": 0.4474,
+        "mean_width": 1863.83
       },
       {
         "segment": "Nandyal APMC",
-        "n": 110,
-        "empirical_coverage": 0.1545,
-        "mean_width": 216.13
+        "n": 210,
+        "empirical_coverage": 0.2857,
+        "mean_width": 214.27
       },
       {
         "segment": "Nasik APMC",
-        "n": 2862,
-        "empirical_coverage": 0.6642,
-        "mean_width": 1510.88
+        "n": 2828,
+        "empirical_coverage": 0.6132,
+        "mean_width": 1518.66
       },
       {
         "segment": "Nizamabad APMC",
-        "n": 592,
-        "empirical_coverage": 0.6402,
-        "mean_width": 2395.08
-      },
-      {
-        "segment": "Palacode(Uzhavar Sandhai )",
-        "n": 1680,
-        "empirical_coverage": 0.8476,
-        "mean_width": 1664.75
+        "n": 571,
+        "empirical_coverage": 0.5394,
+        "mean_width": 2438.04
       },
       {
         "segment": "Palakkad Market",
-        "n": 1117,
-        "empirical_coverage": 0.4244,
-        "mean_width": 825.47
+        "n": 1129,
+        "empirical_coverage": 0.3127,
+        "mean_width": 819.4
       },
       {
         "segment": "Palamaner APMC",
-        "n": 4457,
-        "empirical_coverage": 0.8075,
-        "mean_width": 1542.64
+        "n": 4314,
+        "empirical_coverage": 0.8095,
+        "mean_width": 1597.07
+      },
+      {
+        "segment": "Pallapatti (Uzhavar Sandhai )",
+        "n": 1680,
+        "empirical_coverage": 0.4208,
+        "mean_width": 492.65
       },
       {
         "segment": "Panvel APMC",
-        "n": 1618,
-        "empirical_coverage": 0.8368,
-        "mean_width": 2091.47
+        "n": 1632,
+        "empirical_coverage": 0.8364,
+        "mean_width": 2112.38
       },
       {
         "segment": "Payyannur Market",
-        "n": 1159,
-        "empirical_coverage": 0.648,
-        "mean_width": 2741.15
+        "n": 1140,
+        "empirical_coverage": 0.7053,
+        "mean_width": 2869.62
       },
       {
         "segment": "Perambalur(Uzhavar Sandhai )",
         "n": 1680,
-        "empirical_coverage": 0.5274,
-        "mean_width": 996.01
+        "empirical_coverage": 0.6815,
+        "mean_width": 1181.59
       },
       {
         "segment": "Polur(Uzhavar Sandhai )",
         "n": 1680,
-        "empirical_coverage": 0.9,
-        "mean_width": 127.97
+        "empirical_coverage": 0.8762,
+        "mean_width": 122.76
       },
       {
         "segment": "Pulpally Market",
-        "n": 1014,
-        "empirical_coverage": 0.9596,
-        "mean_width": 553.6
+        "n": 962,
+        "empirical_coverage": 0.9896,
+        "mean_width": 554.74
       },
       {
         "segment": "Pune APMC",
-        "n": 1838,
-        "empirical_coverage": 0.9363,
-        "mean_width": 478.75
+        "n": 1744,
+        "empirical_coverage": 0.953,
+        "mean_width": 473.32
       },
       {
         "segment": "Pune(Manjri) APMC",
-        "n": 8024,
-        "empirical_coverage": 0.8263,
-        "mean_width": 1529.11
+        "n": 8044,
+        "empirical_coverage": 0.8303,
+        "mean_width": 1548.38
       },
       {
         "segment": "Pune(Moshi) APMC",
-        "n": 3628,
-        "empirical_coverage": 0.6805,
-        "mean_width": 510.35
+        "n": 3636,
+        "empirical_coverage": 0.6414,
+        "mean_width": 492.93
       },
       {
         "segment": "Pune(Pimpri) APMC",
-        "n": 2738,
-        "empirical_coverage": 0.6797,
-        "mean_width": 815.29
+        "n": 2640,
+        "empirical_coverage": 0.7053,
+        "mean_width": 843.96
       },
       {
         "segment": "Raichur APMC",
-        "n": 1084,
-        "empirical_coverage": 0.583,
-        "mean_width": 1960.91
+        "n": 290,
+        "empirical_coverage": 0.2724,
+        "mean_width": 827.47
       },
       {
         "segment": "Ramanagara APMC",
-        "n": 4698,
-        "empirical_coverage": 0.8029,
-        "mean_width": 2253.27
+        "n": 4536,
+        "empirical_coverage": 0.787,
+        "mean_width": 2227.12
       },
       {
         "segment": "Ranebennur APMC",
-        "n": 4639,
-        "empirical_coverage": 0.6691,
-        "mean_width": 852.38
+        "n": 4468,
+        "empirical_coverage": 0.6638,
+        "mean_width": 984.58
       },
       {
         "segment": "Rasipuram(Uzhavar Sandhai )",
-        "n": 5040,
-        "empirical_coverage": 0.5827,
-        "mean_width": 849.65
+        "n": 3360,
+        "empirical_coverage": 0.6628,
+        "mean_width": 1018.25
       },
       {
         "segment": "Ravulapalem (Kothapeta APMC)",
-        "n": 1568,
-        "empirical_coverage": 0.4573,
-        "mean_width": 848.48
+        "n": 1522,
+        "empirical_coverage": 0.5736,
+        "mean_width": 930.48
       },
       {
         "segment": "Sadasivpet APMC",
-        "n": 149,
-        "empirical_coverage": 0.4698,
-        "mean_width": 2185.37
+        "n": 141,
+        "empirical_coverage": 0.4752,
+        "mean_width": 2273.21
       },
       {
         "segment": "Sangli(Miraj) APMC",
-        "n": 462,
-        "empirical_coverage": 0.3139,
-        "mean_width": 267.03
+        "n": 399,
+        "empirical_coverage": 0.6165,
+        "mean_width": 261.12
       },
       {
         "segment": "Sankarapuram(Uzhavar Sandhai )",
-        "n": 4934,
-        "empirical_coverage": 0.9058,
-        "mean_width": 1628.04
+        "n": 4928,
+        "empirical_coverage": 0.8543,
+        "mean_width": 1579.33
       },
       {
         "segment": "Savali APMC",
-        "n": 1508,
-        "empirical_coverage": 0.4761,
-        "mean_width": 98.38
+        "n": 1507,
+        "empirical_coverage": 0.3895,
+        "mean_width": 95.92
       },
       {
         "segment": "Shadnagar APMC",
-        "n": 2557,
-        "empirical_coverage": 0.6132,
-        "mean_width": 640.97
+        "n": 1261,
+        "empirical_coverage": 0.6075,
+        "mean_width": 703.31
       },
       {
         "segment": "Shimoga APMC",
-        "n": 1504,
-        "empirical_coverage": 0.4508,
-        "mean_width": 476.4
+        "n": 1601,
+        "empirical_coverage": 0.4778,
+        "mean_width": 468.94
       },
       {
         "segment": "Shirpur APMC",
-        "n": 342,
-        "empirical_coverage": 0.6316,
-        "mean_width": 1373.72
+        "n": 300,
+        "empirical_coverage": 0.47,
+        "mean_width": 1118.34
       },
       {
         "segment": "Shrirampur APMC",
-        "n": 1114,
-        "empirical_coverage": 0.8797,
-        "mean_width": 386.85
+        "n": 1068,
+        "empirical_coverage": 0.8549,
+        "mean_width": 360.99
+      },
+      {
+        "segment": "Siddipet(Rythu Bazar)",
+        "n": 5962,
+        "empirical_coverage": 0.613,
+        "mean_width": 727.91
       },
       {
         "segment": "Sirsi APMC",
-        "n": 1200,
-        "empirical_coverage": 0.7625,
-        "mean_width": 4119.99
+        "n": 1176,
+        "empirical_coverage": 0.8265,
+        "mean_width": 4592.4
       },
       {
         "segment": "Sivakasi(Uzhavar Sandhai )",
-        "n": 1680,
-        "empirical_coverage": 0.9762,
-        "mean_width": 975.93
+        "n": 1652,
+        "empirical_coverage": 0.9788,
+        "mean_width": 966.51
       },
       {
         "segment": "Sooramangalam(Uzhavar Sandhai )",
         "n": 1680,
-        "empirical_coverage": 0.5893,
-        "mean_width": 1029.6
+        "empirical_coverage": 0.5268,
+        "mean_width": 955.3
       },
       {
         "segment": "Sultan bathery Market",
-        "n": 774,
-        "empirical_coverage": 0.4845,
-        "mean_width": 659.04
+        "n": 748,
+        "empirical_coverage": 0.5441,
+        "mean_width": 676.83
       },
       {
         "segment": "Suryapeta APMC",
-        "n": 195,
-        "empirical_coverage": 0.6,
-        "mean_width": 2651.11
+        "n": 163,
+        "empirical_coverage": 0.589,
+        "mean_width": 2474.37
       },
       {
         "segment": "T. Narasipura APMC",
-        "n": 1584,
-        "empirical_coverage": 0.7304,
-        "mean_width": 762.31
+        "n": 1539,
+        "empirical_coverage": 0.716,
+        "mean_width": 756.08
       },
       {
         "segment": "Taliparamba Market",
-        "n": 2882,
-        "empirical_coverage": 0.9348,
-        "mean_width": 1631.47
+        "n": 2796,
+        "empirical_coverage": 0.9861,
+        "mean_width": 1668.63
       },
       {
         "segment": "Thalasserry Market",
-        "n": 5977,
-        "empirical_coverage": 0.8042,
-        "mean_width": 1109.08
-      },
-      {
-        "segment": "Thalavadi(Uzhavar Sandhai )",
-        "n": 1680,
-        "empirical_coverage": 0.903,
-        "mean_width": 1068.82
+        "n": 5733,
+        "empirical_coverage": 0.7523,
+        "mean_width": 1100.37
       },
       {
         "segment": "Thirukovilur APMC",
-        "n": 669,
-        "empirical_coverage": 0.7907,
-        "mean_width": 585.87
+        "n": 642,
+        "empirical_coverage": 0.8037,
+        "mean_width": 591.12
       },
       {
-        "segment": "Tiruppur (South) (Uzhavar Sandhai )",
-        "n": 1680,
-        "empirical_coverage": 0.7833,
-        "mean_width": 1605.66
+        "segment": "Thodupuzha Market",
+        "n": 13,
+        "empirical_coverage": 0.6154,
+        "mean_width": 2294.27
       },
       {
         "segment": "Tiruvuru APMC",
-        "n": 1876,
-        "empirical_coverage": 0.7468,
-        "mean_width": 255.34
+        "n": 2118,
+        "empirical_coverage": 0.7191,
+        "mean_width": 259.76
       },
       {
         "segment": "Udumalpet APMC",
-        "n": 45,
-        "empirical_coverage": 0.3556,
-        "mean_width": 377.84
+        "n": 32,
+        "empirical_coverage": 0.2812,
+        "mean_width": 206.37
       },
       {
         "segment": "Valmikipuram APMC",
-        "n": 1673,
-        "empirical_coverage": 0.7167,
-        "mean_width": 2045.49
+        "n": 1680,
+        "empirical_coverage": 0.6262,
+        "mean_width": 1848.22
       },
       {
         "segment": "Vellore APMC",
-        "n": 3,
-        "empirical_coverage": 0.3333,
-        "mean_width": 547.93
+        "n": 5,
+        "empirical_coverage": 0.4,
+        "mean_width": 258.0
       },
       {
         "segment": "Vijayapura APMC",
-        "n": 1423,
-        "empirical_coverage": 0.7878,
-        "mean_width": 878.7
+        "n": 1433,
+        "empirical_coverage": 0.7711,
+        "mean_width": 946.31
       },
       {
         "segment": "Vikkiravandi APMC",
-        "n": 765,
-        "empirical_coverage": 0.8863,
-        "mean_width": 580.88
+        "n": 770,
+        "empirical_coverage": 0.839,
+        "mean_width": 589.96
       },
       {
         "segment": "Villupuram APMC",
-        "n": 487,
-        "empirical_coverage": 0.8522,
-        "mean_width": 585.75
+        "n": 461,
+        "empirical_coverage": 0.7983,
+        "mean_width": 593.19
       },
       {
         "segment": "Viruthachalam(Uzhavar Sandhai )",
-        "n": 1680,
-        "empirical_coverage": 0.778,
-        "mean_width": 2122.35
+        "n": 3360,
+        "empirical_coverage": 0.8464,
+        "mean_width": 1284.25
       },
       {
         "segment": "Wanaparthy town APMC",
-        "n": 241,
-        "empirical_coverage": 0.6349,
-        "mean_width": 1902.12
+        "n": 159,
+        "empirical_coverage": 0.6101,
+        "mean_width": 2020.42
       },
       {
         "segment": "Warangal APMC",
-        "n": 406,
-        "empirical_coverage": 0.4926,
-        "mean_width": 883.31
+        "n": 407,
+        "empirical_coverage": 0.484,
+        "mean_width": 830.74
       },
       {
         "segment": "Yashika Agro Marketing, Tal Bhusawal, Jalgaon",
-        "n": 890,
-        "empirical_coverage": 0.5079,
-        "mean_width": 281.58
+        "n": 884,
+        "empirical_coverage": 0.5656,
+        "mean_width": 258.64
       },
       {
         "segment": "Yemmiganur APMC",
-        "n": 553,
-        "empirical_coverage": 0.7703,
-        "mean_width": 2443.35
+        "n": 633,
+        "empirical_coverage": 0.8167,
+        "mean_width": 2516.42
       },
       {
         "segment": "Zaheerabad APMC",
-        "n": 614,
-        "empirical_coverage": 0.4756,
-        "mean_width": 219.41
+        "n": 504,
+        "empirical_coverage": 0.4286,
+        "mean_width": 219.18
       }
     ]
   },
   "performance_by_horizon": [
     {
       "segment": "1",
-      "n": 7072,
-      "mae": 342.06,
-      "wape": 0.0673,
-      "smape": 0.0743,
-      "directional_accuracy": 0.3951
+      "n": 7045,
+      "mae": 337.02,
+      "wape": 0.066,
+      "smape": 0.073,
+      "directional_accuracy": 0.3781
     },
     {
       "segment": "10",
-      "n": 6847,
-      "mae": 494.88,
-      "wape": 0.1007,
-      "smape": 0.1211,
-      "directional_accuracy": 0.4817
+      "n": 6825,
+      "mae": 483.9,
+      "wape": 0.0977,
+      "smape": 0.1169,
+      "directional_accuracy": 0.4724
     },
     {
       "segment": "11",
-      "n": 6816,
-      "mae": 514.44,
-      "wape": 0.1051,
-      "smape": 0.1248,
-      "directional_accuracy": 0.4902
+      "n": 6822,
+      "mae": 502.72,
+      "wape": 0.1017,
+      "smape": 0.1204,
+      "directional_accuracy": 0.4818
     },
     {
       "segment": "12",
-      "n": 6800,
-      "mae": 522.28,
-      "wape": 0.106,
-      "smape": 0.1283,
-      "directional_accuracy": 0.4975
+      "n": 6821,
+      "mae": 507.18,
+      "wape": 0.1019,
+      "smape": 0.1239,
+      "directional_accuracy": 0.4866
     },
     {
       "segment": "13",
-      "n": 6901,
-      "mae": 529.3,
-      "wape": 0.1065,
-      "smape": 0.1306,
-      "directional_accuracy": 0.4947
+      "n": 6935,
+      "mae": 515.67,
+      "wape": 0.1027,
+      "smape": 0.1266,
+      "directional_accuracy": 0.4831
     },
     {
       "segment": "14",
-      "n": 7460,
-      "mae": 552.86,
-      "wape": 0.1044,
-      "smape": 0.1297,
-      "directional_accuracy": 0.494
+      "n": 7492,
+      "mae": 543.25,
+      "wape": 0.1016,
+      "smape": 0.1262,
+      "directional_accuracy": 0.484
     },
     {
       "segment": "15",
-      "n": 6913,
-      "mae": 559.44,
-      "wape": 0.1106,
-      "smape": 0.1364,
-      "directional_accuracy": 0.4969
+      "n": 6927,
+      "mae": 551.02,
+      "wape": 0.1083,
+      "smape": 0.1332,
+      "directional_accuracy": 0.4806
     },
     {
       "segment": "16",
-      "n": 6888,
-      "mae": 559.93,
-      "wape": 0.1127,
-      "smape": 0.1393,
-      "directional_accuracy": 0.4946
+      "n": 6862,
+      "mae": 551.61,
+      "wape": 0.1102,
+      "smape": 0.1369,
+      "directional_accuracy": 0.4818
     },
     {
       "segment": "17",
-      "n": 6850,
-      "mae": 565.8,
-      "wape": 0.1151,
-      "smape": 0.1432,
-      "directional_accuracy": 0.5001
+      "n": 6815,
+      "mae": 562.02,
+      "wape": 0.1133,
+      "smape": 0.141,
+      "directional_accuracy": 0.487
     },
     {
       "segment": "18",
-      "n": 6827,
-      "mae": 583.24,
-      "wape": 0.1191,
-      "smape": 0.1456,
-      "directional_accuracy": 0.5081
+      "n": 6779,
+      "mae": 579.75,
+      "wape": 0.1171,
+      "smape": 0.1443,
+      "directional_accuracy": 0.4906
     },
     {
       "segment": "19",
-      "n": 6825,
-      "mae": 588.39,
-      "wape": 0.1195,
-      "smape": 0.1485,
-      "directional_accuracy": 0.509
+      "n": 6780,
+      "mae": 580.5,
+      "wape": 0.1172,
+      "smape": 0.1468,
+      "directional_accuracy": 0.4938
     },
     {
       "segment": "2",
-      "n": 7004,
-      "mae": 363.33,
-      "wape": 0.0725,
-      "smape": 0.0824,
-      "directional_accuracy": 0.4286
+      "n": 6951,
+      "mae": 359.43,
+      "wape": 0.071,
+      "smape": 0.0811,
+      "directional_accuracy": 0.4115
     },
     {
       "segment": "20",
-      "n": 6883,
-      "mae": 594.11,
-      "wape": 0.1199,
-      "smape": 0.1502,
-      "directional_accuracy": 0.5091
+      "n": 6847,
+      "mae": 585.86,
+      "wape": 0.1171,
+      "smape": 0.1489,
+      "directional_accuracy": 0.4954
     },
     {
       "segment": "21",
-      "n": 7412,
-      "mae": 613.11,
-      "wape": 0.117,
-      "smape": 0.1497,
-      "directional_accuracy": 0.5061
+      "n": 7369,
+      "mae": 603.13,
+      "wape": 0.1138,
+      "smape": 0.1477,
+      "directional_accuracy": 0.4946
     },
     {
       "segment": "22",
-      "n": 6895,
-      "mae": 622.94,
-      "wape": 0.1237,
-      "smape": 0.1563,
-      "directional_accuracy": 0.5095
+      "n": 6867,
+      "mae": 617.91,
+      "wape": 0.1216,
+      "smape": 0.1542,
+      "directional_accuracy": 0.4977
     },
     {
       "segment": "23",
-      "n": 6857,
-      "mae": 631.85,
-      "wape": 0.1273,
-      "smape": 0.1603,
-      "directional_accuracy": 0.5135
+      "n": 6809,
+      "mae": 621.66,
+      "wape": 0.1241,
+      "smape": 0.1567,
+      "directional_accuracy": 0.5017
     },
     {
       "segment": "24",
-      "n": 6799,
-      "mae": 628.12,
-      "wape": 0.1282,
-      "smape": 0.1632,
-      "directional_accuracy": 0.5138
+      "n": 6745,
+      "mae": 613.19,
+      "wape": 0.1242,
+      "smape": 0.1588,
+      "directional_accuracy": 0.5005
     },
     {
       "segment": "25",
-      "n": 6781,
-      "mae": 653.27,
-      "wape": 0.134,
-      "smape": 0.1673,
-      "directional_accuracy": 0.5184
+      "n": 6743,
+      "mae": 638.54,
+      "wape": 0.13,
+      "smape": 0.1629,
+      "directional_accuracy": 0.5044
     },
     {
       "segment": "26",
-      "n": 6770,
-      "mae": 651.51,
-      "wape": 0.1328,
-      "smape": 0.1701,
-      "directional_accuracy": 0.5232
+      "n": 6740,
+      "mae": 637.61,
+      "wape": 0.1289,
+      "smape": 0.1648,
+      "directional_accuracy": 0.5073
     },
     {
       "segment": "27",
-      "n": 6841,
-      "mae": 656.99,
-      "wape": 0.1335,
-      "smape": 0.1719,
-      "directional_accuracy": 0.5226
+      "n": 6839,
+      "mae": 648.21,
+      "wape": 0.1299,
+      "smape": 0.1667,
+      "directional_accuracy": 0.5055
     },
     {
       "segment": "28",
-      "n": 7407,
-      "mae": 675.59,
-      "wape": 0.1298,
-      "smape": 0.1709,
-      "directional_accuracy": 0.5215
+      "n": 7392,
+      "mae": 664.86,
+      "wape": 0.1262,
+      "smape": 0.1652,
+      "directional_accuracy": 0.503
     },
     {
       "segment": "3",
-      "n": 6896,
-      "mae": 376.07,
-      "wape": 0.0762,
-      "smape": 0.0886,
-      "directional_accuracy": 0.4477
+      "n": 6864,
+      "mae": 369.8,
+      "wape": 0.0742,
+      "smape": 0.0868,
+      "directional_accuracy": 0.4292
     },
     {
       "segment": "4",
-      "n": 6894,
-      "mae": 403.62,
-      "wape": 0.0821,
-      "smape": 0.0936,
-      "directional_accuracy": 0.4579
+      "n": 6854,
+      "mae": 395.05,
+      "wape": 0.0796,
+      "smape": 0.0916,
+      "directional_accuracy": 0.439
     },
     {
       "segment": "5",
-      "n": 6901,
-      "mae": 414.75,
-      "wape": 0.0834,
-      "smape": 0.0984,
-      "directional_accuracy": 0.4559
+      "n": 6877,
+      "mae": 404.33,
+      "wape": 0.0809,
+      "smape": 0.0965,
+      "directional_accuracy": 0.4441
     },
     {
       "segment": "6",
-      "n": 6949,
-      "mae": 423.32,
-      "wape": 0.0846,
-      "smape": 0.1024,
-      "directional_accuracy": 0.4663
+      "n": 6945,
+      "mae": 413.11,
+      "wape": 0.0817,
+      "smape": 0.0998,
+      "directional_accuracy": 0.4566
     },
     {
       "segment": "7",
-      "n": 7552,
-      "mae": 455.9,
-      "wape": 0.0861,
-      "smape": 0.104,
-      "directional_accuracy": 0.4629
+      "n": 7521,
+      "mae": 444.6,
+      "wape": 0.0832,
+      "smape": 0.1015,
+      "directional_accuracy": 0.4545
     },
     {
       "segment": "8",
-      "n": 6959,
-      "mae": 467.92,
-      "wape": 0.0927,
-      "smape": 0.1119,
-      "directional_accuracy": 0.4715
+      "n": 6988,
+      "mae": 464.32,
+      "wape": 0.0908,
+      "smape": 0.1086,
+      "directional_accuracy": 0.4622
     },
     {
       "segment": "9",
-      "n": 6914,
-      "mae": 479.6,
-      "wape": 0.0964,
-      "smape": 0.116,
-      "directional_accuracy": 0.476
+      "n": 6901,
+      "mae": 469.64,
+      "wape": 0.0931,
+      "smape": 0.112,
+      "directional_accuracy": 0.4643
     }
   ],
   "performance_by_commodity": [
     {
       "segment": "Arecanut",
-      "n": 6764,
-      "mae": 3386.26,
-      "wape": 0.0843,
-      "smape": 0.094,
-      "directional_accuracy": 0.4978
+      "n": 6713,
+      "mae": 3311.79,
+      "wape": 0.0821,
+      "smape": 0.0935,
+      "directional_accuracy": 0.4935
     },
     {
       "segment": "Banana",
-      "n": 18646,
-      "mae": 332.76,
-      "wape": 0.0933,
-      "smape": 0.102,
-      "directional_accuracy": 0.4435
+      "n": 18365,
+      "mae": 330.53,
+      "wape": 0.0863,
+      "smape": 0.0976,
+      "directional_accuracy": 0.4134
     },
     {
       "segment": "Brinjal",
-      "n": 22723,
-      "mae": 637.51,
-      "wape": 0.1969,
-      "smape": 0.2018,
-      "directional_accuracy": 0.5505
+      "n": 22609,
+      "mae": 523.28,
+      "wape": 0.1655,
+      "smape": 0.1759,
+      "directional_accuracy": 0.5499
     },
     {
       "segment": "Coconut",
-      "n": 10529,
-      "mae": 814.71,
-      "wape": 0.1199,
-      "smape": 0.0985,
-      "directional_accuracy": 0.4416
+      "n": 10633,
+      "mae": 912.42,
+      "wape": 0.1287,
+      "smape": 0.1081,
+      "directional_accuracy": 0.4356
     },
     {
       "segment": "Cotton",
-      "n": 3069,
-      "mae": 446.66,
-      "wape": 0.0507,
-      "smape": 0.0525,
-      "directional_accuracy": 0.6136
+      "n": 3348,
+      "mae": 492.55,
+      "wape": 0.0551,
+      "smape": 0.0575,
+      "directional_accuracy": 0.483
     },
     {
       "segment": "Green Chilli",
-      "n": 22924,
-      "mae": 425.16,
-      "wape": 0.1118,
-      "smape": 0.1241,
-      "directional_accuracy": 0.4836
+      "n": 22652,
+      "mae": 452.37,
+      "wape": 0.1149,
+      "smape": 0.1292,
+      "directional_accuracy": 0.4862
     },
     {
       "segment": "Groundnut",
-      "n": 11984,
-      "mae": 437.84,
-      "wape": 0.061,
-      "smape": 0.0627,
-      "directional_accuracy": 0.4558
+      "n": 10979,
+      "mae": 403.17,
+      "wape": 0.0554,
+      "smape": 0.0574,
+      "directional_accuracy": 0.4246
     },
     {
       "segment": "Maize",
-      "n": 7319,
-      "mae": 147.04,
-      "wape": 0.0664,
-      "smape": 0.0684,
-      "directional_accuracy": 0.5495
+      "n": 7784,
+      "mae": 147.05,
+      "wape": 0.0645,
+      "smape": 0.0669,
+      "directional_accuracy": 0.5442
     },
     {
       "segment": "Onion",
-      "n": 19596,
-      "mae": 346.37,
-      "wape": 0.1372,
-      "smape": 0.1582,
-      "directional_accuracy": 0.5067
+      "n": 20088,
+      "mae": 354.98,
+      "wape": 0.1329,
+      "smape": 0.1528,
+      "directional_accuracy": 0.4685
     },
     {
       "segment": "Paddy (Common)",
-      "n": 15081,
-      "mae": 119.6,
-      "wape": 0.0451,
-      "smape": 0.0462,
-      "directional_accuracy": 0.4197
+      "n": 14941,
+      "mae": 130.54,
+      "wape": 0.0487,
+      "smape": 0.0493,
+      "directional_accuracy": 0.4331
     },
     {
       "segment": "Potato",
-      "n": 20358,
-      "mae": 164.45,
-      "wape": 0.08,
-      "smape": 0.0834,
-      "directional_accuracy": 0.4773
+      "n": 20412,
+      "mae": 148.33,
+      "wape": 0.071,
+      "smape": 0.0723,
+      "directional_accuracy": 0.4375
     },
     {
       "segment": "Ragi",
-      "n": 4761,
-      "mae": 154.78,
-      "wape": 0.0402,
-      "smape": 0.045,
-      "directional_accuracy": 0.619
+      "n": 4671,
+      "mae": 161.91,
+      "wape": 0.0419,
+      "smape": 0.0476,
+      "directional_accuracy": 0.6202
     },
     {
       "segment": "Tomato",
-      "n": 26700,
-      "mae": 617.71,
-      "wape": 0.2675,
-      "smape": 0.265,
-      "directional_accuracy": 0.4917
+      "n": 26705,
+      "mae": 606.39,
+      "wape": 0.2879,
+      "smape": 0.2696,
+      "directional_accuracy": 0.4871
     },
     {
       "segment": "Turmeric",
-      "n": 4459,
-      "mae": 1136.53,
-      "wape": 0.0787,
-      "smape": 0.0861,
-      "directional_accuracy": 0.4044
+      "n": 4455,
+      "mae": 1210.28,
+      "wape": 0.0814,
+      "smape": 0.0883,
+      "directional_accuracy": 0.4525
     }
   ],
   "performance_by_state": [
     {
       "segment": "Andhra Pradesh",
-      "n": 19820,
-      "mae": 502.35,
-      "wape": 0.1351,
-      "smape": 0.1682,
-      "directional_accuracy": 0.4858
+      "n": 20156,
+      "mae": 474.83,
+      "wape": 0.1264,
+      "smape": 0.1592,
+      "directional_accuracy": 0.4793
     },
     {
       "segment": "Karnataka",
-      "n": 35031,
-      "mae": 1030.06,
-      "wape": 0.143,
-      "smape": 0.1548,
-      "directional_accuracy": 0.5744
+      "n": 33632,
+      "mae": 1073.23,
+      "wape": 0.1467,
+      "smape": 0.1594,
+      "directional_accuracy": 0.5739
     },
     {
       "segment": "Kerala",
-      "n": 32108,
-      "mae": 487.22,
-      "wape": 0.0675,
+      "n": 31664,
+      "mae": 472.81,
+      "wape": 0.0654,
       "smape": 0.1029,
-      "directional_accuracy": 0.4814
+      "directional_accuracy": 0.4833
     },
     {
       "segment": "Maharashtra",
-      "n": 36779,
-      "mae": 406.24,
+      "n": 36513,
+      "mae": 415.23,
       "wape": 0.0897,
-      "smape": 0.1222,
-      "directional_accuracy": 0.4989
+      "smape": 0.1238,
+      "directional_accuracy": 0.5039
     },
     {
       "segment": "Tamil Nadu",
-      "n": 44147,
-      "mae": 411.38,
-      "wape": 0.0979,
-      "smape": 0.1056,
-      "directional_accuracy": 0.4157
+      "n": 44741,
+      "mae": 357.88,
+      "wape": 0.0841,
+      "smape": 0.0956,
+      "directional_accuracy": 0.3839
     },
     {
       "segment": "Telangana",
-      "n": 27028,
-      "mae": 335.37,
-      "wape": 0.1379,
-      "smape": 0.1617,
-      "directional_accuracy": 0.488
+      "n": 27649,
+      "mae": 359.6,
+      "wape": 0.1392,
+      "smape": 0.155,
+      "directional_accuracy": 0.4482
     }
   ],
   "performance_by_market": [
     {
+      "segment": "AJattihalli(Uzhavar Sandhai )",
+      "n": 1680,
+      "mae": 273.31,
+      "wape": 0.084,
+      "smape": 0.0914,
+      "directional_accuracy": 0.3702
+    },
+    {
       "segment": "APMC Thirthahalli",
-      "n": 1086,
-      "mae": 10298.28,
-      "wape": 0.3065,
-      "smape": 0.3137,
-      "directional_accuracy": 0.7293
+      "n": 1075,
+      "mae": 11171.98,
+      "wape": 0.3388,
+      "smape": 0.3437,
+      "directional_accuracy": 0.6967
     },
     {
       "segment": "Adoni APMC",
-      "n": 1769,
-      "mae": 445.94,
-      "wape": 0.0546,
-      "smape": 0.0554,
-      "directional_accuracy": 0.5698
+      "n": 1835,
+      "mae": 428.11,
+      "wape": 0.0521,
+      "smape": 0.0528,
+      "directional_accuracy": 0.5597
     },
     {
       "segment": "Amarawati APMC",
-      "n": 1071,
-      "mae": 196.67,
-      "wape": 0.022,
-      "smape": 0.0221,
-      "directional_accuracy": 0.6975
+      "n": 1009,
+      "mae": 265.8,
+      "wape": 0.0295,
+      "smape": 0.0301,
+      "directional_accuracy": 0.4252
     },
     {
       "segment": "Ambajipeta APMC",
-      "n": 1617,
-      "mae": 175.35,
-      "wape": 0.1121,
-      "smape": 0.113,
-      "directional_accuracy": 0.5949
+      "n": 1538,
+      "mae": 184.61,
+      "wape": 0.1143,
+      "smape": 0.1164,
+      "directional_accuracy": 0.6092
     },
     {
       "segment": "Ammoor APMC",
-      "n": 718,
-      "mae": 246.62,
-      "wape": 0.0903,
-      "smape": 0.0943,
-      "directional_accuracy": 0.5014
+      "n": 645,
+      "mae": 237.39,
+      "wape": 0.0855,
+      "smape": 0.0886,
+      "directional_accuracy": 0.5039
     },
     {
       "segment": "Armori APMC",
-      "n": 864,
-      "mae": 108.56,
-      "wape": 0.0374,
-      "smape": 0.0364,
-      "directional_accuracy": 0.5799
-    },
-    {
-      "segment": "Aruppukottai(Uzhavar Sandhai )",
-      "n": 1624,
-      "mae": 131.17,
-      "wape": 0.0362,
-      "smape": 0.0363,
-      "directional_accuracy": 0.484
+      "n": 899,
+      "mae": 133.71,
+      "wape": 0.0451,
+      "smape": 0.0439,
+      "directional_accuracy": 0.6151
     },
     {
       "segment": "Atmakur (SPSR Nellore District) APMC",
-      "n": 172,
-      "mae": 2.73,
-      "wape": 0.0012,
-      "smape": 0.0012,
+      "n": 246,
+      "mae": 1.66,
+      "wape": 0.0007,
+      "smape": 0.0007,
       "directional_accuracy": 0.0
     },
     {
       "segment": "Avalurpet APMC",
-      "n": 706,
-      "mae": 219.98,
-      "wape": 0.0863,
-      "smape": 0.0909,
-      "directional_accuracy": 0.4122
+      "n": 719,
+      "mae": 218.5,
+      "wape": 0.0831,
+      "smape": 0.0873,
+      "directional_accuracy": 0.4075
     },
     {
       "segment": "Binny Mill (F&V), Bengaluru APMC",
-      "n": 162,
-      "mae": 89.4,
-      "wape": 0.0379,
-      "smape": 0.0375,
-      "directional_accuracy": 0.7778
+      "n": 71,
+      "mae": 111.39,
+      "wape": 0.0462,
+      "smape": 0.0457,
+      "directional_accuracy": 0.7746
     },
     {
       "segment": "Binny Mill (FF&V) Bengaluru APMC",
-      "n": 798,
-      "mae": 405.75,
-      "wape": 0.1458,
-      "smape": 0.1555,
-      "directional_accuracy": 0.6115
+      "n": 869,
+      "mae": 407.59,
+      "wape": 0.144,
+      "smape": 0.1551,
+      "directional_accuracy": 0.5926
     },
     {
       "segment": "Chamarajanagar APMC",
-      "n": 4916,
-      "mae": 1214.4,
-      "wape": 0.1963,
-      "smape": 0.2299,
-      "directional_accuracy": 0.5765
+      "n": 4844,
+      "mae": 1282.69,
+      "wape": 0.1988,
+      "smape": 0.2218,
+      "directional_accuracy": 0.5723
     },
     {
       "segment": "Channapatna APMC",
-      "n": 1187,
-      "mae": 846.01,
-      "wape": 0.1625,
-      "smape": 0.1808,
-      "directional_accuracy": 0.5038
+      "n": 1130,
+      "mae": 921.39,
+      "wape": 0.1684,
+      "smape": 0.1889,
+      "directional_accuracy": 0.5115
     },
     {
       "segment": "Chetpet APMC",
-      "n": 706,
-      "mae": 149.26,
-      "wape": 0.0733,
-      "smape": 0.0718,
-      "directional_accuracy": 0.6912
-    },
-    {
-      "segment": "Chevella APMC",
-      "n": 1164,
-      "mae": 492.94,
-      "wape": 0.2099,
-      "smape": 0.246,
-      "directional_accuracy": 0.3076
+      "n": 684,
+      "mae": 169.62,
+      "wape": 0.0814,
+      "smape": 0.0803,
+      "directional_accuracy": 0.6974
     },
     {
       "segment": "Chikkamagaluru APMC",
-      "n": 1588,
-      "mae": 219.12,
-      "wape": 0.1096,
-      "smape": 0.1089,
-      "directional_accuracy": 0.6247
+      "n": 1524,
+      "mae": 223.07,
+      "wape": 0.1072,
+      "smape": 0.1082,
+      "directional_accuracy": 0.6266
     },
     {
       "segment": "Chintamani APMC",
-      "n": 1053,
-      "mae": 264.49,
-      "wape": 0.1413,
-      "smape": 0.1406,
-      "directional_accuracy": 0.3808
+      "n": 1006,
+      "mae": 292.18,
+      "wape": 0.1555,
+      "smape": 0.1556,
+      "directional_accuracy": 0.4513
     },
     {
       "segment": "Chitradurga APMC",
-      "n": 567,
-      "mae": 408.58,
-      "wape": 0.0763,
-      "smape": 0.0703,
-      "directional_accuracy": 0.5679
+      "n": 587,
+      "mae": 425.7,
+      "wape": 0.0754,
+      "smape": 0.0708,
+      "directional_accuracy": 0.586
     },
     {
       "segment": "Cuddalore(Uzhavar Sandhai )",
-      "n": 6720,
-      "mae": 756.49,
-      "wape": 0.151,
-      "smape": 0.1574,
-      "directional_accuracy": 0.4183
+      "n": 3304,
+      "mae": 429.36,
+      "wape": 0.0752,
+      "smape": 0.0859,
+      "directional_accuracy": 0.3305
     },
     {
       "segment": "Davangere APMC",
-      "n": 1323,
-      "mae": 335.15,
-      "wape": 0.1083,
-      "smape": 0.1087,
-      "directional_accuracy": 0.6553
+      "n": 1310,
+      "mae": 364.21,
+      "wape": 0.1176,
+      "smape": 0.1181,
+      "directional_accuracy": 0.642
+    },
+    {
+      "segment": "Denkanikottai(Uzhavar Sandhai )",
+      "n": 1680,
+      "mae": 513.31,
+      "wape": 0.1271,
+      "smape": 0.1306,
+      "directional_accuracy": 0.6042
     },
     {
       "segment": "Dharmapuri(Uzhavar Sandhai )",
       "n": 1680,
-      "mae": 316.23,
-      "wape": 0.0945,
-      "smape": 0.1033,
-      "directional_accuracy": 0.4149
+      "mae": 272.33,
+      "wape": 0.0792,
+      "smape": 0.0867,
+      "directional_accuracy": 0.4012
     },
     {
       "segment": "Dhule APMC",
-      "n": 223,
-      "mae": 338.6,
-      "wape": 0.0449,
-      "smape": 0.0446,
-      "directional_accuracy": 0.7534
+      "n": 179,
+      "mae": 330.1,
+      "wape": 0.0439,
+      "smape": 0.0435,
+      "directional_accuracy": 0.7039
     },
     {
       "segment": "Duggirala APMC",
-      "n": 542,
-      "mae": 1389.0,
-      "wape": 0.1057,
-      "smape": 0.1091,
-      "directional_accuracy": 0.2731
+      "n": 537,
+      "mae": 1290.56,
+      "wape": 0.0946,
+      "smape": 0.0995,
+      "directional_accuracy": 0.324
     },
     {
       "segment": "Gadwal APMC",
-      "n": 673,
-      "mae": 626.79,
-      "wape": 0.1038,
-      "smape": 0.1019,
-      "directional_accuracy": 0.6508
+      "n": 721,
+      "mae": 687.59,
+      "wape": 0.1157,
+      "smape": 0.1129,
+      "directional_accuracy": 0.6047
     },
     {
       "segment": "Gondpimpri APMC",
       "n": 1108,
-      "mae": 126.67,
-      "wape": 0.0379,
-      "smape": 0.0379,
-      "directional_accuracy": 0.2536
+      "mae": 156.84,
+      "wape": 0.0458,
+      "smape": 0.0461,
+      "directional_accuracy": 0.3863
     },
     {
       "segment": "Gudimalkapur APMC",
-      "n": 7001,
-      "mae": 311.44,
-      "wape": 0.2142,
-      "smape": 0.2048,
-      "directional_accuracy": 0.5176
+      "n": 6751,
+      "mae": 314.52,
+      "wape": 0.2202,
+      "smape": 0.2073,
+      "directional_accuracy": 0.5104
     },
     {
       "segment": "Gundlupet APMC",
-      "n": 622,
-      "mae": 1402.97,
-      "wape": 0.1086,
-      "smape": 0.1097,
-      "directional_accuracy": 0.6334
+      "n": 582,
+      "mae": 1417.24,
+      "wape": 0.1078,
+      "smape": 0.1089,
+      "directional_accuracy": 0.6082
     },
     {
       "segment": "Haliyala APMC",
-      "n": 905,
-      "mae": 91.28,
-      "wape": 0.0371,
-      "smape": 0.0367,
-      "directional_accuracy": 0.6122
+      "n": 859,
+      "mae": 96.03,
+      "wape": 0.0387,
+      "smape": 0.0384,
+      "directional_accuracy": 0.6298
     },
     {
       "segment": "HarappanaHalli APMC",
       "n": 665,
-      "mae": 125.8,
-      "wape": 0.0382,
-      "smape": 0.0383,
-      "directional_accuracy": 0.5383
+      "mae": 121.47,
+      "wape": 0.0364,
+      "smape": 0.0366,
+      "directional_accuracy": 0.5594
+    },
+    {
+      "segment": "Harur(Uzhavar Sandhai )",
+      "n": 1680,
+      "mae": 404.76,
+      "wape": 0.0878,
+      "smape": 0.0922,
+      "directional_accuracy": 0.3911
+    },
+    {
+      "segment": "Haveri APMC",
+      "n": 518,
+      "mae": 194.9,
+      "wape": 0.0872,
+      "smape": 0.0894,
+      "directional_accuracy": 0.6583
     },
     {
       "segment": "Hingoli APMC",
-      "n": 748,
-      "mae": 1166.11,
-      "wape": 0.0805,
-      "smape": 0.0828,
-      "directional_accuracy": 0.3449
+      "n": 799,
+      "mae": 1159.95,
+      "wape": 0.078,
+      "smape": 0.081,
+      "directional_accuracy": 0.4894
     },
     {
       "segment": "Hoovinahadagali APMC",
-      "n": 1226,
-      "mae": 306.03,
-      "wape": 0.1232,
-      "smape": 0.1206,
-      "directional_accuracy": 0.6134
+      "n": 638,
+      "mae": 447.98,
+      "wape": 0.1631,
+      "smape": 0.1658,
+      "directional_accuracy": 0.6442
     },
     {
       "segment": "Hospet APMC",
-      "n": 796,
-      "mae": 175.65,
-      "wape": 0.1105,
-      "smape": 0.1099,
-      "directional_accuracy": 0.5678
+      "n": 841,
+      "mae": 168.48,
+      "wape": 0.1027,
+      "smape": 0.1028,
+      "directional_accuracy": 0.5993
     },
     {
       "segment": "Huzurnagar APMC",
-      "n": 1195,
-      "mae": 61.46,
-      "wape": 0.0252,
-      "smape": 0.025,
-      "directional_accuracy": 0.4979
+      "n": 1161,
+      "mae": 69.13,
+      "wape": 0.0282,
+      "smape": 0.0279,
+      "directional_accuracy": 0.5245
     },
     {
       "segment": "Huzzurabad APMC",
-      "n": 1017,
-      "mae": 2.54,
-      "wape": 0.0011,
-      "smape": 0.0011,
+      "n": 984,
+      "mae": 5.02,
+      "wape": 0.0021,
+      "smape": 0.0021,
       "directional_accuracy": 0.0
     },
     {
       "segment": "Jagtial APMC",
-      "n": 288,
-      "mae": 99.13,
-      "wape": 0.0516,
-      "smape": 0.0513,
-      "directional_accuracy": 0.6076
+      "n": 216,
+      "mae": 117.69,
+      "wape": 0.0606,
+      "smape": 0.0607,
+      "directional_accuracy": 0.5926
     },
     {
       "segment": "Jalana APMC",
       "n": 1012,
-      "mae": 117.85,
-      "wape": 0.0538,
-      "smape": 0.0571,
-      "directional_accuracy": 0.4239
+      "mae": 101.6,
+      "wape": 0.0456,
+      "smape": 0.0483,
+      "directional_accuracy": 0.3666
     },
     {
       "segment": "Jammikunta APMC",
-      "n": 272,
-      "mae": 367.42,
-      "wape": 0.0473,
-      "smape": 0.0473,
-      "directional_accuracy": 0.5882
+      "n": 251,
+      "mae": 370.3,
+      "wape": 0.0474,
+      "smape": 0.0475,
+      "directional_accuracy": 0.5578
     },
     {
       "segment": "K.R. Pet APMC",
-      "n": 231,
-      "mae": 3065.92,
-      "wape": 0.1439,
-      "smape": 0.1426,
-      "directional_accuracy": 0.5887
+      "n": 255,
+      "mae": 2953.98,
+      "wape": 0.1368,
+      "smape": 0.1362,
+      "directional_accuracy": 0.5882
     },
     {
       "segment": "Kadapa",
-      "n": 1373,
-      "mae": 822.44,
-      "wape": 0.0893,
-      "smape": 0.0867,
-      "directional_accuracy": 0.512
+      "n": 1457,
+      "mae": 830.33,
+      "wape": 0.088,
+      "smape": 0.0875,
+      "directional_accuracy": 0.5594
     },
     {
       "segment": "Kalaburagi APMC",
-      "n": 436,
-      "mae": 131.12,
-      "wape": 0.1093,
-      "smape": 0.1036,
-      "directional_accuracy": 0.6697
+      "n": 461,
+      "mae": 125.45,
+      "wape": 0.1042,
+      "smape": 0.0986,
+      "directional_accuracy": 0.6703
     },
     {
       "segment": "Kalikiri APMC",
-      "n": 1623,
-      "mae": 633.09,
-      "wape": 0.3754,
-      "smape": 0.3152,
-      "directional_accuracy": 0.3968
+      "n": 1657,
+      "mae": 566.35,
+      "wape": 0.3887,
+      "smape": 0.2985,
+      "directional_accuracy": 0.3862
+    },
+    {
+      "segment": "Kallakurichi APMC",
+      "n": 770,
+      "mae": 150.96,
+      "wape": 0.0618,
+      "smape": 0.0643,
+      "directional_accuracy": 0.5377
     },
     {
       "segment": "Kallur APMC",
-      "n": 803,
-      "mae": 2.75,
-      "wape": 0.0012,
-      "smape": 0.0012,
+      "n": 734,
+      "mae": 1.83,
+      "wape": 0.0008,
+      "smape": 0.0008,
       "directional_accuracy": 0.0
     },
     {
       "segment": "Kalmeshwar APMC",
       "n": 1223,
-      "mae": 507.58,
-      "wape": 0.1285,
-      "smape": 0.1245,
-      "directional_accuracy": 0.6476
+      "mae": 500.53,
+      "wape": 0.13,
+      "smape": 0.1246,
+      "directional_accuracy": 0.6345
     },
     {
       "segment": "Kamthi APMC",
-      "n": 2368,
-      "mae": 582.98,
-      "wape": 0.1658,
-      "smape": 0.2383,
-      "directional_accuracy": 0.5591
+      "n": 2351,
+      "mae": 578.91,
+      "wape": 0.1617,
+      "smape": 0.2399,
+      "directional_accuracy": 0.5479
     },
     {
       "segment": "Kanjangadu Market",
-      "n": 855,
-      "mae": 1114.05,
-      "wape": 0.027,
-      "smape": 0.0261,
-      "directional_accuracy": 0.2117
+      "n": 843,
+      "mae": 771.26,
+      "wape": 0.0188,
+      "smape": 0.0182,
+      "directional_accuracy": 0.255
     },
     {
       "segment": "Kasargod Market",
-      "n": 1012,
-      "mae": 4.21,
-      "wape": 0.0017,
-      "smape": 0.0017,
+      "n": 1030,
+      "mae": 2.87,
+      "wape": 0.0011,
+      "smape": 0.0011,
       "directional_accuracy": 0.0
     },
     {
       "segment": "Kayamkulam Market",
-      "n": 6740,
-      "mae": 559.43,
-      "wape": 0.1637,
-      "smape": 0.1544,
-      "directional_accuracy": 0.5642
+      "n": 6899,
+      "mae": 530.38,
+      "wape": 0.1577,
+      "smape": 0.1479,
+      "directional_accuracy": 0.5457
     },
     {
       "segment": "Khammam APMC",
-      "n": 306,
-      "mae": 396.99,
-      "wape": 0.0467,
-      "smape": 0.0479,
-      "directional_accuracy": 0.732
+      "n": 383,
+      "mae": 547.5,
+      "wape": 0.0637,
+      "smape": 0.0655,
+      "directional_accuracy": 0.4021
     },
     {
       "segment": "Koduvayoor Market",
-      "n": 8137,
-      "mae": 497.26,
-      "wape": 0.1157,
-      "smape": 0.1184,
-      "directional_accuracy": 0.5433
+      "n": 7921,
+      "mae": 482.96,
+      "wape": 0.1118,
+      "smape": 0.115,
+      "directional_accuracy": 0.561
     },
     {
       "segment": "Kottur APMC",
-      "n": 269,
-      "mae": 135.29,
-      "wape": 0.0411,
-      "smape": 0.0413,
-      "directional_accuracy": 0.6543
+      "n": 303,
+      "mae": 216.23,
+      "wape": 0.0533,
+      "smape": 0.0482,
+      "directional_accuracy": 0.5809
     },
     {
       "segment": "Krishnagiri(Uzhavar Sandhai )",
-      "n": 4930,
-      "mae": 438.84,
-      "wape": 0.1748,
-      "smape": 0.1752,
-      "directional_accuracy": 0.5592
+      "n": 6609,
+      "mae": 412.92,
+      "wape": 0.1419,
+      "smape": 0.1509,
+      "directional_accuracy": 0.539
     },
     {
       "segment": "Kukatpally,RBZ",
-      "n": 7375,
-      "mae": 343.37,
-      "wape": 0.2051,
-      "smape": 0.1876,
-      "directional_accuracy": 0.5166
+      "n": 7280,
+      "mae": 425.27,
+      "wape": 0.2417,
+      "smape": 0.2209,
+      "directional_accuracy": 0.5048
     },
     {
       "segment": "Kumbakonam (Uzhavar Sandhai )",
-      "n": 1680,
-      "mae": 671.97,
-      "wape": 0.2256,
-      "smape": 0.2048,
-      "directional_accuracy": 0.4446
+      "n": 3360,
+      "mae": 616.52,
+      "wape": 0.1642,
+      "smape": 0.1628,
+      "directional_accuracy": 0.4488
     },
     {
       "segment": "Kumta APMC",
-      "n": 1069,
-      "mae": 5215.77,
-      "wape": 0.1455,
-      "smape": 0.1465,
-      "directional_accuracy": 0.7259
+      "n": 1051,
+      "mae": 4683.03,
+      "wape": 0.1282,
+      "smape": 0.131,
+      "directional_accuracy": 0.7412
     },
     {
       "segment": "Kurnool APMC",
-      "n": 891,
-      "mae": 207.86,
-      "wape": 0.1004,
-      "smape": 0.104,
-      "directional_accuracy": 0.5398
+      "n": 813,
+      "mae": 225.66,
+      "wape": 0.1058,
+      "smape": 0.1116,
+      "directional_accuracy": 0.5215
     },
     {
       "segment": "Kuthuparambu Market",
-      "n": 1014,
-      "mae": 1461.68,
-      "wape": 0.0421,
-      "smape": 0.0408,
-      "directional_accuracy": 0.3432
+      "n": 1009,
+      "mae": 1335.66,
+      "wape": 0.0381,
+      "smape": 0.0375,
+      "directional_accuracy": 0.3132
     },
     {
       "segment": "Madanapalli APMC",
       "n": 1596,
-      "mae": 654.53,
-      "wape": 0.3286,
-      "smape": 0.2998,
-      "directional_accuracy": 0.3922
-    },
-    {
-      "segment": "Mahboob Manison APMC",
-      "n": 2180,
-      "mae": 308.6,
-      "wape": 0.2049,
-      "smape": 0.2191,
-      "directional_accuracy": 0.5018
+      "mae": 609.14,
+      "wape": 0.3542,
+      "smape": 0.2963,
+      "directional_accuracy": 0.386
     },
     {
       "segment": "Malegaon APMC",
-      "n": 688,
-      "mae": 187.64,
-      "wape": 0.0258,
-      "smape": 0.0255,
-      "directional_accuracy": 0.5334
+      "n": 693,
+      "mae": 203.65,
+      "wape": 0.028,
+      "smape": 0.0277,
+      "directional_accuracy": 0.6522
     },
     {
       "segment": "Mookkannur VFPCK Market",
-      "n": 1427,
-      "mae": 656.74,
-      "wape": 0.1635,
-      "smape": 0.1722,
-      "directional_accuracy": 0.7267
+      "n": 1441,
+      "mae": 679.65,
+      "wape": 0.165,
+      "smape": 0.1706,
+      "directional_accuracy": 0.7037
     },
     {
       "segment": "Mumbai APMC",
-      "n": 2191,
-      "mae": 935.61,
-      "wape": 0.044,
-      "smape": 0.0484,
-      "directional_accuracy": 0.2351
+      "n": 2254,
+      "mae": 920.01,
+      "wape": 0.0424,
+      "smape": 0.0605,
+      "directional_accuracy": 0.2076
     },
     {
       "segment": "Nanded APMC",
-      "n": 259,
-      "mae": 1135.94,
-      "wape": 0.0754,
-      "smape": 0.0778,
-      "directional_accuracy": 0.4903
+      "n": 304,
+      "mae": 1231.51,
+      "wape": 0.078,
+      "smape": 0.0817,
+      "directional_accuracy": 0.5329
     },
     {
       "segment": "Nandyal APMC",
-      "n": 110,
-      "mae": 261.04,
-      "wape": 0.1103,
-      "smape": 0.1164,
-      "directional_accuracy": 0.4273
+      "n": 210,
+      "mae": 223.64,
+      "wape": 0.0936,
+      "smape": 0.0993,
+      "directional_accuracy": 0.5381
     },
     {
       "segment": "Nasik APMC",
-      "n": 2862,
-      "mae": 472.6,
-      "wape": 0.1942,
-      "smape": 0.1618,
-      "directional_accuracy": 0.4378
+      "n": 2828,
+      "mae": 489.83,
+      "wape": 0.2021,
+      "smape": 0.1673,
+      "directional_accuracy": 0.5322
     },
     {
       "segment": "Nizamabad APMC",
-      "n": 592,
-      "mae": 1120.52,
-      "wape": 0.0843,
-      "smape": 0.084,
-      "directional_accuracy": 0.5456
-    },
-    {
-      "segment": "Palacode(Uzhavar Sandhai )",
-      "n": 1680,
-      "mae": 429.25,
-      "wape": 0.0975,
-      "smape": 0.1003,
-      "directional_accuracy": 0.5357
+      "n": 571,
+      "mae": 1338.33,
+      "wape": 0.0964,
+      "smape": 0.0989,
+      "directional_accuracy": 0.4483
     },
     {
       "segment": "Palakkad Market",
-      "n": 1117,
-      "mae": 449.98,
-      "wape": 0.0916,
-      "smape": 0.0917,
-      "directional_accuracy": 0.3608
+      "n": 1129,
+      "mae": 479.17,
+      "wape": 0.0934,
+      "smape": 0.0948,
+      "directional_accuracy": 0.4827
     },
     {
       "segment": "Palamaner APMC",
-      "n": 4457,
-      "mae": 439.15,
+      "n": 4314,
+      "mae": 443.41,
       "wape": 0.151,
-      "smape": 0.1536,
-      "directional_accuracy": 0.5084
+      "smape": 0.1495,
+      "directional_accuracy": 0.4972
+    },
+    {
+      "segment": "Pallapatti (Uzhavar Sandhai )",
+      "n": 1680,
+      "mae": 446.01,
+      "wape": 0.0949,
+      "smape": 0.0936,
+      "directional_accuracy": 0.3226
     },
     {
       "segment": "Panvel APMC",
-      "n": 1618,
-      "mae": 585.99,
-      "wape": 0.1639,
-      "smape": 0.1616,
-      "directional_accuracy": 0.5587
+      "n": 1632,
+      "mae": 570.34,
+      "wape": 0.1659,
+      "smape": 0.162,
+      "directional_accuracy": 0.5876
     },
     {
       "segment": "Payyannur Market",
-      "n": 1159,
-      "mae": 927.32,
-      "wape": 0.0226,
-      "smape": 0.0225,
-      "directional_accuracy": 0.3822
+      "n": 1140,
+      "mae": 876.3,
+      "wape": 0.0213,
+      "smape": 0.0213,
+      "directional_accuracy": 0.3921
     },
     {
       "segment": "Perambalur(Uzhavar Sandhai )",
       "n": 1680,
-      "mae": 483.44,
-      "wape": 0.0595,
-      "smape": 0.0603,
-      "directional_accuracy": 0.4464
+      "mae": 410.69,
+      "wape": 0.0504,
+      "smape": 0.0512,
+      "directional_accuracy": 0.369
     },
     {
       "segment": "Polur(Uzhavar Sandhai )",
       "n": 1680,
-      "mae": 22.55,
-      "wape": 0.0049,
-      "smape": 0.0049,
-      "directional_accuracy": 0.1042
+      "mae": 23.39,
+      "wape": 0.0051,
+      "smape": 0.0051,
+      "directional_accuracy": 0.1137
     },
     {
       "segment": "Pulpally Market",
-      "n": 1014,
-      "mae": 49.15,
-      "wape": 0.0155,
-      "smape": 0.0155,
-      "directional_accuracy": 0.4862
+      "n": 962,
+      "mae": 46.99,
+      "wape": 0.0149,
+      "smape": 0.0148,
+      "directional_accuracy": 0.499
     },
     {
       "segment": "Pune APMC",
-      "n": 1838,
-      "mae": 115.16,
-      "wape": 0.0279,
-      "smape": 0.0495,
-      "directional_accuracy": 0.5484
+      "n": 1744,
+      "mae": 106.82,
+      "wape": 0.0254,
+      "smape": 0.0464,
+      "directional_accuracy": 0.535
     },
     {
       "segment": "Pune(Manjri) APMC",
-      "n": 8024,
-      "mae": 478.57,
-      "wape": 0.1787,
-      "smape": 0.1745,
-      "directional_accuracy": 0.4386
+      "n": 8044,
+      "mae": 482.58,
+      "wape": 0.1822,
+      "smape": 0.1755,
+      "directional_accuracy": 0.4311
     },
     {
       "segment": "Pune(Moshi) APMC",
-      "n": 3628,
-      "mae": 304.97,
-      "wape": 0.1303,
-      "smape": 0.1303,
-      "directional_accuracy": 0.4846
+      "n": 3636,
+      "mae": 312.97,
+      "wape": 0.1301,
+      "smape": 0.1301,
+      "directional_accuracy": 0.5113
     },
     {
       "segment": "Pune(Pimpri) APMC",
-      "n": 2738,
-      "mae": 327.43,
-      "wape": 0.1647,
-      "smape": 0.1724,
-      "directional_accuracy": 0.6603
+      "n": 2640,
+      "mae": 317.65,
+      "wape": 0.1605,
+      "smape": 0.1663,
+      "directional_accuracy": 0.6348
     },
     {
       "segment": "Raichur APMC",
-      "n": 1084,
-      "mae": 702.01,
-      "wape": 0.1061,
-      "smape": 0.1049,
-      "directional_accuracy": 0.6015
+      "n": 290,
+      "mae": 854.27,
+      "wape": 0.0961,
+      "smape": 0.1007,
+      "directional_accuracy": 0.5966
     },
     {
       "segment": "Ramanagara APMC",
-      "n": 4698,
-      "mae": 661.18,
-      "wape": 0.2089,
-      "smape": 0.2243,
-      "directional_accuracy": 0.5417
+      "n": 4536,
+      "mae": 668.52,
+      "wape": 0.2203,
+      "smape": 0.2357,
+      "directional_accuracy": 0.5205
     },
     {
       "segment": "Ranebennur APMC",
-      "n": 4639,
-      "mae": 365.09,
-      "wape": 0.1698,
-      "smape": 0.1868,
-      "directional_accuracy": 0.5057
+      "n": 4468,
+      "mae": 382.8,
+      "wape": 0.1843,
+      "smape": 0.1999,
+      "directional_accuracy": 0.5134
     },
     {
       "segment": "Rasipuram(Uzhavar Sandhai )",
-      "n": 5040,
-      "mae": 429.28,
-      "wape": 0.0915,
-      "smape": 0.0981,
-      "directional_accuracy": 0.3855
+      "n": 3360,
+      "mae": 429.95,
+      "wape": 0.0907,
+      "smape": 0.1045,
+      "directional_accuracy": 0.4497
     },
     {
       "segment": "Ravulapalem (Kothapeta APMC)",
-      "n": 1568,
-      "mae": 685.02,
-      "wape": 0.2301,
-      "smape": 0.2577,
-      "directional_accuracy": 0.4802
+      "n": 1522,
+      "mae": 589.07,
+      "wape": 0.1869,
+      "smape": 0.2174,
+      "directional_accuracy": 0.4599
     },
     {
       "segment": "Sadasivpet APMC",
-      "n": 149,
-      "mae": 1333.43,
-      "wape": 0.1161,
-      "smape": 0.1197,
-      "directional_accuracy": 0.5839
+      "n": 141,
+      "mae": 1295.58,
+      "wape": 0.1114,
+      "smape": 0.1151,
+      "directional_accuracy": 0.6383
     },
     {
       "segment": "Sangli(Miraj) APMC",
-      "n": 462,
-      "mae": 156.7,
-      "wape": 0.0647,
-      "smape": 0.0684,
-      "directional_accuracy": 0.2857
+      "n": 399,
+      "mae": 124.3,
+      "wape": 0.0504,
+      "smape": 0.0523,
+      "directional_accuracy": 0.5238
     },
     {
       "segment": "Sankarapuram(Uzhavar Sandhai )",
-      "n": 4934,
-      "mae": 309.99,
-      "wape": 0.0676,
-      "smape": 0.0907,
-      "directional_accuracy": 0.2639
+      "n": 4928,
+      "mae": 281.13,
+      "wape": 0.063,
+      "smape": 0.0872,
+      "directional_accuracy": 0.1796
     },
     {
       "segment": "Savali APMC",
-      "n": 1508,
-      "mae": 75.2,
-      "wape": 0.0244,
-      "smape": 0.0244,
-      "directional_accuracy": 0.6572
+      "n": 1507,
+      "mae": 91.5,
+      "wape": 0.0293,
+      "smape": 0.0292,
+      "directional_accuracy": 0.6437
     },
     {
       "segment": "Shadnagar APMC",
-      "n": 2557,
-      "mae": 300.43,
-      "wape": 0.1535,
-      "smape": 0.1646,
-      "directional_accuracy": 0.5542
+      "n": 1261,
+      "mae": 307.65,
+      "wape": 0.1196,
+      "smape": 0.121,
+      "directional_accuracy": 0.5567
     },
     {
       "segment": "Shimoga APMC",
-      "n": 1504,
-      "mae": 250.57,
-      "wape": 0.1068,
-      "smape": 0.1142,
-      "directional_accuracy": 0.389
+      "n": 1601,
+      "mae": 227.32,
+      "wape": 0.0944,
+      "smape": 0.1017,
+      "directional_accuracy": 0.4122
     },
     {
       "segment": "Shirpur APMC",
-      "n": 342,
-      "mae": 504.42,
-      "wape": 0.0656,
-      "smape": 0.0661,
-      "directional_accuracy": 0.6345
+      "n": 300,
+      "mae": 571.99,
+      "wape": 0.0756,
+      "smape": 0.0757,
+      "directional_accuracy": 0.6367
     },
     {
       "segment": "Shrirampur APMC",
-      "n": 1114,
-      "mae": 90.68,
-      "wape": 0.0805,
-      "smape": 0.0811,
-      "directional_accuracy": 0.5772
+      "n": 1068,
+      "mae": 96.07,
+      "wape": 0.0871,
+      "smape": 0.0873,
+      "directional_accuracy": 0.5824
+    },
+    {
+      "segment": "Siddipet(Rythu Bazar)",
+      "n": 5962,
+      "mae": 313.62,
+      "wape": 0.1306,
+      "smape": 0.1244,
+      "directional_accuracy": 0.335
     },
     {
       "segment": "Sirsi APMC",
-      "n": 1200,
-      "mae": 1144.48,
-      "wape": 0.026,
+      "n": 1176,
+      "mae": 1146.66,
+      "wape": 0.0261,
       "smape": 0.0263,
-      "directional_accuracy": 0.6767
+      "directional_accuracy": 0.6777
     },
     {
       "segment": "Sivakasi(Uzhavar Sandhai )",
-      "n": 1680,
-      "mae": 33.69,
-      "wape": 0.009,
-      "smape": 0.0098,
-      "directional_accuracy": 0.0131
+      "n": 1652,
+      "mae": 35.62,
+      "wape": 0.0095,
+      "smape": 0.0104,
+      "directional_accuracy": 0.0339
     },
     {
       "segment": "Sooramangalam(Uzhavar Sandhai )",
       "n": 1680,
-      "mae": 537.2,
-      "wape": 0.1096,
-      "smape": 0.1111,
-      "directional_accuracy": 0.3458
+      "mae": 614.1,
+      "wape": 0.1232,
+      "smape": 0.1252,
+      "directional_accuracy": 0.3839
     },
     {
       "segment": "Sultan bathery Market",
-      "n": 774,
-      "mae": 223.99,
-      "wape": 0.0375,
-      "smape": 0.0378,
-      "directional_accuracy": 0.3734
+      "n": 748,
+      "mae": 275.22,
+      "wape": 0.046,
+      "smape": 0.0466,
+      "directional_accuracy": 0.3944
     },
     {
       "segment": "Suryapeta APMC",
-      "n": 195,
-      "mae": 1094.42,
-      "wape": 0.1677,
-      "smape": 0.1686,
-      "directional_accuracy": 0.6667
+      "n": 163,
+      "mae": 1074.67,
+      "wape": 0.1591,
+      "smape": 0.1608,
+      "directional_accuracy": 0.6564
     },
     {
       "segment": "T. Narasipura APMC",
-      "n": 1584,
-      "mae": 266.79,
-      "wape": 0.1121,
-      "smape": 0.1101,
-      "directional_accuracy": 0.6086
+      "n": 1539,
+      "mae": 306.36,
+      "wape": 0.1272,
+      "smape": 0.1232,
+      "directional_accuracy": 0.6095
     },
     {
       "segment": "Taliparamba Market",
-      "n": 2882,
-      "mae": 163.78,
-      "wape": 0.0339,
-      "smape": 0.036,
-      "directional_accuracy": 0.2526
+      "n": 2796,
+      "mae": 123.52,
+      "wape": 0.0258,
+      "smape": 0.0271,
+      "directional_accuracy": 0.2693
     },
     {
       "segment": "Thalasserry Market",
-      "n": 5977,
-      "mae": 364.42,
-      "wape": 0.1082,
-      "smape": 0.1189,
-      "directional_accuracy": 0.5541
-    },
-    {
-      "segment": "Thalavadi(Uzhavar Sandhai )",
-      "n": 1680,
-      "mae": 236.31,
-      "wape": 0.0703,
-      "smape": 0.07,
-      "directional_accuracy": 0.5071
+      "n": 5733,
+      "mae": 410.82,
+      "wape": 0.1222,
+      "smape": 0.1344,
+      "directional_accuracy": 0.5266
     },
     {
       "segment": "Thirukovilur APMC",
-      "n": 669,
-      "mae": 171.78,
-      "wape": 0.0533,
-      "smape": 0.0531,
-      "directional_accuracy": 0.6996
+      "n": 642,
+      "mae": 162.66,
+      "wape": 0.0505,
+      "smape": 0.0503,
+      "directional_accuracy": 0.7196
     },
     {
-      "segment": "Tiruppur (South) (Uzhavar Sandhai )",
-      "n": 1680,
-      "mae": 297.08,
-      "wape": 0.0778,
-      "smape": 0.0747,
-      "directional_accuracy": 0.4756
+      "segment": "Thodupuzha Market",
+      "n": 13,
+      "mae": 1125.31,
+      "wape": 0.0737,
+      "smape": 0.0754,
+      "directional_accuracy": 0.7692
     },
     {
       "segment": "Tiruvuru APMC",
-      "n": 1876,
-      "mae": 90.98,
-      "wape": 0.0382,
-      "smape": 0.0391,
-      "directional_accuracy": 0.4392
+      "n": 2118,
+      "mae": 94.18,
+      "wape": 0.039,
+      "smape": 0.0399,
+      "directional_accuracy": 0.4117
     },
     {
       "segment": "Udumalpet APMC",
-      "n": 45,
-      "mae": 116.38,
-      "wape": 0.049,
-      "smape": 0.0499,
-      "directional_accuracy": 0.9111
+      "n": 32,
+      "mae": 149.84,
+      "wape": 0.0608,
+      "smape": 0.0635,
+      "directional_accuracy": 0.9688
     },
     {
       "segment": "Valmikipuram APMC",
-      "n": 1673,
-      "mae": 645.86,
-      "wape": 0.3862,
-      "smape": 0.3281,
-      "directional_accuracy": 0.462
+      "n": 1680,
+      "mae": 594.07,
+      "wape": 0.422,
+      "smape": 0.323,
+      "directional_accuracy": 0.4369
     },
     {
       "segment": "Vellore APMC",
-      "n": 3,
-      "mae": 397.98,
-      "wape": 0.1598,
-      "smape": 0.1528,
-      "directional_accuracy": 0.6667
+      "n": 5,
+      "mae": 301.35,
+      "wape": 0.1154,
+      "smape": 0.1146,
+      "directional_accuracy": 0.6
     },
     {
       "segment": "Vijayapura APMC",
-      "n": 1423,
-      "mae": 436.33,
-      "wape": 0.0573,
-      "smape": 0.0578,
-      "directional_accuracy": 0.6388
+      "n": 1433,
+      "mae": 431.37,
+      "wape": 0.0549,
+      "smape": 0.0566,
+      "directional_accuracy": 0.6141
     },
     {
       "segment": "Vikkiravandi APMC",
-      "n": 765,
-      "mae": 127.7,
-      "wape": 0.0368,
-      "smape": 0.0369,
-      "directional_accuracy": 0.634
+      "n": 770,
+      "mae": 144.19,
+      "wape": 0.0414,
+      "smape": 0.0414,
+      "directional_accuracy": 0.6468
     },
     {
       "segment": "Villupuram APMC",
-      "n": 487,
-      "mae": 138.2,
-      "wape": 0.0403,
-      "smape": 0.0405,
-      "directional_accuracy": 0.7269
+      "n": 461,
+      "mae": 160.64,
+      "wape": 0.0465,
+      "smape": 0.0465,
+      "directional_accuracy": 0.7375
     },
     {
       "segment": "Viruthachalam(Uzhavar Sandhai )",
-      "n": 1680,
-      "mae": 712.84,
-      "wape": 0.1265,
-      "smape": 0.1364,
-      "directional_accuracy": 0.4417
+      "n": 3360,
+      "mae": 326.33,
+      "wape": 0.0586,
+      "smape": 0.061,
+      "directional_accuracy": 0.2235
     },
     {
       "segment": "Wanaparthy town APMC",
-      "n": 241,
-      "mae": 776.07,
-      "wape": 0.1097,
-      "smape": 0.1077,
-      "directional_accuracy": 0.6888
+      "n": 159,
+      "mae": 812.99,
+      "wape": 0.1164,
+      "smape": 0.1156,
+      "directional_accuracy": 0.6667
     },
     {
       "segment": "Warangal APMC",
-      "n": 406,
-      "mae": 598.45,
-      "wape": 0.1388,
-      "smape": 0.1535,
-      "directional_accuracy": 0.6084
+      "n": 407,
+      "mae": 566.54,
+      "wape": 0.1406,
+      "smape": 0.1622,
+      "directional_accuracy": 0.5971
     },
     {
       "segment": "Yashika Agro Marketing, Tal Bhusawal, Jalgaon",
-      "n": 890,
-      "mae": 157.33,
-      "wape": 0.0728,
-      "smape": 0.0738,
-      "directional_accuracy": 0.6831
+      "n": 884,
+      "mae": 142.09,
+      "wape": 0.0651,
+      "smape": 0.0662,
+      "directional_accuracy": 0.6357
     },
     {
       "segment": "Yemmiganur APMC",
-      "n": 553,
-      "mae": 783.06,
-      "wape": 0.1197,
-      "smape": 0.1224,
-      "directional_accuracy": 0.7107
+      "n": 633,
+      "mae": 710.73,
+      "wape": 0.108,
+      "smape": 0.1105,
+      "directional_accuracy": 0.733
     },
     {
       "segment": "Zaheerabad APMC",
-      "n": 614,
-      "mae": 132.68,
-      "wape": 0.062,
-      "smape": 0.0624,
-      "directional_accuracy": 0.5586
+      "n": 504,
+      "mae": 145.49,
+      "wape": 0.0663,
+      "smape": 0.0676,
+      "directional_accuracy": 0.6032
     }
   ],
   "performance_by_coverage": [
     {
       "segment": "high",
-      "n": 187155,
-      "mae": 537.66,
-      "wape": 0.1085,
-      "smape": 0.1343,
-      "directional_accuracy": 0.4851
+      "n": 187030,
+      "mae": 529.35,
+      "wape": 0.1056,
+      "smape": 0.1311,
+      "directional_accuracy": 0.4731
     },
     {
       "segment": "standard",
-      "n": 7758,
-      "mae": 415.67,
-      "wape": 0.0677,
-      "smape": 0.0581,
-      "directional_accuracy": 0.557
+      "n": 7325,
+      "mae": 375.17,
+      "wape": 0.0628,
+      "smape": 0.0527,
+      "directional_accuracy": 0.5126
     }
   ],
   "feature_importance": [
     {
       "feature": "current_price",
-      "importance": 1461.14
+      "importance": 1260.89
     },
     {
       "feature": "market_id",
-      "importance": 992.42
+      "importance": 483.68
     },
     {
       "feature": "rolling_mean_7d",
-      "importance": 477.71
-    },
-    {
-      "feature": "rolling_median_30d",
-      "importance": 406.33
+      "importance": 434.56
     },
     {
       "feature": "rolling_mean_90d",
-      "importance": 340.35
-    },
-    {
-      "feature": "commodity",
-      "importance": 228.46
-    },
-    {
-      "feature": "rolling_mean_14d",
-      "importance": 222.68
+      "importance": 391.96
     },
     {
       "feature": "lag_1d",
-      "importance": 155.87
+      "importance": 151.17
     },
     {
-      "feature": "current_spread",
-      "importance": 39.64
-    },
-    {
-      "feature": "rolling_std_30d",
-      "importance": 39.01
-    },
-    {
-      "feature": "lag_28d",
-      "importance": 9.81
+      "feature": "rolling_median_30d",
+      "importance": 146.27
     },
     {
       "feature": "rolling_mean_30d",
-      "importance": 9.35
+      "importance": 113.8
     },
     {
-      "feature": "lag_14d",
-      "importance": 7.02
+      "feature": "rolling_mean_14d",
+      "importance": 97.62
+    },
+    {
+      "feature": "commodity",
+      "importance": 80.2
+    },
+    {
+      "feature": "current_spread",
+      "importance": 16.29
+    },
+    {
+      "feature": "rolling_std_30d",
+      "importance": 7.62
+    },
+    {
+      "feature": "district",
+      "importance": 5.03
+    },
+    {
+      "feature": "momentum_7d",
+      "importance": 4.35
     },
     {
       "feature": "relative_volatility_30d",
-      "importance": 5.22
+      "importance": 4.23
     },
     {
-      "feature": "lead_days",
-      "importance": 3.65
+      "feature": "lag_14d",
+      "importance": 3.62
     }
   ],
   "feature_importance_evaluation": "Permutation importance on the locked holdout using a pre-holdout tree model",
   "training": {
-    "rows": 2011260,
-    "date_min": "2024-07-14",
-    "date_max": "2026-08-03",
+    "rows": 1979802,
+    "date_min": "2024-07-21",
+    "date_max": "2026-08-10",
     "features": [
       "state",
       "commodity",
@@ -2593,10 +2621,10 @@
   "selected_metrics": {
     "method": "recent_level_tree_blend",
     "label": "Validated recent-level + lead-aware blend",
-    "n": 194913,
-    "mae": 532.81,
-    "wape": 0.1065,
-    "smape": 0.1313,
-    "directional_accuracy": 0.4879
+    "n": 194355,
+    "mae": 523.54,
+    "wape": 0.1037,
+    "smape": 0.1282,
+    "directional_accuracy": 0.4746
   }
 }

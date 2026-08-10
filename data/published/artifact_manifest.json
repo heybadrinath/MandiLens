@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-08-03T06:56:13.805988+00:00",
+  "generated_at": "2026-08-10T05:17:13.254468+00:00",
   "manifest": "apps/web/public/data/manifest.json",
-  "manifest_sha256": "d5a9bc54b878826ff7d4889e2eac2f79fc8132a322aa06b9903211099ed6215c",
-  "manifest_bytes": 28420,
-  "evidence_sha256": "e4a5b7b9ee7c065f846293677edfb4ff096aeef486859c5a45411e487b090b2c",
+  "manifest_sha256": "5b64397ac91033948da7f2c5e235fb5a5e250f3deb757664c4ff1dcefb2397f5",
+  "manifest_bytes": 28731,
+  "evidence_sha256": "d574fc71fdd02a1c027bca69a2010c423da6cd6160aa6bf71c5fa9756373c45b",
   "partitions": [
     {
       "state": "Andhra Pradesh",
@@ -13,14 +13,14 @@
       "commoditySlug": "banana",
       "url": "/data/andhra-pradesh/banana.json",
       "marketCount": 2,
-      "observationCount": 1174,
+      "observationCount": 1176,
       "forecastCount": 14,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 456746,
-      "sha256": "7ce000cefedd5d311e4c9e2df5fe49c6d1f1004718b47446ebcecba4fa70cfda"
+      "bytes": 457499,
+      "sha256": "cbd811a65bc7aa6c7c44fbb9e16bc860650dc468a29c0f36afe6cf78356ee73f"
     },
     {
       "state": "Andhra Pradesh",
@@ -29,14 +29,14 @@
       "commoditySlug": "brinjal",
       "url": "/data/andhra-pradesh/brinjal.json",
       "marketCount": 1,
-      "observationCount": 597,
+      "observationCount": 595,
       "forecastCount": 7,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 228202,
-      "sha256": "2e46dbd0a010117499ac6fff9e50b2486ddd0a95082af94fc79f65b7573d3c76"
+      "bytes": 227466,
+      "sha256": "6137617d4d8fd6e44badbfec28522a6d78ab8e6985ad100151b066de8bebd2f2"
     },
     {
       "state": "Andhra Pradesh",
@@ -45,14 +45,14 @@
       "commoditySlug": "cotton",
       "url": "/data/andhra-pradesh/cotton.json",
       "marketCount": 1,
-      "observationCount": 514,
+      "observationCount": 515,
       "forecastCount": 7,
       "dateRange": [
-        "2024-07-06",
-        "2026-08-01"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 197823,
-      "sha256": "511ace48a3bbbb9df7def0051f17bd0187ca4bb7980f45ee03b61b047abbf0b4"
+      "bytes": 198216,
+      "sha256": "cfc49b372fee1dbcfa4ae36689481f13cbc4131e865e8bc025c8aaa35dd24f40"
     },
     {
       "state": "Andhra Pradesh",
@@ -61,14 +61,14 @@
       "commoditySlug": "green-chilli",
       "url": "/data/andhra-pradesh/green-chilli.json",
       "marketCount": 1,
-      "observationCount": 572,
+      "observationCount": 570,
       "forecastCount": 7,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 221621,
-      "sha256": "02231c161dba1ecc903b4abafa42dbc16eddbcea494ed218a8795d953c334cbc"
+      "bytes": 220870,
+      "sha256": "68206c69111bc27547c9c3b67415c9b30f7e28f7f43e392bcb8ad56a9ba41e5a"
     },
     {
       "state": "Andhra Pradesh",
@@ -77,14 +77,14 @@
       "commoditySlug": "groundnut",
       "url": "/data/andhra-pradesh/groundnut.json",
       "marketCount": 3,
-      "observationCount": 1154,
+      "observationCount": 1166,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-06",
-        "2026-08-02"
+        "2024-07-12",
+        "2026-08-09"
       ],
-      "bytes": 451003,
-      "sha256": "005c8657aff44071c41226beabba8c649e9f99ff76a1a0ccf803d1b1b545aaa2"
+      "bytes": 455546,
+      "sha256": "7ab9455feffbb58c188b915909aef0f7f8fa80a95f214c7e01aed9b8a8075007"
     },
     {
       "state": "Andhra Pradesh",
@@ -93,14 +93,14 @@
       "commoditySlug": "maize",
       "url": "/data/andhra-pradesh/maize.json",
       "marketCount": 3,
-      "observationCount": 821,
+      "observationCount": 831,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-06",
-        "2026-08-03"
+        "2024-07-15",
+        "2026-08-10"
       ],
-      "bytes": 325794,
-      "sha256": "449666a5a6ec8c50addb6d296022b3fe8ec588ac09705058ab73b0fe2317c33c"
+      "bytes": 329519,
+      "sha256": "561ca2e70e76e77ee927c6bb0104c2aa7b093843693ede2e8c3b39c56d69874f"
     },
     {
       "state": "Andhra Pradesh",
@@ -109,14 +109,14 @@
       "commoditySlug": "onion",
       "url": "/data/andhra-pradesh/onion.json",
       "marketCount": 1,
-      "observationCount": 336,
+      "observationCount": 340,
       "forecastCount": 7,
       "dateRange": [
         "2024-07-22",
-        "2026-08-01"
+        "2026-08-08"
       ],
-      "bytes": 130815,
-      "sha256": "107c40dd952a3997ede6f5136c1f4655a500d6430bd94420cf4b72a14539276a"
+      "bytes": 132276,
+      "sha256": "d582178649b8b27275a524b5c2f30eb822468270d2fb22b383467450d1cea35a"
     },
     {
       "state": "Andhra Pradesh",
@@ -125,14 +125,14 @@
       "commoditySlug": "paddy-common",
       "url": "/data/andhra-pradesh/paddy-common.json",
       "marketCount": 3,
-      "observationCount": 833,
+      "observationCount": 836,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-10"
       ],
-      "bytes": 330375,
-      "sha256": "5217a50d4c50663693e68c3fee10a8b627b6aa1ef9e655b411570a7a9d70879b"
+      "bytes": 331476,
+      "sha256": "613a4ece93e65a524670c3ba3e4bbb722b7a67772d14e6d38a12cef34066b55d"
     },
     {
       "state": "Andhra Pradesh",
@@ -141,14 +141,14 @@
       "commoditySlug": "potato",
       "url": "/data/andhra-pradesh/potato.json",
       "marketCount": 1,
-      "observationCount": 585,
+      "observationCount": 583,
       "forecastCount": 7,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 224854,
-      "sha256": "2250e0441122f99e67e87aa759a811135c33803818f6824d5af4e3dd809cdfa9"
+      "bytes": 224103,
+      "sha256": "014fffe075c07029c84df15a11c33a273cc6ba52545cf0a4f69ecaf97e9d24eb"
     },
     {
       "state": "Andhra Pradesh",
@@ -157,14 +157,14 @@
       "commoditySlug": "tomato",
       "url": "/data/andhra-pradesh/tomato.json",
       "marketCount": 3,
-      "observationCount": 1666,
+      "observationCount": 1673,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-10"
       ],
-      "bytes": 638446,
-      "sha256": "b3305bbbc9f0ddb597f642aff47c0a3d823380c6c83b2034080cd01064cdd0c4"
+      "bytes": 641059,
+      "sha256": "6253b662278724d2780dbdbb6daba3f03083ddd03c3dadd466b3915a5910abf1"
     },
     {
       "state": "Andhra Pradesh",
@@ -173,14 +173,14 @@
       "commoditySlug": "turmeric",
       "url": "/data/andhra-pradesh/turmeric.json",
       "marketCount": 2,
-      "observationCount": 605,
+      "observationCount": 612,
       "forecastCount": 14,
       "dateRange": [
-        "2024-07-08",
-        "2026-07-31"
+        "2024-07-12",
+        "2026-08-07"
       ],
-      "bytes": 239170,
-      "sha256": "27a7c265bb0d5f0e04270053bae97ba91c39ad3fab115c52811edd4e5415d22e"
+      "bytes": 241797,
+      "sha256": "90738a461a227601d0d6650ebbc95b2c19100c62ec184926cf9803b2709f6496"
     },
     {
       "state": "Karnataka",
@@ -189,14 +189,14 @@
       "commoditySlug": "arecanut",
       "url": "/data/karnataka/arecanut.json",
       "marketCount": 3,
-      "observationCount": 1188,
+      "observationCount": 1193,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 466168,
-      "sha256": "f56026e59a5522ee85fc103b099ee3d4d6105daf0aae135b1666b56608125252"
+      "bytes": 468086,
+      "sha256": "87a826c015758ffe720d42089d962edc8a552c526a92a060915541b131384dd6"
     },
     {
       "state": "Karnataka",
@@ -205,14 +205,14 @@
       "commoditySlug": "banana",
       "url": "/data/karnataka/banana.json",
       "marketCount": 3,
-      "observationCount": 660,
+      "observationCount": 673,
       "forecastCount": 21,
       "dateRange": [
         "2025-01-31",
-        "2026-08-03"
+        "2026-08-07"
       ],
-      "bytes": 268827,
-      "sha256": "4bb0465571e38b9aa9cc79bc7935e7115b784f19338068557ba3b45cc682b7a7"
+      "bytes": 273744,
+      "sha256": "cc963e5b24cd10e9d985a3565a97f4517dd6e24563f930e12e603a57d6ea9f54"
     },
     {
       "state": "Karnataka",
@@ -221,14 +221,14 @@
       "commoditySlug": "brinjal",
       "url": "/data/karnataka/brinjal.json",
       "marketCount": 3,
-      "observationCount": 1726,
+      "observationCount": 1725,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 661639,
-      "sha256": "5f3f860d51b7aabfe14b8090c3170cd07d5b5c3c307bd747e03a4195d43ce8a7"
+      "bytes": 661315,
+      "sha256": "873f7f2872eae56f8d12e4757450a377cf2bbb003e691ae4956a5f18c2b81eb1"
     },
     {
       "state": "Karnataka",
@@ -237,14 +237,14 @@
       "commoditySlug": "coconut",
       "url": "/data/karnataka/coconut.json",
       "marketCount": 3,
-      "observationCount": 579,
+      "observationCount": 583,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-07",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 238807,
-      "sha256": "29cb30717eb50e6b0abf4ec37aebf0db6520131d460e92417bee5b941816d63e"
+      "bytes": 240320,
+      "sha256": "eae7c4c34570040096e32de4f9993e97ab74a58fa41886f85a85544f28703fdf"
     },
     {
       "state": "Karnataka",
@@ -253,14 +253,14 @@
       "commoditySlug": "cotton",
       "url": "/data/karnataka/cotton.json",
       "marketCount": 3,
-      "observationCount": 885,
+      "observationCount": 886,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-01"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 352959,
-      "sha256": "d3494a4dd8a0be21733f7a5d1f6a63f01edd1015eeba97224844d5b1b41fdd9b"
+      "bytes": 353359,
+      "sha256": "bb65c5a369601bf722ed0078402e2ebfdfd31082201eca977bbe681878ee6fd6"
     },
     {
       "state": "Karnataka",
@@ -269,14 +269,14 @@
       "commoditySlug": "green-chilli",
       "url": "/data/karnataka/green-chilli.json",
       "marketCount": 3,
-      "observationCount": 1522,
+      "observationCount": 1525,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 593128,
-      "sha256": "74b775fbfd9fce76dc2047ef010ab14ecc8f626961e8f3fc6dce43bcfb0fcfb7"
+      "bytes": 594341,
+      "sha256": "2e465e3d770559c949758286428f288d800150258e32fa18da6506eb3ee33452"
     },
     {
       "state": "Karnataka",
@@ -285,14 +285,14 @@
       "commoditySlug": "groundnut",
       "url": "/data/karnataka/groundnut.json",
       "marketCount": 3,
-      "observationCount": 681,
+      "observationCount": 464,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-06",
-        "2026-08-01"
+        "2024-07-16",
+        "2026-08-07"
       ],
-      "bytes": 276892,
-      "sha256": "bcfd4746102fc1e6a570adae5cbc9d00addc7873880a3cf0843116f771b02e54"
+      "bytes": 191723,
+      "sha256": "caeed558c13e4222cde6b5c3a327dae61c4d294fd06fd117111298de8a5c0115"
     },
     {
       "state": "Karnataka",
@@ -301,14 +301,14 @@
       "commoditySlug": "maize",
       "url": "/data/karnataka/maize.json",
       "marketCount": 3,
-      "observationCount": 477,
+      "observationCount": 508,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-01"
+        "2024-07-15",
+        "2026-08-07"
       ],
-      "bytes": 197116,
-      "sha256": "9936440fd26367dd469f4997ee6daa4f912805a7483fd945dc6b403cbd200fc3"
+      "bytes": 207962,
+      "sha256": "7f987dae74668e939fe77be28a34877b9c98e908f9b17cfeece56cf00c344764"
     },
     {
       "state": "Karnataka",
@@ -317,14 +317,14 @@
       "commoditySlug": "onion",
       "url": "/data/karnataka/onion.json",
       "marketCount": 3,
-      "observationCount": 1112,
+      "observationCount": 1117,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-01"
+        "2024-07-12",
+        "2026-08-09"
       ],
-      "bytes": 431421,
-      "sha256": "dc469dc0d5b0abf4a18d976a1802087a0cc132500e8dd3c86430ddb817b0815a"
+      "bytes": 433288,
+      "sha256": "ef03a31a988e3dd5737bdc8850f0355a0c180b67983f3d1b3eeb6f63e94b9be3"
     },
     {
       "state": "Karnataka",
@@ -333,14 +333,14 @@
       "commoditySlug": "paddy-common",
       "url": "/data/karnataka/paddy-common.json",
       "marketCount": 3,
-      "observationCount": 733,
+      "observationCount": 738,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-07"
       ],
-      "bytes": 294585,
-      "sha256": "89bfc3acd6464a90f1ce7507440535ebdb580146811ff4dabdd383c398e03584"
+      "bytes": 296578,
+      "sha256": "4444ac4dc229ae0704f304d12eb01477cdf13a6177e695bbc19440c394af5d94"
     },
     {
       "state": "Karnataka",
@@ -349,14 +349,14 @@
       "commoditySlug": "potato",
       "url": "/data/karnataka/potato.json",
       "marketCount": 3,
-      "observationCount": 1275,
+      "observationCount": 1273,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-01"
+        "2024-07-12",
+        "2026-08-07"
       ],
-      "bytes": 491631,
-      "sha256": "fdd9d358d23c2387d512647f160c300c80cc9b83d13da351f3da252bafa597c5"
+      "bytes": 490942,
+      "sha256": "efe1c56916473a52dbb4566848cc3a6ae93694b413e62c06bd61a6d8af263cbb"
     },
     {
       "state": "Karnataka",
@@ -365,14 +365,14 @@
       "commoditySlug": "ragi",
       "url": "/data/karnataka/ragi.json",
       "marketCount": 3,
-      "observationCount": 896,
+      "observationCount": 905,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-01"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 353126,
-      "sha256": "95f54148fe37d6d0483459b936e97fde5c3a6a95b242969176127eff21d34710"
+      "bytes": 356644,
+      "sha256": "6f7f2a7430d5593fbac9423ea8c35d13c03700a4c42a1e41e5973d2ff744a19c"
     },
     {
       "state": "Karnataka",
@@ -381,14 +381,14 @@
       "commoditySlug": "tomato",
       "url": "/data/karnataka/tomato.json",
       "marketCount": 3,
-      "observationCount": 1530,
+      "observationCount": 1532,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 586710,
-      "sha256": "a3fd69fe8d10b5e297606651eabe02c74b847c229687b899ba2e7593b7c2fea6"
+      "bytes": 587477,
+      "sha256": "3ddde6f2f6cc4997df458a85e4a7d1ea8b8f544dd97b851720a91598c5420c0f"
     },
     {
       "state": "Karnataka",
@@ -400,11 +400,11 @@
       "observationCount": 395,
       "forecastCount": 14,
       "dateRange": [
-        "2024-07-11",
-        "2026-08-03"
+        "2024-07-16",
+        "2026-08-05"
       ],
-      "bytes": 161939,
-      "sha256": "cd777cc9d4fcc4bb3bf66824f75c09c9f2c7d68f251935fd7933b3fc6bb6b0c9"
+      "bytes": 161925,
+      "sha256": "23718ea9a9ec525b3e082469386c54cabfea37886077d1d1e9c107159ae46c68"
     },
     {
       "state": "Kerala",
@@ -413,14 +413,14 @@
       "commoditySlug": "arecanut",
       "url": "/data/kerala/arecanut.json",
       "marketCount": 3,
-      "observationCount": 1816,
+      "observationCount": 1815,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-10"
       ],
-      "bytes": 698103,
-      "sha256": "60ffe570ff305bf3213452b51081914dd295fe3d7b246b5e716687456a058aca"
+      "bytes": 697748,
+      "sha256": "cca4eab4a43d3f2ffa3d41cb0424bb714197cb60fc686c7c0cadd60154f543d3"
     },
     {
       "state": "Kerala",
@@ -429,14 +429,14 @@
       "commoditySlug": "banana",
       "url": "/data/kerala/banana.json",
       "marketCount": 3,
-      "observationCount": 2162,
+      "observationCount": 2160,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-10"
       ],
-      "bytes": 831283,
-      "sha256": "c3034a9ef08086eff6087b596cda387b89d675ac49576bd61a4209fd685a212a"
+      "bytes": 830639,
+      "sha256": "0c60acadd79aad997742882728fd9e865e712c5bff7efb5d6ec160650928ac6d"
     },
     {
       "state": "Kerala",
@@ -445,14 +445,14 @@
       "commoditySlug": "brinjal",
       "url": "/data/kerala/brinjal.json",
       "marketCount": 3,
-      "observationCount": 2116,
+      "observationCount": 2113,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-02"
+        "2024-07-12",
+        "2026-08-10"
       ],
-      "bytes": 806008,
-      "sha256": "c9ddcfcff4cf85f58bf5af0f9a0017431a93b5b8f422cc74b820574c87ce84c4"
+      "bytes": 804959,
+      "sha256": "f969a15fa35502058e846acf22e20b37efd16a7feae387263ba2156d9b6c2086"
     },
     {
       "state": "Kerala",
@@ -461,14 +461,14 @@
       "commoditySlug": "coconut",
       "url": "/data/kerala/coconut.json",
       "marketCount": 3,
-      "observationCount": 1711,
+      "observationCount": 1715,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-01"
+        "2024-07-12",
+        "2026-08-10"
       ],
-      "bytes": 652844,
-      "sha256": "d0dbe5afb3c1889592e7ba3de8a0690d8c008c17e652dd4b1975ad643cc75745"
+      "bytes": 654321,
+      "sha256": "946daa3d868dd99c7e97b5f329984bb89ea9f05398b5cdd8cb32d3b2f89a4f9b"
     },
     {
       "state": "Kerala",
@@ -477,14 +477,14 @@
       "commoditySlug": "green-chilli",
       "url": "/data/kerala/green-chilli.json",
       "marketCount": 3,
-      "observationCount": 2110,
+      "observationCount": 2107,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-02"
+        "2024-07-12",
+        "2026-08-10"
       ],
-      "bytes": 808185,
-      "sha256": "a2fb6379dcfae4cd0923fcb4cec216af5bac6b8fffd096b0772cc9a65e97f9ec"
+      "bytes": 807124,
+      "sha256": "53efc6e4d557698125a22de6117daf549571b6be9611f3fcdc4b2d8df22487a4"
     },
     {
       "state": "Kerala",
@@ -493,14 +493,14 @@
       "commoditySlug": "onion",
       "url": "/data/kerala/onion.json",
       "marketCount": 3,
-      "observationCount": 2146,
+      "observationCount": 2143,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-09"
       ],
-      "bytes": 815978,
-      "sha256": "b5c54ccc7360a9ac9e6f6e97f76e0e3d7da151bb7410e7d2efd92d8f11d7b201"
+      "bytes": 814909,
+      "sha256": "44247cbbb7513614a7ee202c5b82db2e05dd0217da006d588f4a2d7c8131b133"
     },
     {
       "state": "Kerala",
@@ -509,14 +509,14 @@
       "commoditySlug": "paddy-common",
       "url": "/data/kerala/paddy-common.json",
       "marketCount": 2,
-      "observationCount": 1154,
+      "observationCount": 1153,
       "forecastCount": 14,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 438640,
-      "sha256": "acbb5f4a8c41336224a981d7bf3ad68578a92eea6bc40ffa676cf102be0bd14a"
+      "bytes": 438280,
+      "sha256": "78e0e31c08939d293c382f3bfa2d2971cf15dbe101199651d12063db5e832d94"
     },
     {
       "state": "Kerala",
@@ -525,14 +525,14 @@
       "commoditySlug": "potato",
       "url": "/data/kerala/potato.json",
       "marketCount": 3,
-      "observationCount": 2121,
+      "observationCount": 2124,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-09"
       ],
-      "bytes": 805214,
-      "sha256": "1e5b3d70ad1461081c16a4124ab2ed6c694b055aef0931634b024d0d8a322d03"
+      "bytes": 806379,
+      "sha256": "ae4dc0cef51427d48199fc7a173f10c8d325d2377339633f97782b861f8e32b9"
     },
     {
       "state": "Kerala",
@@ -541,14 +541,30 @@
       "commoditySlug": "tomato",
       "url": "/data/kerala/tomato.json",
       "marketCount": 3,
-      "observationCount": 2119,
+      "observationCount": 2117,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-09"
       ],
-      "bytes": 804477,
-      "sha256": "417a8b45055873957e74a1513d174546ac446c5d6ae67e3f2a8a6795677a85ae"
+      "bytes": 803739,
+      "sha256": "dd29b8c949d2d072db76dc955887814369c0587615f82e54f3699479634b67f3"
+    },
+    {
+      "state": "Kerala",
+      "stateSlug": "kerala",
+      "commodity": "Turmeric",
+      "commoditySlug": "turmeric",
+      "url": "/data/kerala/turmeric.json",
+      "marketCount": 1,
+      "observationCount": 135,
+      "forecastCount": 7,
+      "dateRange": [
+        "2024-12-15",
+        "2026-08-05"
+      ],
+      "bytes": 56808,
+      "sha256": "d16859d156667ef75c5e6249a8216a6854839444a29b3f46b5c4c8f1aa6f3286"
     },
     {
       "state": "Maharashtra",
@@ -560,11 +576,11 @@
       "observationCount": 360,
       "forecastCount": 7,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-01"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 140596,
-      "sha256": "2e4bed1b876fde526e0d38ac0a3f6a27846e3691c207a8643172a604b9db891b"
+      "bytes": 140587,
+      "sha256": "53e1039e31c18ca03caed0e6499ed03bece6a23b7489aa60ed9f7cc7344521df"
     },
     {
       "state": "Maharashtra",
@@ -573,14 +589,14 @@
       "commoditySlug": "banana",
       "url": "/data/maharashtra/banana.json",
       "marketCount": 3,
-      "observationCount": 1730,
+      "observationCount": 1744,
       "forecastCount": 21,
       "dateRange": [
         "2024-09-01",
-        "2026-08-03"
+        "2026-08-09"
       ],
-      "bytes": 659589,
-      "sha256": "b942a7c14bc31ce2e2ee40375d09365fc863bb114c42fdf498b5eb8afa12173c"
+      "bytes": 664766,
+      "sha256": "a99048f2ef40707da9c360459bb2c6a80262df7a05096932ef3b68d967d0bcaa"
     },
     {
       "state": "Maharashtra",
@@ -589,14 +605,14 @@
       "commoditySlug": "brinjal",
       "url": "/data/maharashtra/brinjal.json",
       "marketCount": 3,
-      "observationCount": 2035,
+      "observationCount": 2032,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-09"
       ],
-      "bytes": 774925,
-      "sha256": "6ecc5c920d954b4ada2d0bf4b795ca372048926f5afda214ea72d9619b9142bd"
+      "bytes": 773821,
+      "sha256": "f116c644391af5d2480f47974c3afb512d0d1955a01a52916b765f17716de300"
     },
     {
       "state": "Maharashtra",
@@ -608,11 +624,11 @@
       "observationCount": 512,
       "forecastCount": 7,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-01"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 196116,
-      "sha256": "89797252e0140e7f2410726bde9ca5b8b6834ded4338e6020cc4a7c4cfca896a"
+      "bytes": 196101,
+      "sha256": "0fcac830ae179288d300bf12ce5b6864ba34101777d33cd5a0e487c5b1d6ce10"
     },
     {
       "state": "Maharashtra",
@@ -624,11 +640,11 @@
       "observationCount": 328,
       "forecastCount": 7,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-01"
+        "2024-12-02",
+        "2026-08-04"
       ],
-      "bytes": 128032,
-      "sha256": "856f903517ba624b5a229a01990ec4359d405916d310601ef30c7130db618d49"
+      "bytes": 128038,
+      "sha256": "5d0c2bc88f33d5ac60a6131f9e1efffd0317cdbd43d8a0a82600bdb2f522c96c"
     },
     {
       "state": "Maharashtra",
@@ -637,14 +653,14 @@
       "commoditySlug": "green-chilli",
       "url": "/data/maharashtra/green-chilli.json",
       "marketCount": 3,
-      "observationCount": 1955,
+      "observationCount": 1954,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-09"
       ],
-      "bytes": 744752,
-      "sha256": "8234e73c55c66c37a6ea0af350742e9b560ef23301cf115af54c6d5faab1e8a1"
+      "bytes": 744428,
+      "sha256": "f5b5b62486c2d0e44df90225bfaceabe922d5a25b4bb2120e30c5a519ba2f69a"
     },
     {
       "state": "Maharashtra",
@@ -656,11 +672,11 @@
       "observationCount": 790,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-01"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 312810,
-      "sha256": "50b7f7d974d9ba8ab5b70f6117adadec9855cc405240fb34d96af3c41eb80868"
+      "bytes": 312811,
+      "sha256": "e4f68d748fb9ee6da496fd7304f2bc166d509c8343a32a6e6360de43688c6748"
     },
     {
       "state": "Maharashtra",
@@ -669,14 +685,14 @@
       "commoditySlug": "maize",
       "url": "/data/maharashtra/maize.json",
       "marketCount": 3,
-      "observationCount": 745,
+      "observationCount": 753,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-06",
-        "2026-08-01"
+        "2024-07-13",
+        "2026-08-08"
       ],
-      "bytes": 298533,
-      "sha256": "eb6882e94a9979ea72754fc7140eb41a18e5659a866e21e682f7076ccc1821a4"
+      "bytes": 301648,
+      "sha256": "0887dc17721d7a8d9815eb900b194a764179f566041dcd5cd6afa4c90710cf1a"
     },
     {
       "state": "Maharashtra",
@@ -688,11 +704,11 @@
       "observationCount": 2038,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-10"
       ],
-      "bytes": 775275,
-      "sha256": "fd8b6c4b43a92ff4b56dc1f1d0d36c1d4d258a83f51223d5c59899f4f647d823"
+      "bytes": 775322,
+      "sha256": "17384749451f17a3d0a2aabe5d05bf5201d51e287a38f90e5cb6eaafbfdcd02b"
     },
     {
       "state": "Maharashtra",
@@ -701,14 +717,14 @@
       "commoditySlug": "paddy-common",
       "url": "/data/maharashtra/paddy-common.json",
       "marketCount": 3,
-      "observationCount": 1684,
+      "observationCount": 1685,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-02"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 645131,
-      "sha256": "af1ef276e130ece3eb9ed51a3565d16521a9852214f0eda6d957fc71317e68be"
+      "bytes": 645510,
+      "sha256": "0f8eba400a27e923ac07554be6ed912b6cb89d799e37515be7809d3a6a8d86ed"
     },
     {
       "state": "Maharashtra",
@@ -717,14 +733,14 @@
       "commoditySlug": "potato",
       "url": "/data/maharashtra/potato.json",
       "marketCount": 3,
-      "observationCount": 1922,
+      "observationCount": 1920,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-10"
       ],
-      "bytes": 732702,
-      "sha256": "910ba55ad9dc196aef779fd55cd8e0538fac08cf05f39fc9e5c990ce614e105c"
+      "bytes": 732001,
+      "sha256": "106003b81e08a4a07d39192c01102022505e58f723bfb9d7d64b5781ef68b162"
     },
     {
       "state": "Maharashtra",
@@ -733,14 +749,14 @@
       "commoditySlug": "ragi",
       "url": "/data/maharashtra/ragi.json",
       "marketCount": 1,
-      "observationCount": 607,
+      "observationCount": 606,
       "forecastCount": 7,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 231152,
-      "sha256": "dccfb5272b496090df413032a77da95d0594e1e4fadad49d2fe4f8eef8c90f1f"
+      "bytes": 230816,
+      "sha256": "c9ff15f8b2aca62e69ca245e60ab6fdc5cb9e6a69291a97e11f2aa4265883c3c"
     },
     {
       "state": "Maharashtra",
@@ -749,14 +765,14 @@
       "commoditySlug": "tomato",
       "url": "/data/maharashtra/tomato.json",
       "marketCount": 3,
-      "observationCount": 2083,
+      "observationCount": 2084,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-02"
+        "2024-07-12",
+        "2026-08-10"
       ],
-      "bytes": 793308,
-      "sha256": "ae53648fde3beb3c645f2687965f4aa92cffc8a7fe5ff7ff9781437597c0c968"
+      "bytes": 793778,
+      "sha256": "3ffda69dba8d7bdc8263e2d4aeb556ef38cc179ca1d58d04d7b9c5b7d56bc167"
     },
     {
       "state": "Maharashtra",
@@ -765,14 +781,14 @@
       "commoditySlug": "turmeric",
       "url": "/data/maharashtra/turmeric.json",
       "marketCount": 3,
-      "observationCount": 1121,
+      "observationCount": 1127,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-07-31"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 438905,
-      "sha256": "c7247eca3a88dc251894acf4d45d8ffc4f52190d0b74a11b96219c67c97e5589"
+      "bytes": 441167,
+      "sha256": "73e077f11dc529224ec0130e925369de6264d3f39f572940202e2472400d8108"
     },
     {
       "state": "Tamil Nadu",
@@ -781,14 +797,14 @@
       "commoditySlug": "banana",
       "url": "/data/tamil-nadu/banana.json",
       "marketCount": 3,
-      "observationCount": 2181,
+      "observationCount": 2200,
       "forecastCount": 21,
       "dateRange": [
         "2024-07-16",
-        "2026-08-03"
+        "2026-08-10"
       ],
-      "bytes": 829122,
-      "sha256": "5ab9feb996595e1a56102269d5aa1e1a365f86e763dc2a5c6a230145728118b1"
+      "bytes": 835837,
+      "sha256": "93cb0173249ae7390c7f37fd28a3db7e41e5ac12c149ce1c7f9a674c3bc01ab5"
     },
     {
       "state": "Tamil Nadu",
@@ -797,14 +813,14 @@
       "commoditySlug": "brinjal",
       "url": "/data/tamil-nadu/brinjal.json",
       "marketCount": 3,
-      "observationCount": 2188,
+      "observationCount": 2208,
       "forecastCount": 21,
       "dateRange": [
         "2024-07-16",
-        "2026-08-03"
+        "2026-08-10"
       ],
-      "bytes": 833295,
-      "sha256": "220a170597626880fc7c7e58c280d42e43052bd5ebabf89f44f6c949f8dda76f"
+      "bytes": 840222,
+      "sha256": "7b9a4b951a247d07c1db67c113330b0b6444fd3126f394fe0513e4e2d175896f"
     },
     {
       "state": "Tamil Nadu",
@@ -813,14 +829,14 @@
       "commoditySlug": "coconut",
       "url": "/data/tamil-nadu/coconut.json",
       "marketCount": 3,
-      "observationCount": 2190,
+      "observationCount": 2211,
       "forecastCount": 21,
       "dateRange": [
         "2024-07-16",
-        "2026-08-03"
+        "2026-08-10"
       ],
-      "bytes": 836963,
-      "sha256": "508e4a1ef1cd7d768e5fa247b5fb0edfac85e08d22bea5cfaec1fc42acf8c298"
+      "bytes": 843700,
+      "sha256": "9492d4decbf56937c0312b127cce7b4c43127e0242bf25c28da9f548ee94d039"
     },
     {
       "state": "Tamil Nadu",
@@ -829,14 +845,14 @@
       "commoditySlug": "green-chilli",
       "url": "/data/tamil-nadu/green-chilli.json",
       "marketCount": 3,
-      "observationCount": 2190,
+      "observationCount": 2211,
       "forecastCount": 21,
       "dateRange": [
         "2024-07-16",
-        "2026-08-03"
+        "2026-08-10"
       ],
-      "bytes": 849822,
-      "sha256": "42042e5dcd6820f64410e0569693616679fc0568d4256660afefebc0380871a4"
+      "bytes": 856856,
+      "sha256": "49e3a807e2b3fea1dc56d362fd8d4a338aaf60ceefca51dabe07f2b9434eb86d"
     },
     {
       "state": "Tamil Nadu",
@@ -845,14 +861,14 @@
       "commoditySlug": "groundnut",
       "url": "/data/tamil-nadu/groundnut.json",
       "marketCount": 3,
-      "observationCount": 2181,
+      "observationCount": 2201,
       "forecastCount": 21,
       "dateRange": [
         "2024-07-16",
-        "2026-08-03"
+        "2026-08-10"
       ],
-      "bytes": 850170,
-      "sha256": "5425461b017d5dd98ca6019419a4a70f91cbe216b2a78f9c10e6c37b543e40f4"
+      "bytes": 857753,
+      "sha256": "d9ea02966c965462fe4fbadfe31e01747673aadfb7af837d4f61306e05ed7518"
     },
     {
       "state": "Tamil Nadu",
@@ -860,15 +876,15 @@
       "commodity": "Maize",
       "commoditySlug": "maize",
       "url": "/data/tamil-nadu/maize.json",
-      "marketCount": 2,
-      "observationCount": 815,
-      "forecastCount": 14,
+      "marketCount": 3,
+      "observationCount": 906,
+      "forecastCount": 21,
       "dateRange": [
-        "2024-07-08",
-        "2026-07-31"
+        "2024-07-12",
+        "2026-08-07"
       ],
-      "bytes": 317911,
-      "sha256": "ca70ff72781e1eace85a71e7d876bebfc09d717ae0aa0224daf872c5fc92ecfb"
+      "bytes": 358012,
+      "sha256": "7e41e9c565e71f6f1b02bed4edf924590a5690257e0a5f700be2065b9d3ed1f1"
     },
     {
       "state": "Tamil Nadu",
@@ -877,14 +893,14 @@
       "commoditySlug": "onion",
       "url": "/data/tamil-nadu/onion.json",
       "marketCount": 3,
-      "observationCount": 2190,
+      "observationCount": 2210,
       "forecastCount": 21,
       "dateRange": [
         "2024-07-16",
-        "2026-08-03"
+        "2026-08-10"
       ],
-      "bytes": 837045,
-      "sha256": "8af4b4ee7cca58292a01e72e9511705f456f5f8642403fef7e1f6652f7b7c33c"
+      "bytes": 845260,
+      "sha256": "b8874733a5a81b303e45354752b5784985d8e1a6d639ae28ade96d581e1862e6"
     },
     {
       "state": "Tamil Nadu",
@@ -893,14 +909,14 @@
       "commoditySlug": "paddy-common",
       "url": "/data/tamil-nadu/paddy-common.json",
       "marketCount": 3,
-      "observationCount": 1288,
+      "observationCount": 1289,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-10"
       ],
-      "bytes": 501224,
-      "sha256": "45f0e670aabbc10a80da6bb39e32a7ae3ab386319b12a49e1560846b47ec9537"
+      "bytes": 501622,
+      "sha256": "2358c9e348f26c4648e506f76fc101848dc45f28c03caebd67d2029c07ad1177"
     },
     {
       "state": "Tamil Nadu",
@@ -909,14 +925,14 @@
       "commoditySlug": "potato",
       "url": "/data/tamil-nadu/potato.json",
       "marketCount": 3,
-      "observationCount": 2187,
+      "observationCount": 2207,
       "forecastCount": 21,
       "dateRange": [
         "2024-07-16",
-        "2026-08-03"
+        "2026-08-10"
       ],
-      "bytes": 842922,
-      "sha256": "e218eacc6082ccfb4bab2f18b0f7aef125f9db2c8cb7c28bc351b0a390279428"
+      "bytes": 850464,
+      "sha256": "3fa7eed811e82d8f00494f5bdb09d8e944685104a618f2c6a2e03631f24bf532"
     },
     {
       "state": "Tamil Nadu",
@@ -925,14 +941,14 @@
       "commoditySlug": "ragi",
       "url": "/data/tamil-nadu/ragi.json",
       "marketCount": 3,
-      "observationCount": 712,
+      "observationCount": 720,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-08",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-07"
       ],
-      "bytes": 284628,
-      "sha256": "f6a5b18fb54cac6f61527e4f1f58a6abe7bf33f6cfb6019a066241b9cb741674"
+      "bytes": 287602,
+      "sha256": "2a49d3ccc36822ea0d0b994a1497fee5ac3b8e297cebca9b9208f2aa4cf1c617"
     },
     {
       "state": "Tamil Nadu",
@@ -941,14 +957,14 @@
       "commoditySlug": "tomato",
       "url": "/data/tamil-nadu/tomato.json",
       "marketCount": 3,
-      "observationCount": 2187,
+      "observationCount": 2208,
       "forecastCount": 21,
       "dateRange": [
         "2024-07-16",
-        "2026-08-03"
+        "2026-08-10"
       ],
-      "bytes": 833125,
-      "sha256": "209adf4786fff0377d4da8d46f52718ccfe6455ed8d191d894282623a8fc1c24"
+      "bytes": 840983,
+      "sha256": "35e0040af14a79b06d1adfaa946ad3dbc266b87ba921e0c5491dec91fba02628"
     },
     {
       "state": "Telangana",
@@ -957,14 +973,14 @@
       "commoditySlug": "banana",
       "url": "/data/telangana/banana.json",
       "marketCount": 1,
-      "observationCount": 207,
+      "observationCount": 209,
       "forecastCount": 7,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-01"
+        "2024-07-14",
+        "2026-08-08"
       ],
-      "bytes": 84549,
-      "sha256": "eca4d75aece325aec9a8ea3b39bc4354d7e9478f511ea5c5576aa4ae96001c9f"
+      "bytes": 85310,
+      "sha256": "b30723721f5428c481c29e83ed275daa43ee3e9df89147ceaa69ed92a73d2e6a"
     },
     {
       "state": "Telangana",
@@ -973,14 +989,14 @@
       "commoditySlug": "brinjal",
       "url": "/data/telangana/brinjal.json",
       "marketCount": 3,
-      "observationCount": 1421,
+      "observationCount": 982,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-09"
       ],
-      "bytes": 557608,
-      "sha256": "e944f38bf97e682aa5c3547d5129bd7c7037cf652261786fde31f96a5eec246c"
+      "bytes": 390997,
+      "sha256": "0c9f391dd930c509844fd1ee0d92a1bd2b6ec7f36a48afef082ef499ec526925"
     },
     {
       "state": "Telangana",
@@ -989,14 +1005,14 @@
       "commoditySlug": "cotton",
       "url": "/data/telangana/cotton.json",
       "marketCount": 3,
-      "observationCount": 1191,
+      "observationCount": 1186,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-07"
       ],
-      "bytes": 473324,
-      "sha256": "afe16d8cb4f78196e472c87b7cca46a4a5dbe92ee25250710a77e8276e0a6d7b"
+      "bytes": 471439,
+      "sha256": "0e582ff295b34972bec2c15de97c90199fd4521dfbbb4103da23c4ea5622f5f6"
     },
     {
       "state": "Telangana",
@@ -1005,14 +1021,14 @@
       "commoditySlug": "green-chilli",
       "url": "/data/telangana/green-chilli.json",
       "marketCount": 3,
-      "observationCount": 1464,
+      "observationCount": 1469,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-09"
       ],
-      "bytes": 571473,
-      "sha256": "649ae755bdf6fd33a80b33e6f484cded36f6f6e96a213fa3347000e1f2af2a90"
+      "bytes": 573392,
+      "sha256": "b4ebf3005533d435842e8e7b27f5271e5355ea60afae6028ea1282ab21a0e131"
     },
     {
       "state": "Telangana",
@@ -1021,14 +1037,14 @@
       "commoditySlug": "groundnut",
       "url": "/data/telangana/groundnut.json",
       "marketCount": 3,
-      "observationCount": 1151,
+      "observationCount": 1152,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-06",
-        "2026-08-01"
+        "2024-07-13",
+        "2026-08-08"
       ],
-      "bytes": 447856,
-      "sha256": "12aa338ff39f66b69d21a9febd511b740e3bd6fd8fdd744d3d18978acd0f5500"
+      "bytes": 448285,
+      "sha256": "cb5c7acc5d47f606ab8a4d34c0adc5745da269fd4155dde3ccb65ced67597ab8"
     },
     {
       "state": "Telangana",
@@ -1037,14 +1053,14 @@
       "commoditySlug": "maize",
       "url": "/data/telangana/maize.json",
       "marketCount": 3,
-      "observationCount": 995,
+      "observationCount": 993,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-06",
-        "2026-07-31"
+        "2024-07-12",
+        "2026-08-07"
       ],
-      "bytes": 391696,
-      "sha256": "f2549083a8634585e3bec835519b16238693bd26e96a1b554ba010138aa6120b"
+      "bytes": 390979,
+      "sha256": "381323deaf62fd8d842a7c1a3f3c43509d3721e516530c37fc69f43d89268c25"
     },
     {
       "state": "Telangana",
@@ -1053,14 +1069,14 @@
       "commoditySlug": "onion",
       "url": "/data/telangana/onion.json",
       "marketCount": 3,
-      "observationCount": 1407,
+      "observationCount": 982,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-06",
-        "2026-08-01"
+        "2024-07-12",
+        "2026-08-09"
       ],
-      "bytes": 543728,
-      "sha256": "2068c0a2d7b362841499478ce14fb9f552a665502ef6cec1efbbdfd997cd5686"
+      "bytes": 384943,
+      "sha256": "a59f59f0c9c7cfa26c228ca07c57d2e1873c8446e66ddfe60c8605fad84e6e68"
     },
     {
       "state": "Telangana",
@@ -1069,14 +1085,14 @@
       "commoditySlug": "paddy-common",
       "url": "/data/telangana/paddy-common.json",
       "marketCount": 3,
-      "observationCount": 1859,
+      "observationCount": 1848,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 706248,
-      "sha256": "fede72303ac6120f9f825293c553a4ca034d47dd2101beaac67b42a51d92152d"
+      "bytes": 702207,
+      "sha256": "8f23722d40e23346178afe966c072fcbc8a8f7fe0c337c1ec7827f02890dba50"
     },
     {
       "state": "Telangana",
@@ -1085,14 +1101,14 @@
       "commoditySlug": "potato",
       "url": "/data/telangana/potato.json",
       "marketCount": 3,
-      "observationCount": 1389,
+      "observationCount": 998,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-06",
-        "2026-08-01"
+        "2024-07-12",
+        "2026-08-09"
       ],
-      "bytes": 539156,
-      "sha256": "14dd782aea89a3fcb37371d43e6a59792fa9a67729f3982d824939957cc3ebeb"
+      "bytes": 393385,
+      "sha256": "d26e8023d326cf79a669028e9f32f29ffb7040f58831ed9996387ba5d79c59d0"
     },
     {
       "state": "Telangana",
@@ -1101,14 +1117,14 @@
       "commoditySlug": "tomato",
       "url": "/data/telangana/tomato.json",
       "marketCount": 3,
-      "observationCount": 1487,
+      "observationCount": 969,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-05",
-        "2026-08-03"
+        "2024-07-12",
+        "2026-08-09"
       ],
-      "bytes": 570625,
-      "sha256": "826f21a723c8de12af6c8bef64fe9b790d9f79d2572a43870d10314d4afac207"
+      "bytes": 378929,
+      "sha256": "52dda803a9931ec36e3caf834fe3ba8efc471e01468ff1086a6fd6b90591f5c8"
     },
     {
       "state": "Telangana",
@@ -1120,14 +1136,14 @@
       "observationCount": 672,
       "forecastCount": 21,
       "dateRange": [
-        "2024-07-06",
-        "2026-07-31"
+        "2024-07-12",
+        "2026-08-08"
       ],
-      "bytes": 270690,
-      "sha256": "97f4858c2043bc720651b36e6e2a1577e0ff26a41acf24e568ceaf442ca5dad2"
+      "bytes": 270746,
+      "sha256": "5b69dfc6c3385cf8724b59d952f8611520cb626d165a525f200f6f9d6424e440"
     }
   ],
-  "total_web_bytes": 35397355,
-  "dataset_manifest_sha256": "392fd437936f648724c3d67525ebb3a4009b6c3404461748d1f6928ac23feeeb",
-  "model_artifact_sha256": "51389db156181af08c5514e4c4e3ca0ebe0ab0665696de94a077ce08b1154208"
+  "total_web_bytes": 34854667,
+  "dataset_manifest_sha256": "83f04a6fc0c69ac9e4343333cc76ed7be3f96e438f262d77e17d360b092e73ee",
+  "model_artifact_sha256": "1e46a393088748569b9bc0c53e4ad054cdaee68fbc2160340105507bf2491d96"
 }

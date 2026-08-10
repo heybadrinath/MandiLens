@@ -1,6 +1,6 @@
 # Model-evaluation report
 
-Generated: 2026-08-03T06:56:11.112010+00:00
+Generated: 2026-08-10T05:17:11.094657+00:00
 
 ## Production selection
 
@@ -10,9 +10,9 @@ The best lead-aware candidate must improve pooled selection-fold MAE by at least
 **1.0%** and win at least
 **67%** of usable folds. The selected candidate,
 **Validated recent-level + lead-aware blend**, improved MAE by
-**2.49%** and won **3 of
-3** folds. Its blend uses **70%**
-Five-report moving average, **30%** lead-aware tree output, and a
+**1.95%** and won **3 of
+3** folds. Its blend uses **75%**
+Five-report moving average, **25%** lead-aware tree output, and a
 **7.5%** damped level-gap adjustment per lead day. The automated
 parameter search and production selector use only the chronological selection folds; holdout
 metrics are computed separately after each training run fixes those parameters.
@@ -21,33 +21,33 @@ metrics are computed separately after each training run fixes those parameters.
 
 | Method | MAE (₹/quintal) | WAPE | sMAPE | Directional accuracy | Samples |
 |---|---:|---:|---:|---:|---:|
-| Validated recent-level + lead-aware blend | 470.98 | 9.7% | 12.6% | 48.6% | 529,370 |
-| Five-report moving average | 482.99 | 10.0% | 12.9% | 53.0% | 529,370 |
-| Last observation | 493.85 | 10.2% | 13.1% | 23.5% | 529,370 |
-| Global histogram gradient boosting | 507.60 | 10.5% | 13.2% | 47.8% | 529,370 |
-| Seven-day seasonal naive | 583.41 | 12.1% | 15.5% | 50.3% | 529,370 |
+| Validated recent-level + lead-aware blend | 470.15 | 9.5% | 12.4% | 47.9% | 521,663 |
+| Five-report moving average | 479.49 | 9.7% | 12.7% | 52.9% | 521,663 |
+| Last observation | 491.33 | 10.0% | 12.8% | 24.2% | 521,663 |
+| Global histogram gradient boosting | 509.65 | 10.3% | 13.1% | 47.3% | 521,663 |
+| Seven-day seasonal naive | 580.57 | 11.8% | 15.3% | 50.0% | 521,663 |
 
 ## Locked final holdout
 
 | Method | MAE (₹/quintal) | WAPE | sMAPE | Directional accuracy | Samples |
 |---|---:|---:|---:|---:|---:|
-| Validated recent-level + lead-aware blend | 532.81 | 10.7% | 13.1% | 48.8% | 194,913 |
-| Five-report moving average | 541.97 | 10.8% | 13.5% | 51.8% | 194,913 |
-| Global histogram gradient boosting | 558.09 | 11.2% | 13.5% | 48.7% | 194,913 |
-| Last observation | 566.17 | 11.3% | 13.6% | 22.3% | 194,913 |
-| Seven-day seasonal naive | 657.11 | 13.1% | 16.1% | 48.4% | 194,913 |
+| Validated recent-level + lead-aware blend | 523.54 | 10.4% | 12.8% | 47.5% | 194,355 |
+| Five-report moving average | 530.26 | 10.5% | 13.1% | 52.4% | 194,355 |
+| Last observation | 553.51 | 11.0% | 13.2% | 24.0% | 194,355 |
+| Global histogram gradient boosting | 554.63 | 11.0% | 13.4% | 47.4% | 194,355 |
+| Seven-day seasonal naive | 643.63 | 12.7% | 15.6% | 49.1% | 194,355 |
 
 The paired target-date bootstrap estimates a Validated recent-level + lead-aware blend MAE reduction of
-**₹9.16/quintal** with a 95% interval from
-**₹6.78** to
-**₹11.62**. This measures stability; it does not prove
+**₹6.72/quintal** with a 95% interval from
+**₹4.45** to
+**₹8.85**. This measures stability; it does not prove
 future superiority.
 
 ## Prediction intervals
 
 The asymmetric interval targets **80%** coverage. On the locked
-holdout, it covered **69.7%** of
-**194,913** forecasts. Calibration backs off from market, lead, and volatility groups
+holdout, it covered **70.5%** of
+**194,355** forecasts. Calibration backs off from market, lead, and volatility groups
 to broader state/crop, crop, lead, or global residuals when samples are sparse.
 
 ## Validation boundaries
