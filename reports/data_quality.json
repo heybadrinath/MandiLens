@@ -1,28 +1,28 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-08-10T05:12:20.170708+00:00",
+  "generated_at": "2026-08-17T04:18:47.412168+00:00",
   "current_refresh_validation": {
     "source_file_count": 168,
-    "input_records": 100419,
-    "accepted_variety_records": 100376,
-    "excluded_records": 43,
-    "corrected_records": 260,
+    "input_records": 118043,
+    "accepted_variety_records": 117996,
+    "excluded_records": 47,
+    "corrected_records": 268,
     "unresolved_market_references": 0,
     "exclusion_reasons": {
-      "exact_duplicate": 27,
+      "exact_duplicate": 31,
       "invalid_price_order": 13,
       "price_above_safety_ceiling": 3
     }
   },
   "cumulative_validation": {
     "source_file_count": 2184,
-    "input_records": 1623093,
-    "accepted_records": 1617728,
-    "excluded_records": 5365
+    "input_records": 1640717,
+    "accepted_records": 1635348,
+    "excluded_records": 5369
   },
   "selection_window": {
-    "records": 1455544,
-    "series": 5530,
+    "records": 1460591,
+    "series": 4965,
     "states": [
       "Andhra Pradesh",
       "Karnataka",
@@ -47,13 +47,13 @@
       "Tomato",
       "Turmeric"
     ],
-    "date_min": "2024-07-12",
-    "date_max": "2026-08-10"
+    "date_min": "2024-07-19",
+    "date_max": "2026-08-17"
   },
   "published": {
-    "records": 89960,
+    "records": 89310,
     "series": 187,
-    "markets": 115,
+    "markets": 114,
     "states": [
       "Andhra Pradesh",
       "Karnataka",
@@ -78,11 +78,11 @@
       "Tomato",
       "Turmeric"
     ],
-    "date_min": "2024-07-12",
-    "date_max": "2026-08-10",
-    "stale_series": 2,
+    "date_min": "2024-07-19",
+    "date_max": "2026-08-17",
+    "stale_series": 6,
     "long_gap_series": 39,
-    "anomaly_records": 6847,
+    "anomaly_records": 6441,
     "missing_district_records": 0
   }
 }
