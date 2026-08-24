@@ -1,40 +1,40 @@
 # Data-quality report
 
-Generated: 2026-08-17T04:18:47.412168+00:00
+Generated: 2026-08-24T04:29:44.334230+00:00
 
 ## Current refresh
 
-This run processed **118,043** variety-level rows from
+This run processed **136,610** variety-level rows from
 **168** state, commodity, and month responses. It accepted
-**117,996** rows and excluded
-**47** rows with recorded reasons.
+**136,554** rows and excluded
+**56** rows with recorded reasons.
 
 ## Cumulative retained source window
 
 The committed quality ledger covers **2,184** monthly responses,
-**1,640,717** input rows, and **1,635,348** accepted
+**1,659,284** input rows, and **1,653,906** accepted
 rows. These cumulative totals are separate from the rows downloaded in the current refresh.
 
-The rolling all-market layer retains **1,460,591** market-day
-observations across **4,965** series so previously unselected
+The rolling all-market layer retains **1,464,130** market-day
+observations across **4,961** series so previously unselected
 markets can qualify during a later refresh.
 
 ## Published product coverage
 
-- Date range: 2024-07-19 to 2026-08-17
+- Date range: 2024-07-26 to 2026-08-24
 - States: Andhra Pradesh, Karnataka, Kerala, Maharashtra, Tamil Nadu, Telangana
 - Commodities with eligible series: Arecanut, Banana, Brinjal, Coconut, Cotton, Green Chilli, Groundnut, Maize, Onion, Paddy (Common), Potato, Ragi, Tomato, Turmeric
 - Selected market/commodity series: 187
 - Distinct markets: 114
-- Stale selected series: 6
-- Long reporting gaps: 39
-- Anomaly flags retained: 6,441
+- Stale selected series: 3
+- Long reporting gaps: 37
+- Anomaly flags retained: 6,444
 
 ## Current-refresh exclusions
 
-- `exact_duplicate`: 31
-- `invalid_price_order`: 13
-- `price_above_safety_ceiling`: 3
+- `exact_duplicate`: 33
+- `invalid_price_order`: 19
+- `price_above_safety_ceiling`: 4
 
 ## Interpretation
 
