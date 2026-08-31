@@ -8,7 +8,7 @@ not guaranteed prices, market quotes, trading instructions, or financial advice.
 ## Selected production method
 
 **Validated recent-level + lead-aware blend** (`recent_level_tree_blend`), version
-`05e727e79817`. Selection used chronological expanding-window folds. The final
+`67d82836056b`. Selection used chronological expanding-window folds. The final
 time holdout is reported separately and is not an input to the automated selector.
 
 The best lead-aware candidate ships only when it improves pooled selection MAE by at least
@@ -23,16 +23,16 @@ holdout is descriptive confirmation rather than a permanently untouched benchmar
 
 | Method | MAE (₹/quintal) | WAPE | Samples |
 |---|---:|---:|---:|
-| Validated recent-level + lead-aware blend | 537.33 | 10.4% | 194,960 |
-| Five-report moving average | 542.52 | 10.5% | 194,960 |
-| Global histogram gradient boosting | 569.38 | 11.1% | 194,960 |
-| Last observation | 569.87 | 11.1% | 194,960 |
-| Seven-day seasonal naive | 658.23 | 12.8% | 194,960 |
+| Five-report moving average | 531.33 | 10.3% | 197,151 |
+| Validated recent-level + lead-aware blend | 531.58 | 10.4% | 197,151 |
+| Last observation | 561.38 | 10.9% | 197,151 |
+| Global histogram gradient boosting | 581.97 | 11.3% | 197,151 |
+| Seven-day seasonal naive | 648.82 | 12.6% | 197,151 |
 
 The paired target-date bootstrap estimated a Validated recent-level + lead-aware blend MAE reduction of
-₹5.19/quintal with a 95% interval of
-₹2.42 to
-₹8.20. This is a stability diagnostic, not proof of
+₹-0.25/quintal with a 95% interval of
+₹-3.48 to
+₹2.96. This is a stability diagnostic, not proof of
 future improvement.
 
 ## Prediction intervals
@@ -43,8 +43,8 @@ lead, or global groups. Locked-holdout coverage is reported by state, crop, lead
 
 ## Training data
 
-- Rows: 1,976,147
-- Dates: 2024-08-04 to 2026-08-24
+- Rows: 1,971,832
+- Dates: 2024-08-11 to 2026-08-31
 - User-visible target offsets: 1 to 7 days from one
   common comparison date
 - Maximum model lead: 28 days from each market's latest report

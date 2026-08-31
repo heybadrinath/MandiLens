@@ -5,11 +5,11 @@
 - **Name:** MandiLens multi-state market-day price snapshot
 - **Provider:** Directorate of Marketing and Inspection, Ministry of Agriculture and Farmers Welfare, Government of India
 - **Source:** https://www.data.gov.in/catalog/current-daily-price-various-commodities-various-markets-mandi
-- **Retrieved:** 2026-08-24
+- **Retrieved:** 2026-08-31
 - **License:** [Government Open Data License - India](https://www.data.gov.in/godl)
-- **Date range:** 2024-07-26 to 2026-08-24
-- **Published selected-market records:** 89,612
-- **Retained all-market records:** 1,464,130
+- **Date range:** 2024-08-02 to 2026-08-31
+- **Published selected-market records:** 89,349
+- **Retained all-market records:** 1,467,667
 
 ## Configured coverage
 
@@ -38,7 +38,7 @@
 ## Attribution
 
 Directorate of Marketing and Inspection, Ministry of Agriculture and Farmers Welfare, Government of India, AGMARKNET market price and arrival reports, Open Government Data
-Platform India / AGMARKNET 2.0, retrieved 2026-08-24,
+Platform India / AGMARKNET 2.0, retrieved 2026-08-31,
 https://www.data.gov.in/catalog/current-daily-price-various-commodities-various-markets-mandi. Source data is published under Government Open Data License - India:
 https://www.data.gov.in/godl.
 

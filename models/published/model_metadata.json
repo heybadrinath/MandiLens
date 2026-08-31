@@ -1,13 +1,13 @@
 {
   "schema_version": 3,
-  "model_version": "05e727e79817",
-  "trained_at": "2026-08-24T04:34:36.213069+00:00",
+  "model_version": "67d82836056b",
+  "trained_at": "2026-08-31T10:13:43.376636+00:00",
   "selected_method": "recent_level_tree_blend",
   "selected_label": "Validated recent-level + lead-aware blend",
-  "training_rows": 1976147,
+  "training_rows": 1971832,
   "training_date_range": [
-    "2024-08-04",
-    "2026-08-24"
+    "2024-08-11",
+    "2026-08-31"
   ],
   "display_forecast_horizon_days": 7,
   "maximum_model_lead_days": 28,
@@ -16,18 +16,18 @@
   "metrics": {
     "method": "recent_level_tree_blend",
     "label": "Validated recent-level + lead-aware blend",
-    "n": 194960,
-    "mae": 537.33,
-    "wape": 0.1044,
-    "smape": 0.131,
-    "directional_accuracy": 0.4668
+    "n": 197151,
+    "mae": 531.58,
+    "wape": 0.1036,
+    "smape": 0.1279,
+    "directional_accuracy": 0.4685
   },
   "selection_stability": {
     "required_improvement": 0.01,
     "required_fold_win_share": 0.666,
     "candidate_method": "recent_level_tree_blend",
     "candidate_label": "Validated recent-level + lead-aware blend",
-    "candidate_improvement": 0.0203,
+    "candidate_improvement": 0.0191,
     "candidate_fold_wins": 3,
     "usable_folds": 3,
     "candidate_fold_win_share": 1.0,
@@ -72,75 +72,75 @@
     "resampling_unit": "target date",
     "target_dates": 60,
     "repetitions": 2000,
-    "observed_mae_reduction": 5.19,
+    "observed_mae_reduction": -0.25,
     "confidence_interval_95": [
-      2.42,
-      8.2
+      -3.48,
+      2.96
     ],
-    "probability_candidate_improves_mae": 1.0
+    "probability_candidate_improves_mae": 0.4465
   },
   "feature_importance": [
     {
       "feature": "current_price",
-      "importance": 1234.15
+      "importance": 1088.92
     },
     {
       "feature": "rolling_mean_7d",
-      "importance": 581.24
+      "importance": 653.1
     },
     {
       "feature": "market_id",
-      "importance": 361.51
-    },
-    {
-      "feature": "rolling_median_30d",
-      "importance": 292.45
+      "importance": 578.13
     },
     {
       "feature": "rolling_mean_90d",
-      "importance": 284.48
+      "importance": 345.98
+    },
+    {
+      "feature": "rolling_median_30d",
+      "importance": 296.29
     },
     {
       "feature": "lag_1d",
-      "importance": 210.72
+      "importance": 280.42
     },
     {
       "feature": "commodity",
-      "importance": 203.95
-    },
-    {
-      "feature": "lag_7d",
-      "importance": 37.36
-    },
-    {
-      "feature": "current_spread",
-      "importance": 33.32
-    },
-    {
-      "feature": "lag_14d",
-      "importance": 12.83
-    },
-    {
-      "feature": "rolling_std_30d",
-      "importance": 9.21
-    },
-    {
-      "feature": "relative_volatility_30d",
-      "importance": 8.38
-    },
-    {
-      "feature": "momentum_7d",
-      "importance": 8.08
+      "importance": 162.03
     },
     {
       "feature": "rolling_mean_14d",
-      "importance": 5.95
+      "importance": 52.88
+    },
+    {
+      "feature": "state",
+      "importance": 32.86
+    },
+    {
+      "feature": "rolling_mean_30d",
+      "importance": 26.06
+    },
+    {
+      "feature": "rolling_std_30d",
+      "importance": 21.57
+    },
+    {
+      "feature": "lag_28d",
+      "importance": 20.14
     },
     {
       "feature": "lead_days",
-      "importance": 4.99
+      "importance": 6.92
+    },
+    {
+      "feature": "current_spread",
+      "importance": 6.63
+    },
+    {
+      "feature": "momentum_7d",
+      "importance": 4.64
     }
   ],
   "feature_importance_evaluation": "Permutation importance on the locked holdout using a pre-holdout tree model",
-  "artifact_sha256": "3472051ee39e78b0b11775cf8c4af4f5a34a215dfd640a0b98a6548170458212"
+  "artifact_sha256": "f35d6092fb311662d045ce0d6c7514e483c80f01e6714500b39fcfd7e47b05fe"
 }
