@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, IBM_Plex_Mono, Noto_Sans } from "next/font/google";
 import { Suspense } from "react";
+import { Analytics } from "@vercel/analytics/next";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -67,6 +68,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             <SiteFooter sourceUrl={manifest.source.catalogUrl} />
           </div>
         </div>
+        <Analytics />
       </body>
     </html>
   );
