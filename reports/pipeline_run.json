@@ -1,31 +1,31 @@
 {
   "schema_version": 1,
-  "completed_at": "2026-08-31T10:13:45.468078+00:00",
-  "total_seconds": 729.377,
+  "completed_at": "2026-09-07T08:45:50.823540+00:00",
+  "total_seconds": 644.911,
   "steps": [
     {
       "step": "download",
-      "seconds": 421.061
+      "seconds": 330.397
     },
     {
       "step": "transform",
-      "seconds": 21.819
+      "seconds": 16.69
     },
     {
       "step": "features",
-      "seconds": 21.379
+      "seconds": 21.52
     },
     {
       "step": "train_and_evaluate",
-      "seconds": 263.927
+      "seconds": 275.002
     },
     {
       "step": "forecast",
-      "seconds": 0.134
+      "seconds": 0.187
     },
     {
       "step": "export",
-      "seconds": 1.056
+      "seconds": 1.113
     }
   ],
   "incremental": true
