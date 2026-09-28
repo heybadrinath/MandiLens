@@ -8,7 +8,7 @@ not guaranteed prices, market quotes, trading instructions, or financial advice.
 ## Selected production method
 
 **Validated recent-level + lead-aware blend** (`recent_level_tree_blend`), version
-`a3c2610cae8b`. Selection used chronological expanding-window folds. The final
+`ce51a25751f1`. Selection used chronological expanding-window folds. The final
 time holdout is reported separately and is not an input to the automated selector.
 
 The best lead-aware candidate ships only when it improves pooled selection MAE by at least
@@ -23,16 +23,16 @@ holdout is descriptive confirmation rather than a permanently untouched benchmar
 
 | Method | MAE (₹/quintal) | WAPE | Samples |
 |---|---:|---:|---:|
-| Five-report moving average | 507.35 | 9.9% | 198,076 |
-| Validated recent-level + lead-aware blend | 508.13 | 9.9% | 198,076 |
-| Last observation | 538.87 | 10.5% | 198,076 |
-| Global histogram gradient boosting | 561.84 | 10.9% | 198,076 |
-| Seven-day seasonal naive | 618.75 | 12.0% | 198,076 |
+| Five-report moving average | 489.75 | 9.6% | 198,396 |
+| Validated recent-level + lead-aware blend | 492.82 | 9.6% | 198,396 |
+| Last observation | 522.80 | 10.2% | 198,396 |
+| Global histogram gradient boosting | 554.40 | 10.8% | 198,396 |
+| Seven-day seasonal naive | 601.44 | 11.8% | 198,396 |
 
 The paired target-date bootstrap estimated a Validated recent-level + lead-aware blend MAE reduction of
-₹-0.78/quintal with a 95% interval of
-₹-3.04 to
-₹1.51. This is a stability diagnostic, not proof of
+₹-3.07/quintal with a 95% interval of
+₹-5.78 to
+₹-0.42. This is a stability diagnostic, not proof of
 future improvement.
 
 ## Prediction intervals
@@ -43,8 +43,8 @@ lead, or global groups. Locked-holdout coverage is reported by state, crop, lead
 
 ## Training data
 
-- Rows: 1,974,405
-- Dates: 2024-09-01 to 2026-09-21
+- Rows: 1,966,170
+- Dates: 2024-09-08 to 2026-09-28
 - User-visible target offsets: 1 to 7 days from one
   common comparison date
 - Maximum model lead: 28 days from each market's latest report
